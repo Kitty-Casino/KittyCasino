@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -317,6 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 0
+  numCard: 5
   cardManager: {fileID: 1564159084}
 --- !u!1 &247579810
 GameObject:
@@ -512,6 +513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 0
+  numCard: 0
   cardManager: {fileID: 1564159084}
 --- !u!1 &342251222
 GameObject:
@@ -630,6 +632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 0
+  numCard: 4
   cardManager: {fileID: 1564159084}
 --- !u!1 &478740190
 GameObject:
@@ -1382,6 +1385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 0
+  numCard: 1
   cardManager: {fileID: 1564159084}
 --- !u!1 &909056513
 GameObject:
@@ -2438,7 +2442,13 @@ MonoBehaviour:
   - {fileID: 247579810}
   - {fileID: 2065490892}
   savedCard: 0
+  finalCard: 0
+  savedCardNum: 0
+  finalCardNum: 0
   hasBeenClicked: 0
+  coroutineOver: 0
+  matchesMade: 0
+  mistakesMade: 0
 --- !u!1 &1658126892
 GameObject:
   m_ObjectHideFlags: 0
@@ -2556,6 +2566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 0
+  numCard: 7
   cardManager: {fileID: 1564159084}
 --- !u!1 &1774778847
 GameObject:
@@ -2809,6 +2820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 0
+  numCard: 6
   cardManager: {fileID: 1564159084}
 --- !u!1 &1889081842
 GameObject:
@@ -2995,6 +3007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 0
+  numCard: 3
   cardManager: {fileID: 1564159084}
 --- !u!1 &2000236953
 GameObject:
@@ -3113,6 +3126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 0
+  numCard: 2
   cardManager: {fileID: 1564159084}
 --- !u!1 &2065490892
 GameObject:

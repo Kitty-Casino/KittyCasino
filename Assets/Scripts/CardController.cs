@@ -7,24 +7,30 @@ using UnityEngine.UI;
 public class CardController : MonoBehaviour
 {
     public int value = 0;
+    public int numCard;
     public CardManager cardManager;
-
+    
     public void OnClicked(Button button)
     {
-        if (!cardManager.hasBeenClicked)
+        if (cardManager.coroutineOver)
         {
-            cardManager.savedCard = button.GetComponent<CardController>().value;
-            cardManager.hasBeenClicked = true;
-        }
-        else
-        {
-            if (cardManager.savedCard == value)
+            if (!cardManager.hasBeenClicked)
             {
-                Debug.Log("win");
+                cardManager.savedCard = button.GetComponent<CardController>().value;
+                cardManager.flipFirstCard(numCard);
+                cardManager.hasBeenClicked = true;
             }
             else
             {
-                Debug.Log("lose");
+                cardManager.finalCard = button.GetComponent<CardController>().value;
+                cardManager.flipSecondCard(numCard);
+
+                if (cardManager.savedCard == value)
+                {
+                    Debug.Log("match");
+
+                    cardManager.matchesMade++;
+                }
             }
         }
     }

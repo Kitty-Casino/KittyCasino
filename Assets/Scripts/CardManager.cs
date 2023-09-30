@@ -9,13 +9,27 @@ public class CardManager : MonoBehaviour
     public GameObject[] cardDetails;
     private int[] numValues;
     public int savedCard;
+    public int finalCard;
+    public int savedCardNum;
+    public int finalCardNum;
     public bool hasBeenClicked = false;
+    public bool coroutineOver = false;
+    public int matchesMade;
+    private bool isMatch;
+    public int mistakesMade;
 
     void Start()
     {
         cards = GameObject.FindGameObjectsWithTag("Cards");
         cardDetails = GameObject.FindGameObjectsWithTag("Card Details");
         numValues = new int[8];
+        savedCard = -1;
+        finalCard = -1;
+        savedCardNum = -1;
+        finalCardNum = -1;
+        matchesMade = 0;
+        isMatch = false;
+        mistakesMade = 0;
 
         for (int i = 0; i < numValues.Length; i += 2)
         {
@@ -33,6 +47,50 @@ public class CardManager : MonoBehaviour
         StartCoroutine(flipCards());
     }
 
+    void Update()
+    {
+        if (mistakesMade == 3)
+        {
+            Debug.Log("lose!"); // placeholder
+        }
+    }
+
+    public void flipFirstCard(int numCard)
+    {
+        // flip first picked card
+        if (savedCard != -1)
+        {
+            cardDetails[numCard].GetComponent<TMP_Text>().text = "" + savedCard;
+        }
+
+        savedCardNum = numCard;
+    }
+
+    public void flipSecondCard(int numCard)
+    {
+        // flips second picked card
+        if (finalCard != -1)
+        {
+            cardDetails[numCard].GetComponent<TMP_Text>().text = "" + finalCard;
+        }
+
+        finalCardNum = numCard;
+
+        if (cards[savedCardNum].GetComponent<CardController>().value == cards[finalCardNum].GetComponent<CardController>().value)
+        {
+            isMatch = true;
+        }
+
+        if (savedCardNum != -1 && finalCardNum != -1 && isMatch)
+        {
+            StartCoroutine(removeCards());
+        }
+        else
+        {
+            StartCoroutine(hideCards());
+        }
+    }
+
     // flips 3 random cards with different values
     // <param> array of GameObjects of all the cards
     private void showRandomCards(GameObject[] cards)
@@ -44,12 +102,13 @@ public class CardManager : MonoBehaviour
         int rand3 = 0;
         bool flag = false;
 
+        // determines card to be flipped second
         if (temp != rand1 &&
             cards[temp].GetComponent<CardController>().value != tempValue)
         {
             rand2 = temp;
         }
-        else if (temp > 8)
+        else if (temp < 8)
         {
             rand2 = temp++;
         }
@@ -58,6 +117,7 @@ public class CardManager : MonoBehaviour
             rand2 = temp--;
         }
 
+        // determines card to be flipped last - IS OCCASIONALLY BROKEN
         while (!flag)
         {
             temp = Random.Range(0, 8);
@@ -71,7 +131,6 @@ public class CardManager : MonoBehaviour
             }
         }
 
-        // 
         for (int i = 0; i < cards.Length; i++)
         {
             if (i == rand1 || i == rand2 || i == rand3)
@@ -100,11 +159,48 @@ public class CardManager : MonoBehaviour
     {
         showRandomCards(cards);
         yield return new WaitForSeconds(5);
+        coroutineOver = true;
 
         for (int i = 0; i < cards.Length; i++)
         {
             // again there is def a better method
             cardDetails[i].GetComponent<TMP_Text>().text = "";
         }
+    }
+
+    IEnumerator removeCards()
+    {
+        yield return new WaitForSeconds(2);
+        cards[savedCardNum].SetActive(false);
+        cards[finalCardNum].SetActive(false);
+
+        if (matchesMade != (cards.Length / 2))
+        {
+            resetValues();
+        }
+        else
+        {
+            Debug.Log("win");
+        }
+    }
+
+    IEnumerator hideCards()
+    {
+        mistakesMade++;
+        yield return new WaitForSeconds(2);
+        // theres a better way to flip the cards back over
+        cardDetails[savedCardNum].GetComponent<TMP_Text>().text = "";
+        cardDetails[finalCardNum].GetComponent<TMP_Text>().text = "";
+        resetValues();
+    }
+
+    private void resetValues()
+    {
+        savedCard = -1;
+        finalCard = -1;
+        savedCardNum = -1;
+        finalCardNum = -1;
+        hasBeenClicked = false;
+        isMatch = false;
     }
 }
