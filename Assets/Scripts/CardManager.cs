@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class CardManager : MonoBehaviour
 {
     public GameObject[] cards;
     public GameObject[] cardDetails;
+    public Sprite[] cardDecor;
     private int[] numValues;
     public int savedCard;
     public int finalCard;
@@ -44,6 +46,27 @@ public class CardManager : MonoBehaviour
             cards[i].GetComponent<CardController>().value = numValues[i];
         }
 
+        // assigning the card faces to each card value
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (cards[i].GetComponent<CardController>().value == 0) // THESE NUMBERS WILL CHANGE DEPENDING ON # OF CARDS
+            {
+                cards[i].GetComponent<CardController>().cardDecor[1] = cardDecor[0];
+            }
+            else if (cards[i].GetComponent<CardController>().value == 2)
+            {
+                cards[i].GetComponent<CardController>().cardDecor[1] = cardDecor[1];
+            }
+            else if (cards[i].GetComponent<CardController>().value == 4)
+            {
+                cards[i].GetComponent<CardController>().cardDecor[1] = cardDecor[2];
+            }
+            else if (cards[i].GetComponent<CardController>().value == 6)
+            {
+                cards[i].GetComponent<CardController>().cardDecor[1] = cardDecor[3];
+            }
+        }
+
         StartCoroutine(flipCards());
     }
 
@@ -60,7 +83,7 @@ public class CardManager : MonoBehaviour
         // flip first picked card
         if (savedCard != -1)
         {
-            cardDetails[numCard].GetComponent<TMP_Text>().text = "" + savedCard;
+            cardDetails[numCard].GetComponent<Image>().sprite = cards[numCard].GetComponent<CardController>().cardDecor[1];
         }
 
         savedCardNum = numCard;
@@ -71,7 +94,7 @@ public class CardManager : MonoBehaviour
         // flips second picked card
         if (finalCard != -1)
         {
-            cardDetails[numCard].GetComponent<TMP_Text>().text = "" + finalCard;
+            cardDetails[numCard].GetComponent<Image>().sprite = cards[numCard].GetComponent<CardController>().cardDecor[1];
         }
 
         finalCardNum = numCard;
@@ -104,22 +127,7 @@ public class CardManager : MonoBehaviour
 
         Debug.Log("Rand1 = " + rand1);
 
-        // determines card to be flipped second
-        /*if (temp != rand1 &&
-            cards[temp].GetComponent<CardController>().value != tempValue)
-        {
-            rand2 = temp;
-        }
-        else if (temp++ < 8)
-        {
-            rand2 = temp++;
-        }
-        else if (temp-- > 0)
-        {
-            rand2 = temp--;
-        }*/
-
-        while (!flag)       // new code based on what u had for rand3
+        while (!flag) 
         {
             temp = Random.Range(0, 7);
             if (temp != rand1 &&
@@ -152,8 +160,7 @@ public class CardManager : MonoBehaviour
         {
             if (i == rand1 || i == rand2 || i == rand3)
             {
-                // theres def a better method for this but since we have no designs yet this is what it is
-                cardDetails[i].GetComponent<TMP_Text>().text = "" + cards[i].GetComponent<CardController>().value;
+                cardDetails[i].GetComponent<Image>().sprite = cards[i].GetComponent<CardController>().cardDecor[1];
             }
         }
     }
@@ -181,7 +188,7 @@ public class CardManager : MonoBehaviour
         for (int i = 0; i < cards.Length; i++)
         {
             // again there is def a better method
-            cardDetails[i].GetComponent<TMP_Text>().text = "";
+            cardDetails[i].GetComponent<Image>().sprite = cards[i].GetComponent<CardController>().cardDecor[0];
         }
     }
 
@@ -208,8 +215,8 @@ public class CardManager : MonoBehaviour
         mistakesMade++;
         yield return new WaitForSeconds(2);
         // theres a better way to flip the cards back over
-        cardDetails[savedCardNum].GetComponent<TMP_Text>().text = "";
-        cardDetails[finalCardNum].GetComponent<TMP_Text>().text = "";
+        cardDetails[savedCardNum].GetComponent<Image>().sprite = cards[savedCardNum].GetComponent<CardController>().cardDecor[0];
+        cardDetails[finalCardNum].GetComponent<Image>().sprite = cards[finalCardNum].GetComponent<CardController>().cardDecor[0];
         resetValues();
     }
 

@@ -9,6 +9,7 @@ public class CardController : MonoBehaviour
     public int value = 0;
     public int numCard;
     public CardManager cardManager;
+    public Sprite[] cardDecor;
     
     public void OnClicked(Button button)
     {
