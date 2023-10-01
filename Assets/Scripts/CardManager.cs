@@ -187,7 +187,6 @@ public class CardManager : MonoBehaviour
 
         for (int i = 0; i < cards.Length; i++)
         {
-            // again there is def a better method
             cardDetails[i].GetComponent<Image>().sprite = cards[i].GetComponent<CardController>().cardDecor[0];
         }
     }
@@ -214,7 +213,6 @@ public class CardManager : MonoBehaviour
         coroutineOver = false;
         mistakesMade++;
         yield return new WaitForSeconds(2);
-        // theres a better way to flip the cards back over
         cardDetails[savedCardNum].GetComponent<Image>().sprite = cards[savedCardNum].GetComponent<CardController>().cardDecor[0];
         cardDetails[finalCardNum].GetComponent<Image>().sprite = cards[finalCardNum].GetComponent<CardController>().cardDecor[0];
         resetValues();
