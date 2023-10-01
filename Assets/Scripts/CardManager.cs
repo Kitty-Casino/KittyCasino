@@ -95,32 +95,48 @@ public class CardManager : MonoBehaviour
     // <param> array of GameObjects of all the cards
     private void showRandomCards(GameObject[] cards)
     {
-        int rand1 = Random.Range(0, 8);
-        int temp = Random.Range(0, 8);
+        int rand1 = Random.Range(0, 7);
+        int temp = Random.Range(0, 7);
         int tempValue = cards[rand1].GetComponent<CardController>().value;
         int rand2 = 0;
         int rand3 = 0;
         bool flag = false;
 
+        Debug.Log("Rand1 = " + rand1);
+
         // determines card to be flipped second
-        if (temp != rand1 &&
+        /*if (temp != rand1 &&
             cards[temp].GetComponent<CardController>().value != tempValue)
         {
             rand2 = temp;
         }
-        else if (temp < 8)
+        else if (temp++ < 8)
         {
             rand2 = temp++;
         }
-        else if (temp > 0)
+        else if (temp-- > 0)
         {
             rand2 = temp--;
+        }*/
+
+        while (!flag)       // new code based on what u had for rand3
+        {
+            temp = Random.Range(0, 7);
+            if (temp != rand1 &&
+            cards[temp].GetComponent<CardController>().value != cards[rand1].GetComponent<CardController>().value)
+            {
+                rand2 = temp;
+                flag = true;
+                Debug.Log("Rand2 = " + rand2);
+            }
+
         }
+        flag = false;
 
         // determines card to be flipped last - IS OCCASIONALLY BROKEN
         while (!flag)
         {
-            temp = Random.Range(0, 8);
+            temp = Random.Range(0, 7);
 
             if (temp != rand2 && temp != rand1 &&
             cards[temp].GetComponent<CardController>().value != cards[rand2].GetComponent<CardController>().value &&
@@ -128,6 +144,7 @@ public class CardManager : MonoBehaviour
             {
                 rand3 = temp;
                 flag = true;
+                Debug.Log("Rand3 = " + rand3);
             }
         }
 
@@ -170,6 +187,7 @@ public class CardManager : MonoBehaviour
 
     IEnumerator removeCards()
     {
+        coroutineOver = false;
         yield return new WaitForSeconds(2);
         cards[savedCardNum].SetActive(false);
         cards[finalCardNum].SetActive(false);
@@ -186,6 +204,7 @@ public class CardManager : MonoBehaviour
 
     IEnumerator hideCards()
     {
+        coroutineOver = false;
         mistakesMade++;
         yield return new WaitForSeconds(2);
         // theres a better way to flip the cards back over
@@ -200,6 +219,7 @@ public class CardManager : MonoBehaviour
         finalCard = -1;
         savedCardNum = -1;
         finalCardNum = -1;
+        coroutineOver = true;
         hasBeenClicked = false;
         isMatch = false;
     }
