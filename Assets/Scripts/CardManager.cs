@@ -14,24 +14,33 @@ public class CardManager : MonoBehaviour
     public int finalCard;
     public int savedCardNum;
     public int finalCardNum;
-    public bool hasBeenClicked = false;
+    public bool hasBeenClicked;
     public bool coroutineOver = false;
     public int matchesMade;
     private bool isMatch;
     public int mistakesMade;
+
+    public GameObject endScreen;
 
     void Start()
     {
         cards = GameObject.FindGameObjectsWithTag("Cards");
         cardDetails = GameObject.FindGameObjectsWithTag("Card Details");
         numValues = new int[8];
-        savedCard = -1;
+        StartUp();
+    }
+
+    void StartUp()
+    {
+        //savedCard = -1;
         finalCard = -1;
-        savedCardNum = -1;
+        //savedCardNum = -1;
         finalCardNum = -1;
         matchesMade = 0;
         isMatch = false;
+        hasBeenClicked = false;
         mistakesMade = 0;
+        endScreen.SetActive(false);
 
         for (int i = 0; i < numValues.Length; i += 2)
         {
@@ -72,10 +81,7 @@ public class CardManager : MonoBehaviour
 
     void Update()
     {
-        if (mistakesMade == 3)
-        {
-            Debug.Log("lose!"); // placeholder
-        }
+        
     }
 
     public void flipFirstCard(int numCard)
@@ -204,6 +210,8 @@ public class CardManager : MonoBehaviour
         }
         else
         {
+            endScreen.GetComponent<TMP_Text>().text = "YOU WIN!";
+            endScreen.SetActive(true);
             Debug.Log("win");
         }
     }
@@ -216,6 +224,18 @@ public class CardManager : MonoBehaviour
         cardDetails[savedCardNum].GetComponent<Image>().sprite = cards[savedCardNum].GetComponent<CardController>().cardDecor[0];
         cardDetails[finalCardNum].GetComponent<Image>().sprite = cards[finalCardNum].GetComponent<CardController>().cardDecor[0];
         resetValues();
+        if (mistakesMade == 3)
+        {
+            for(int i = 0; i < cards.Length; i++)
+            {
+                cardDetails[i].GetComponent<Image>().sprite = cards[i].GetComponent<CardController>().cardDecor[0];
+                cards[i].SetActive(false);
+            }
+
+            endScreen.GetComponent<TMP_Text>().text = "YOU LOSE!";
+            endScreen.SetActive(true);
+            Debug.Log("lose!"); // placeholder
+        }
     }
 
     private void resetValues()
@@ -227,5 +247,15 @@ public class CardManager : MonoBehaviour
         coroutineOver = true;
         hasBeenClicked = false;
         isMatch = false;
+    }
+
+    public void ReplayGame()
+    {
+        for(int i = 0; i < cards.Length; i++)
+        {
+            cards[i].SetActive(true);
+            cardDetails[i].GetComponent<Image>().sprite = cards[i].GetComponent<CardController>().cardDecor[0];
+        }
+        StartUp();
     }
 }
