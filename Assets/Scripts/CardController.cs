@@ -11,20 +11,27 @@ public class CardController : MonoBehaviour
     public CardManager cardManager;
     public Sprite[] cardDecor;
     
-    public void OnClicked(Button button)
+    public void Clicked()
     {
+        Debug.Log("Card " + numCard + " Clicked");
         if (cardManager.coroutineOver)
         {
             if (!cardManager.hasBeenClicked)
             {
-                cardManager.savedCard = button.GetComponent<CardController>().value;
+                cardManager.savedCard = value;
+                Debug.Log("savedCard: " + value);
+                cardManager.savedCardNum = numCard;
+                Debug.Log("savedCardNum: " + numCard);
                 cardManager.flipFirstCard(numCard);
+                Debug.Log("Card " + numCard + " Flipped");
                 cardManager.hasBeenClicked = true;
             }
-            else
+            else if (cardManager.savedCardNum != numCard)
             {
-                cardManager.finalCard = button.GetComponent<CardController>().value;
+                cardManager.finalCard = value;
+                cardManager.finalCardNum = numCard;
                 cardManager.flipSecondCard(numCard);
+                Debug.Log("Card " + numCard + " Flipped");
 
                 if (cardManager.savedCard == value)
                 {

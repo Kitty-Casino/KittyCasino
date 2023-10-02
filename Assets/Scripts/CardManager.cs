@@ -24,8 +24,8 @@ public class CardManager : MonoBehaviour
 
     void Start()
     {
-        cards = GameObject.FindGameObjectsWithTag("Cards");
-        cardDetails = GameObject.FindGameObjectsWithTag("Card Details");
+        //cards = GameObject.FindGameObjectsWithTag("Cards");
+        //cardDetails = GameObject.FindGameObjectsWithTag("Card Details");
         numValues = new int[8];
         StartUp();
     }
@@ -81,7 +81,10 @@ public class CardManager : MonoBehaviour
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseApp();
+        }
     }
 
     public void flipFirstCard(int numCard)
@@ -257,5 +260,11 @@ public class CardManager : MonoBehaviour
             cardDetails[i].GetComponent<Image>().sprite = cards[i].GetComponent<CardController>().cardDecor[0];
         }
         StartUp();
+    }
+
+    public void CloseApp()
+    {
+        Debug.Log("Quit The Game");
+        Application.Quit();
     }
 }
