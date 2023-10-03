@@ -9,4 +9,9 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene(1); // fill with appropriate scene
     }
+
+    public void ToCasino()
+    {
+        SceneManager.LoadScene(2);
+    }
 }
