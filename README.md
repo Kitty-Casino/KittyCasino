@@ -7,8 +7,7 @@
 You play as a mischievous house cat who lost your owner's money at Kitty Casino, and your goal is to earn enough money to pay back your owner and eventually buy the entire casino. 
 Start in the colorful Kitty Casino hub. Explore the casino floor, interact with other cats, and access game modes. Use simple touch controls to move your cat around.
 Visit the shop to spend earned chips on customization. Change your cat's appearance with various outfits, accessories, and fur colors.
-Approach casino tables to play Matching, Blackjack, or Texas Hold-em on the casino floor and compete against the dealer. Don't forget to visit the Daily Lotto booth and purchase tickets 
-with in-game coins for a chance to win prizes.
+Approach casino tables to play Matching, Blackjack, or Texas Hold-em on the casino floor and compete against the dealer. Don't forget to visit the Daily Lotto booth and purchase tickets with in-game coins for a chance to win prizes.
 
 ## Installation
 This project is built in Unity 2022.3.0f1. In order to run the project, ensure that your device has the correct version installed. 
