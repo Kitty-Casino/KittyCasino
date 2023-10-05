@@ -35,6 +35,7 @@ public class CardManager : MonoBehaviour
         StartUp();
     }
 
+    // initalizes all values to default
     void StartUp()
     {
         finalCard = -1;
@@ -245,6 +246,7 @@ public class CardManager : MonoBehaviour
         }
     }
 
+    // resets all values to default
     private void resetValues()
     {
         savedCard = -1;
@@ -266,6 +268,8 @@ public class CardManager : MonoBehaviour
         StartUp();
     }
 
+    // exposes betting UI and holds rest of game until bet is made
+    // triggers card flip once bet has been made
     IEnumerator bettingScreen()
     {
         bettingUI.SetActive(true);
