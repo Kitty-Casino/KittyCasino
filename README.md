@@ -24,18 +24,18 @@ various customization options for your cat.
 
 ## Release Notes for Version 1.0
 
-### ● New Features
+### New Features
 Matching Minigame
 
-### ● Feature Changes
+### Feature Changes
 Added Matching Minigame
 Added Menu Functionality
 
-### ● Feature Fixes
+### Feature Fixes
 N/A
 
-### ● Known Bugs / Issues
+### Known Bugs / Issues
 Many
 
-### ● Numbered List of All Completed Features
+### Numbered List of All Completed Features
 1. Matching Minigame
