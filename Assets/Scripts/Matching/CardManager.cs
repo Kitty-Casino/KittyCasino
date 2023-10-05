@@ -19,27 +19,33 @@ public class CardManager : MonoBehaviour
     public int matchesMade;
     private bool isMatch;
     public int mistakesMade;
-
     public GameObject endScreen;
+    private CoinsController coinController;
+    public GameObject bettingUI;
+    public bool betMade;
+    public TMP_InputField bet;
+    public int betValue;
+    public TextMeshProUGUI winnings;
 
     void Start()
     {
-        //cards = GameObject.FindGameObjectsWithTag("Cards");
-        //cardDetails = GameObject.FindGameObjectsWithTag("Card Details");
         numValues = new int[8];
+        coinController = GameObject.Find("CoinsController").GetComponent<CoinsController>();
+        bettingUI.SetActive(false);
         StartUp();
     }
 
     void StartUp()
     {
-        //savedCard = -1;
         finalCard = -1;
-        //savedCardNum = -1;
         finalCardNum = -1;
         matchesMade = 0;
         isMatch = false;
         hasBeenClicked = false;
         mistakesMade = 0;
+        betValue = 0;
+        betMade = false;
+        bet.onEndEdit.AddListener(BetMade);
         endScreen.SetActive(false);
 
         for (int i = 0; i < numValues.Length; i += 2)
@@ -76,7 +82,7 @@ public class CardManager : MonoBehaviour
             }
         }
 
-        StartCoroutine(flipCards());
+        StartCoroutine(bettingScreen());
     }
 
     void Update()
@@ -134,8 +140,6 @@ public class CardManager : MonoBehaviour
         int rand3 = 0;
         bool flag = false;
 
-        Debug.Log("Rand1 = " + rand1);
-
         while (!flag) 
         {
             temp = Random.Range(0, 7);
@@ -144,7 +148,6 @@ public class CardManager : MonoBehaviour
             {
                 rand2 = temp;
                 flag = true;
-                Debug.Log("Rand2 = " + rand2);
             }
 
         }
@@ -161,7 +164,6 @@ public class CardManager : MonoBehaviour
             {
                 rand3 = temp;
                 flag = true;
-                Debug.Log("Rand3 = " + rand3);
             }
         }
 
@@ -213,9 +215,10 @@ public class CardManager : MonoBehaviour
         }
         else
         {
+            coinController.IncrementCoins(calculateWinnings());
+            winnings.text = "You won " + calculateWinnings() + " coins!";
             endScreen.GetComponent<TMP_Text>().text = "YOU WIN!";
             endScreen.SetActive(true);
-            Debug.Log("win");
         }
     }
 
@@ -235,9 +238,10 @@ public class CardManager : MonoBehaviour
                 cards[i].SetActive(false);
             }
 
+            coinController.IncrementCoins(calculateWinnings());
+            winnings.text = "You won " + calculateWinnings() + " coins!";
             endScreen.GetComponent<TMP_Text>().text = "YOU LOSE!";
             endScreen.SetActive(true);
-            Debug.Log("lose!"); // placeholder
         }
     }
 
@@ -260,6 +264,47 @@ public class CardManager : MonoBehaviour
             cardDetails[i].GetComponent<Image>().sprite = cards[i].GetComponent<CardController>().cardDecor[0];
         }
         StartUp();
+    }
+
+    IEnumerator bettingScreen()
+    {
+        bettingUI.SetActive(true);
+
+        while (!betMade)
+        {
+            yield return null;
+        }
+
+        bettingUI.SetActive(false);
+        StartCoroutine(flipCards());
+    }
+
+    public void BetMade(string input)
+    {
+        betMade = true;
+        Debug.Log(input);
+        betValue = int.Parse(input);
+        coinController.DecrementCoins(int.Parse(input));
+    }
+
+    private int calculateWinnings()
+    {
+        if (mistakesMade == 0)
+        {
+            return betValue * 2;
+        }
+        else if (mistakesMade == 1)
+        {
+            return betValue;
+        } else if (mistakesMade == 2)
+        {
+            return betValue / 2;
+        } else if (mistakesMade >= 3)
+        {
+            return 0;
+        }
+
+        return -1; // should never get here
     }
 
     public void CloseApp()

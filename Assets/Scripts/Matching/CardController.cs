@@ -13,17 +13,13 @@ public class CardController : MonoBehaviour
     
     public void Clicked()
     {
-        // Debug.Log("Card " + numCard + " Clicked");
         if (cardManager.coroutineOver)
         {
             if (!cardManager.hasBeenClicked)
             {
                 cardManager.savedCard = value;
-                // Debug.Log("savedCard: " + value);
                 cardManager.savedCardNum = numCard;
-                // Debug.Log("savedCardNum: " + numCard);
                 cardManager.flipFirstCard(numCard);
-                // Debug.Log("Card " + numCard + " Flipped");
                 cardManager.hasBeenClicked = true;
             }
             else if (cardManager.savedCardNum != numCard)
@@ -31,12 +27,9 @@ public class CardController : MonoBehaviour
                 cardManager.finalCard = value;
                 cardManager.finalCardNum = numCard;
                 cardManager.flipSecondCard(numCard);
-                // Debug.Log("Card " + numCard + " Flipped");
 
                 if (cardManager.savedCard == value)
                 {
-                    // Debug.Log("match");
-
                     cardManager.matchesMade++;
                 }
             }
