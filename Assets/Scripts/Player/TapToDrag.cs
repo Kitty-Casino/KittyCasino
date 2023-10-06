@@ -6,7 +6,11 @@ public class TapToDrag : MonoBehaviour
 {
     public float dragSpeed;
     public float mouseDragSpeed;
-
+    public float xMin;
+    public float xMax;
+    public float zMin;
+    public float zMax;
+    public float cameraHeight;
     public void Update()
     {
         // These controls are compatible with touch, comment this part out when building the game for desktop testing
@@ -18,12 +22,12 @@ public class TapToDrag : MonoBehaviour
             // Calculate the new position by translating based on touch input
             Vector3 newPosition = transform.position - new Vector3(touchDeltaPosition.x * dragSpeed, 0, touchDeltaPosition.y * dragSpeed);
 
-            // Clamp the new position to the desired bounds
-            newPosition.x = Mathf.Clamp(newPosition.x, -40f, 40f);
-            newPosition.z = Mathf.Clamp(newPosition.z, -40f, 40f);
+            // Clamp the new position to the desired bounds, adjust these variables to alter the camera bounds
+            newPosition.x = Mathf.Clamp(newPosition.x, xMin, xMax);
+            newPosition.z = Mathf.Clamp(newPosition.z, zMin, zMax);
 
-            // You might want to clamp the height (y position) as well to set camera height
-            newPosition.y = Mathf.Clamp(newPosition.y, 10f, 10f);
+            // Determines camera height, alter this variable to determine camera height
+            newPosition.y = Mathf.Clamp(newPosition.y, cameraHeight, cameraHeight);
 
             // Apply the new position
             transform.position = newPosition;

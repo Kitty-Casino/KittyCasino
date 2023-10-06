@@ -14,7 +14,7 @@ public class TapInteractSound : MonoBehaviour
         // Get the AudioSource component attached to this object
         audioSource = GetComponent<AudioSource>();
 
-        // Ensure that the AudioSource has an AudioClip assigned
+        // Ensures that the AudioSource has an AudioClip assigned
         if (audioSource == null || tapSound == null)
         {
             Debug.LogError("Please assign an AudioSource and an AudioClip to this script.");
@@ -23,7 +23,7 @@ public class TapInteractSound : MonoBehaviour
 
     void Update()
     {
-        /*
+        
         // Check for touch input on mobile devices
         if (Input.touchCount > 0)
         {
@@ -45,7 +45,7 @@ public class TapInteractSound : MonoBehaviour
             }
             }
         }
-        */
+        
 
 
         // Check for mouse click on PC

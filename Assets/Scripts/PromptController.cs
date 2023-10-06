@@ -3,14 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class PromptController : MonoBehaviour
 {
-    public GameObject promptCanvas;
+    public GameObject promptPanel;
 
     private bool isPromptActive = false;
+
+    public int sceneID;
 
     private void Start()
     {
         // Initially, hide the prompt canvas
-        promptCanvas.SetActive(false);
+        promptPanel.SetActive(false);
     }
 
     private void Update()
@@ -56,21 +58,40 @@ public class PromptController : MonoBehaviour
 
         if (isPromptActive)
         {
-            promptCanvas.SetActive(true);
+            promptPanel.SetActive(true);
         }
     }
 
     
-
+    // When this function is called, the sceneID integer will determine which scene is loaded, make sure to set the correct scene ID for the scene you are trying to transition to
+    // If you need to add a new scene transition, add a new case and assign respective sceneID to the Game Object
     public void LoadAnotherScene()
     {
-        SceneManager.LoadScene("Matching");
+        switch (sceneID)
+        {
+            default:
+                SceneManager.LoadScene("Casino");
+                break;
+            case 1:
+                SceneManager.LoadScene("Matching");
+                break;
+            case 2:
+                SceneManager.LoadScene("Blackjack");
+                break;
+            case 3:
+                SceneManager.LoadScene("Slots");
+                break;
+            case 4:
+                SceneManager.LoadScene("Shop");
+                break;
+        }
     }
+
 
     public void ClosePrompt()
     {
         // Hide the prompt canvas and reset the prompt text
-        promptCanvas.SetActive(false);
+        promptPanel.SetActive(false);
 
         isPromptActive = false;
     }
