@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Cards
   - Card Details
+  - Sound
+  - Prompt
   layers:
   - Default
   - TransparentFX
