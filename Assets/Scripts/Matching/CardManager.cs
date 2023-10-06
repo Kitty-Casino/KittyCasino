@@ -29,7 +29,7 @@ public class CardManager : MonoBehaviour
 
     void Start()
     {
-        numValues = new int[8];
+        numValues = new int[GameObject.FindGameObjectsWithTag("Cards").Length]; // accounts for variable amt of cards
         coinController = GameObject.Find("CoinsController").GetComponent<CoinsController>();
         bettingUI.SetActive(false);
         StartUp();
@@ -62,28 +62,29 @@ public class CardManager : MonoBehaviour
             cards[i].GetComponent<CardController>().value = numValues[i];
         }
 
-        // assigning the card faces to each card value
-        for (int i = 0; i < cards.Length; i++)
-        {
-            if (cards[i].GetComponent<CardController>().value == 0) // THESE NUMBERS WILL CHANGE DEPENDING ON # OF CARDS
-            {
-                cards[i].GetComponent<CardController>().cardDecor[1] = cardDecor[0];
-            }
-            else if (cards[i].GetComponent<CardController>().value == 2)
-            {
-                cards[i].GetComponent<CardController>().cardDecor[1] = cardDecor[1];
-            }
-            else if (cards[i].GetComponent<CardController>().value == 4)
-            {
-                cards[i].GetComponent<CardController>().cardDecor[1] = cardDecor[2];
-            }
-            else if (cards[i].GetComponent<CardController>().value == 6)
-            {
-                cards[i].GetComponent<CardController>().cardDecor[1] = cardDecor[3];
-            }
-        }
+        int cardDecorNum = 0;
+        int cardValue = 0;
+        assignCards(cardDecorNum, cardValue);
 
         StartCoroutine(bettingScreen());
+    }
+
+    private void assignCards(int cardDecorNum, int cardValue)
+    {
+        // assigning the card faces to each card value
+        for (int j = 0; j < cards.Length / 2; j++)
+        {
+            for (int i = 0; i < cards.Length; i++)
+            {
+                if (cards[i].GetComponent<CardController>().value == cardValue)
+                {
+                    cards[i].GetComponent<CardController>().cardDecor[1] = cardDecor[cardDecorNum];
+                }
+            }
+
+            cardValue += 2;
+            cardDecorNum++;
+        }
     }
 
     void Update()
@@ -134,16 +135,16 @@ public class CardManager : MonoBehaviour
     // <param> array of GameObjects of all the cards
     private void showRandomCards(GameObject[] cards)
     {
-        int rand1 = Random.Range(0, 7);
-        int temp = Random.Range(0, 7);
+        int rand1 = Random.Range(0, cards.Length - 1);
+        int temp = Random.Range(0, cards.Length - 1);
         int tempValue = cards[rand1].GetComponent<CardController>().value;
         int rand2 = 0;
         int rand3 = 0;
         bool flag = false;
 
-        while (!flag) 
+        while (!flag)
         {
-            temp = Random.Range(0, 7);
+            temp = Random.Range(0, cards.Length - 1);
             if (temp != rand1 &&
             cards[temp].GetComponent<CardController>().value != cards[rand1].GetComponent<CardController>().value)
             {
@@ -154,10 +155,10 @@ public class CardManager : MonoBehaviour
         }
         flag = false;
 
-        // determines card to be flipped last - IS OCCASIONALLY BROKEN
+        // determines card to be flipped last
         while (!flag)
         {
-            temp = Random.Range(0, 7);
+            temp = Random.Range(0, cards.Length - 1);
 
             if (temp != rand2 && temp != rand1 &&
             cards[temp].GetComponent<CardController>().value != cards[rand2].GetComponent<CardController>().value &&
@@ -233,7 +234,7 @@ public class CardManager : MonoBehaviour
         resetValues();
         if (mistakesMade == 3)
         {
-            for(int i = 0; i < cards.Length; i++)
+            for (int i = 0; i < cards.Length; i++)
             {
                 cardDetails[i].GetComponent<Image>().sprite = cards[i].GetComponent<CardController>().cardDecor[0];
                 cards[i].SetActive(false);
@@ -260,7 +261,7 @@ public class CardManager : MonoBehaviour
 
     public void ReplayGame()
     {
-        for(int i = 0; i < cards.Length; i++)
+        for (int i = 0; i < cards.Length; i++)
         {
             cards[i].SetActive(true);
             cardDetails[i].GetComponent<Image>().sprite = cards[i].GetComponent<CardController>().cardDecor[0];
@@ -300,10 +301,12 @@ public class CardManager : MonoBehaviour
         else if (mistakesMade == 1)
         {
             return betValue;
-        } else if (mistakesMade == 2)
+        }
+        else if (mistakesMade == 2)
         {
             return betValue / 2;
-        } else if (mistakesMade >= 3)
+        }
+        else if (mistakesMade >= 3)
         {
             return 0;
         }
