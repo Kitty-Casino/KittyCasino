@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class CardManager : MonoBehaviour
 {
-    public GameObject[] cards;
-    public GameObject[] cardDetails;
+    [Header("Cards")]
     public Sprite[] cardDecor;
     private int[] numValues;
     public int savedCard;
@@ -16,21 +15,42 @@ public class CardManager : MonoBehaviour
     public int finalCardNum;
     public bool hasBeenClicked;
     public bool coroutineOver = false;
+    private CardController[] totalCards;
+
+    [SerializeField]
+    private GameObject[] cardsWithDifficulty;
+
+    [SerializeField]
+    private GameObject[] cards;
+
+    [SerializeField]
+    private GameObject[] totalDetails;
+
+    [SerializeField]
+    private GameObject[] cardDetails;
+
+    [Header("Matches")]
     public int matchesMade;
     private bool isMatch;
     public int mistakesMade;
     public GameObject endScreen;
+
+    [Header("Betting")]
     private CoinsController coinController;
     public GameObject bettingUI;
     public bool betMade;
     public TMP_InputField bet;
     public int betValue;
     public TextMeshProUGUI winnings;
-    public int level;
 
+    [Header("Difficulty")]
+    public int level;
+    public GameObject easy;
+    public GameObject medium;
+    public GameObject hard;
+    
     void Start()
     {
-        numValues = new int[GameObject.FindGameObjectsWithTag("Cards").Length]; // accounts for variable amt of cards
         coinController = GameObject.Find("CoinsController").GetComponent<CoinsController>();
         bettingUI.SetActive(false);
         StartUp();
@@ -50,6 +70,68 @@ public class CardManager : MonoBehaviour
         bet.onEndEdit.AddListener(BetMade);
         endScreen.SetActive(false);
 
+        switch (level)
+        {
+            // EASY
+            case 1:
+                easy.SetActive(true);
+                medium.SetActive(false);
+                hard.SetActive(false);
+                totalCards = new CardController[8];
+                cardsWithDifficulty = new GameObject[8];
+                totalDetails = new GameObject[8];
+                totalCards = easy.GetComponentsInChildren<CardController>();
+
+                int index1 = 0;
+                foreach(CardController card in totalCards)
+                {
+                    cardsWithDifficulty[index1] = card.gameObject;
+                    index1++;
+                }
+
+                break;
+
+            // MEDIUM
+            case 2:
+                easy.SetActive(false);
+                medium.SetActive(true);
+                hard.SetActive(false);
+                totalCards = new CardController[12];
+                cardsWithDifficulty = new GameObject[12];
+                totalDetails = new GameObject[12];
+                totalCards = medium.GetComponentsInChildren<CardController>();
+
+                int index2 = 0;
+                foreach(CardController card in totalCards)
+                {
+                    cardsWithDifficulty[index2] = card.gameObject;
+                    index2++;
+                }
+
+                break;
+
+            // HARD
+            case 3:
+                easy.SetActive(false);
+                medium.SetActive(false);
+                hard.SetActive(true);
+                totalCards = new CardController[16];
+                cardsWithDifficulty = new GameObject[16];
+                totalDetails = new GameObject[16];
+                totalCards = hard.GetComponentsInChildren<CardController>();
+
+                int index3 = 0;
+                foreach(CardController card in totalCards)
+                {
+                    cardsWithDifficulty[index3] = card.gameObject;
+                    index3++;
+                }
+
+                break;
+        }
+
+        numValues = new int[GameObject.FindGameObjectsWithTag("Cards").Length]; // accounts for variable amt of cards
+
         for (int i = 0; i < numValues.Length; i += 2)
         {
             numValues[i] = i;
@@ -58,9 +140,9 @@ public class CardManager : MonoBehaviour
 
         shuffleCards(numValues);
 
-        for (int i = 0; i < cards.Length; i++)
+        for (int i = 0; i < cardsWithDifficulty.Length; i++)
         {
-            cards[i].GetComponent<CardController>().value = numValues[i];
+            cardsWithDifficulty[i].GetComponent<CardController>().value = numValues[i]; 
         }
 
         int cardDecorNum = 0;
@@ -71,15 +153,15 @@ public class CardManager : MonoBehaviour
     }
 
     private void assignCards(int cardDecorNum, int cardValue)
-    {
+    {    
         // assigning the card faces to each card value
-        for (int j = 0; j < cards.Length / 2; j++)
+        for (int j = 0; j < cardsWithDifficulty.Length / 2; j++)
         {
-            for (int i = 0; i < cards.Length; i++)
+            for (int i = 0; i < cardsWithDifficulty.Length; i++)
             {
-                if (cards[i].GetComponent<CardController>().value == cardValue)
+                if (cardsWithDifficulty[i].GetComponent<CardController>().value == cardValue)
                 {
-                    cards[i].GetComponent<CardController>().cardDecor[1] = cardDecor[cardDecorNum];
+                    cardsWithDifficulty[i].GetComponent<CardController>().cardDecor[1] = cardDecor[cardDecorNum];
                 }
             }
 
@@ -101,7 +183,7 @@ public class CardManager : MonoBehaviour
         // flip first picked card
         if (savedCard != -1)
         {
-            cardDetails[numCard].GetComponent<Image>().sprite = cards[numCard].GetComponent<CardController>().cardDecor[1];
+            cardsWithDifficulty[numCard].transform.GetChild(0).GetComponent<Image>().sprite = totalCards[numCard].GetComponent<CardController>().cardDecor[1];
         }
 
         savedCardNum = numCard;
@@ -112,12 +194,12 @@ public class CardManager : MonoBehaviour
         // flips second picked card
         if (finalCard != -1)
         {
-            cardDetails[numCard].GetComponent<Image>().sprite = cards[numCard].GetComponent<CardController>().cardDecor[1];
+            cardsWithDifficulty[numCard].transform.GetChild(0).GetComponent<Image>().sprite = totalCards[numCard].GetComponent<CardController>().cardDecor[1];
         }
 
         finalCardNum = numCard;
 
-        if (cards[savedCardNum].GetComponent<CardController>().value == cards[finalCardNum].GetComponent<CardController>().value)
+        if (totalCards[savedCardNum].GetComponent<CardController>().value == totalCards[finalCardNum].GetComponent<CardController>().value)
         {
             isMatch = true;
         }
@@ -174,7 +256,7 @@ public class CardManager : MonoBehaviour
         {
             if (i == rand1 || i == rand2 || i == rand3)
             {
-                cardDetails[i].GetComponent<Image>().sprite = cards[i].GetComponent<CardController>().cardDecor[1];
+                cardsWithDifficulty[i].transform.GetChild(0).GetComponent<Image>().sprite = cards[i].GetComponent<CardController>().cardDecor[1];
             }
         }
     }
@@ -195,13 +277,13 @@ public class CardManager : MonoBehaviour
     // shows the values of the cards for 5 seconds 
     IEnumerator flipCards()
     {
-        showRandomCards(cards);
+        showRandomCards(cardsWithDifficulty);  
         yield return new WaitForSeconds(5);
         coroutineOver = true;
 
-        for (int i = 0; i < cards.Length; i++)
+        for (int i = 0; i < totalCards.Length; i++)
         {
-            cardDetails[i].GetComponent<Image>().sprite = cards[i].GetComponent<CardController>().cardDecor[0];
+            cardsWithDifficulty[i].transform.GetChild(0).GetComponent<Image>().sprite = cardsWithDifficulty[i].GetComponent<CardController>().cardDecor[0];
         }
     }
 
@@ -209,10 +291,10 @@ public class CardManager : MonoBehaviour
     {
         coroutineOver = false;
         yield return new WaitForSeconds(2);
-        cards[savedCardNum].SetActive(false);
-        cards[finalCardNum].SetActive(false);
+        cardsWithDifficulty[savedCardNum].SetActive(false);
+        cardsWithDifficulty[finalCardNum].SetActive(false);
 
-        if (matchesMade != (cards.Length / 2))
+        if (matchesMade != (totalCards.Length / 2))
         {
             resetValues();
         }
@@ -230,15 +312,15 @@ public class CardManager : MonoBehaviour
         coroutineOver = false;
         mistakesMade++;
         yield return new WaitForSeconds(2);
-        cardDetails[savedCardNum].GetComponent<Image>().sprite = cards[savedCardNum].GetComponent<CardController>().cardDecor[0];
-        cardDetails[finalCardNum].GetComponent<Image>().sprite = cards[finalCardNum].GetComponent<CardController>().cardDecor[0];
+        cardsWithDifficulty[savedCardNum].transform.GetChild(0).GetComponent<Image>().sprite = totalCards[savedCardNum].GetComponent<CardController>().cardDecor[0];
+        cardsWithDifficulty[finalCardNum].transform.GetChild(0).GetComponent<Image>().sprite = totalCards[finalCardNum].GetComponent<CardController>().cardDecor[0];
         resetValues();
         if (mistakesMade == 3)
         {
-            for (int i = 0; i < cards.Length; i++)
+            for (int i = 0; i < totalCards.Length; i++)
             {
-                cardDetails[i].GetComponent<Image>().sprite = cards[i].GetComponent<CardController>().cardDecor[0];
-                cards[i].SetActive(false);
+                cardsWithDifficulty[i].transform.GetChild(0).GetComponent<Image>().sprite = totalCards[i].GetComponent<CardController>().cardDecor[0];
+                cardsWithDifficulty[i].SetActive(false);
             }
 
             coinController.IncrementCoins(calculateWinnings());
@@ -262,10 +344,10 @@ public class CardManager : MonoBehaviour
 
     public void ReplayGame()
     {
-        for (int i = 0; i < cards.Length; i++)
+        for (int i = 0; i < totalCards.Length; i++)
         {
-            cards[i].SetActive(true);
-            cardDetails[i].GetComponent<Image>().sprite = cards[i].GetComponent<CardController>().cardDecor[0];
+            cardsWithDifficulty[i].SetActive(true); 
+            cardsWithDifficulty[i].transform.GetChild(0).GetComponent<Image>().sprite = totalCards[i].GetComponent<CardController>().cardDecor[0];
         }
         StartUp();
     }
