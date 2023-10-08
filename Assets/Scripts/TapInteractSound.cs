@@ -7,6 +7,7 @@ public class TapInteractSound : MonoBehaviour
 {
     public AudioClip tapSound;
     private AudioSource audioSource;
+    bool touchMoved = false;
 
     void Start()
     {
@@ -28,28 +29,34 @@ public class TapInteractSound : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
+            
+            if (touch.phase == TouchPhase.Moved)
+            {
+                touchMoved = true;
+            }
 
-            if (touch.phase == TouchPhase.Began)
+            if (touch.phase == TouchPhase.Ended)
             {
                 // Perform a raycast to check if the tap hits this object
                Ray ray = Camera.main.ScreenPointToRay(touch.position);
                RaycastHit hit;
 
-            // If it hits an object, checks game objects for tags that correspond to their function
-            if (Physics.Raycast(ray, out hit) )
-            {
-                if (hit.collider.gameObject == gameObject && hit.transform.tag == "Sound")
+                // If it hits an object, checks game objects for tags that correspond to their function
+                if (Physics.Raycast(ray, out hit) && !touchMoved)
                 {
-                    audioSource.PlayOneShot(tapSound);
+                    if (hit.collider.gameObject == gameObject && hit.transform.tag == "Sound")
+                    {
+                        audioSource.PlayOneShot(tapSound);
+                    }
                 }
-            }
+                touchMoved = false;
             }
         }
         
 
 
         // Check for mouse click on PC
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             // Perform a raycast to check if the click hits an object
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -63,7 +70,7 @@ public class TapInteractSound : MonoBehaviour
                     audioSource.PlayOneShot(tapSound);
                 }
             }
-        }
+        }*/
        
 
     

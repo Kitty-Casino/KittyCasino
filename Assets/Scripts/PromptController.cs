@@ -8,17 +8,22 @@ public class PromptController : MonoBehaviour
     private bool isPromptActive = false;
 
     public int sceneID;
+    bool touchMoved = false;
+
+    public PlayerController playerController;
 
     private void Start()
     {
         // Initially, hide the prompt canvas
         promptPanel.SetActive(false);
+
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     private void Update()
     {
         // These controls are compatible with mouse clicks, comment this part out when building the game for mobile 
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonUp(0))
         {
             // Perform a raycast to check if the click hits an object
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -32,33 +37,40 @@ public class PromptController : MonoBehaviour
                     isPromptActive = true;
                 }
             }
-        }
+        }*/
 
         // These controls are compatible with touch, comment this part out when building the game for dekstop testing
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
+            
+            if (touch.phase == TouchPhase.Moved)
+            {
+                touchMoved = true;
+            }
 
-            if (touch.phase == TouchPhase.Began)
+            if (touch.phase == TouchPhase.Ended)
             {
                 // Perform a raycast to check if the tap hits this object
                 Ray ray = Camera.main.ScreenPointToRay(touch.position);
                 RaycastHit hit;
 
                 // If it hits an object, checks game objects for tags that correspond to their function
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit) && !touchMoved)
                 {
                     if (hit.collider.gameObject == gameObject && hit.transform.tag == "Prompt")
                     {
                         isPromptActive = true;
                     }
                 }
+                touchMoved = false;
             }
         }
 
         if (isPromptActive)
         {
             promptPanel.SetActive(true);
+            playerController.enabled = false;
         }
     }
 
@@ -94,6 +106,7 @@ public class PromptController : MonoBehaviour
         promptPanel.SetActive(false);
 
         isPromptActive = false;
+        playerController.enabled = true;
     }
 
 }
