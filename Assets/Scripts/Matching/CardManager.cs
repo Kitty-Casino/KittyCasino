@@ -26,6 +26,7 @@ public class CardManager : MonoBehaviour
     public TMP_InputField bet;
     public int betValue;
     public TextMeshProUGUI winnings;
+    public int level;
 
     void Start()
     {
