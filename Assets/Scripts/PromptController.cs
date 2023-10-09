@@ -23,7 +23,7 @@ public class PromptController : MonoBehaviour
     private void Update()
     {
         // These controls are compatible with mouse clicks, comment this part out when building the game for mobile 
-        /*if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
             // Perform a raycast to check if the click hits an object
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -37,7 +37,7 @@ public class PromptController : MonoBehaviour
                     isPromptActive = true;
                 }
             }
-        }*/
+        }
 
         // These controls are compatible with touch, comment this part out when building the game for dekstop testing
         if (Input.touchCount > 0)
@@ -99,10 +99,10 @@ public class PromptController : MonoBehaviour
         }
     }
 
-
     public void ClosePrompt()
     {
         // Hide the prompt canvas and reset the prompt text
+        Debug.Log("Close Prompt");
         promptPanel.SetActive(false);
 
         isPromptActive = false;

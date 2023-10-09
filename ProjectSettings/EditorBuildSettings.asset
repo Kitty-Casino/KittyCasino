@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Matching.unity
-    guid: 79d0b328b9a01af498197791e7f3e780
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 51b87892a9cfdd949b548865f2687059
   - enabled: 1
     path: Assets/Scenes/Casino.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Matching.unity
+    guid: 79d0b328b9a01af498197791e7f3e780
   m_configObjects: {}

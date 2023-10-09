@@ -48,6 +48,7 @@ public class PauseController : MonoBehaviour
 
     public void MainMenuButton()
     {
+        Time.timeScale = 1f;
         sceneManager.ToMainMenu();
     }
 

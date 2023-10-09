@@ -10,21 +10,22 @@ public class DifficultyManager : MonoBehaviour
     void Start()
     {
         cardManager.enabled = false;
+        SetDifficulty(0);
     }
 
     public void SetDifficulty(int level)
     {
-        if (level == 1)
+        if (level == 0)
         {
             cardManager.level = 1;
         }
 
-        if (level == 2)
+        if (level == 1)
         {
             cardManager.level = 2;
         }
 
-        if (level == 3)
+        if (level == 2)
         {
             cardManager.level = 3;
         }

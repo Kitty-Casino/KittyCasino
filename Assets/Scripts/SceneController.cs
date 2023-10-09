@@ -7,11 +7,11 @@ public class SceneController : MonoBehaviour
 {
     public void ToMainMenu()
     {
-        SceneManager.LoadScene(1); // fill with appropriate scene
+        SceneManager.LoadScene(0); // fill with appropriate scene
     }
 
     public void ToCasino()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 }

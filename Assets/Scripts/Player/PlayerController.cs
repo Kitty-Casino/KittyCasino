@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask clickableLayers;
     
     float lookRotationSpeed = 8f;
+    float timer = 0f;
+    [SerializeField] float mouseHoldTime;
 
     void Awake()
     {
@@ -21,12 +23,19 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.touchCount > 0)
         {
-            ClickToMove();
+            TapToMove();
         }
+
+        ClickToMove();
         FaceTarget();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseApp();
+        }
     }
 
-    void ClickToMove()
+    void TapToMove()
     {
         Touch touch = Input.GetTouch(0);
             
@@ -50,6 +59,32 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void ClickToMove()
+    {
+        if (Input.GetMouseButton(0)) 
+        {
+            timer += Time.deltaTime;
+        }
+
+        if (Input.GetMouseButtonUp(0) && timer <= mouseHoldTime)
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 1000, clickableLayers))
+            {
+                agent.destination = hit.point;
+                if(clickEffect != null)
+                {
+                    Instantiate(clickEffect, hit.point += new Vector3(0, 0.1f, 0), clickEffect.transform.rotation);
+                }
+            }
+        }
+        else if (Input.GetMouseButtonUp(0)) 
+        {
+            timer = 0f;
+        }
+    }
+
     void FaceTarget()
     {
         if (agent.velocity != Vector3.zero)
@@ -58,5 +93,11 @@ public class PlayerController : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * lookRotationSpeed);
         }
+    }
+
+    public void CloseApp()
+    {
+        Debug.Log("Quit The Game");
+        Application.Quit();
     }
 }

@@ -42,6 +42,7 @@ public class CardManager : MonoBehaviour
     public TMP_InputField bet;
     public int betValue;
     public TextMeshProUGUI winnings;
+    private bool decremented = false;
 
     [Header("Difficulty")]
     public int level;
@@ -53,6 +54,7 @@ public class CardManager : MonoBehaviour
     {
         coinController = GameObject.Find("CoinsController").GetComponent<CoinsController>();
         bettingUI.SetActive(false);
+        bet.onEndEdit.AddListener(BetMade);
         StartUp();
     }
 
@@ -67,7 +69,6 @@ public class CardManager : MonoBehaviour
         mistakesMade = 0;
         betValue = 0;
         betMade = false;
-        bet.onEndEdit.AddListener(BetMade);
         endScreen.SetActive(false);
 
         switch (level)
@@ -300,6 +301,7 @@ public class CardManager : MonoBehaviour
         }
         else
         {
+            decremented = false;
             coinController.IncrementCoins(calculateWinnings());
             winnings.text = "You won " + calculateWinnings() + " coins!";
             endScreen.GetComponent<TMP_Text>().text = "YOU WIN!";
@@ -323,6 +325,7 @@ public class CardManager : MonoBehaviour
                 cardsWithDifficulty[i].SetActive(false);
             }
 
+            decremented = false;
             coinController.IncrementCoins(calculateWinnings());
             winnings.text = "You won " + calculateWinnings() + " coins!";
             endScreen.GetComponent<TMP_Text>().text = "YOU LOSE!";
@@ -372,22 +375,26 @@ public class CardManager : MonoBehaviour
         betMade = true;
         Debug.Log(input);
         betValue = int.Parse(input);
-        coinController.DecrementCoins(int.Parse(input));
+        if (!decremented)
+        {
+            decremented = true;
+            coinController.DecrementCoins(int.Parse(input));
+        }
     }
 
     private int calculateWinnings()
     {
         if (mistakesMade == 0)
         {
-            return betValue * 2;
+            return betValue * 3;
         }
         else if (mistakesMade == 1)
         {
-            return betValue;
+            return betValue * 2;
         }
         else if (mistakesMade == 2)
         {
-            return betValue / 2;
+            return betValue * 1;
         }
         else if (mistakesMade >= 3)
         {

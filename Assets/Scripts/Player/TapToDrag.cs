@@ -48,7 +48,7 @@ public class TapToDrag : MonoBehaviour
             newPosition.z = Mathf.Clamp(newPosition.z, -40f, 40f);
 
             // You might want to clamp the height (y position) as well to set camera height
-            newPosition.y = Mathf.Clamp(newPosition.y, 10f, 10f);
+            newPosition.y = Mathf.Clamp(newPosition.y, cameraHeight, cameraHeight);
 
             // Apply the new position
             transform.position = newPosition;
