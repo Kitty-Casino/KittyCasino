@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TapToDrag : MonoBehaviour
 {
+    /*
     public float dragSpeed;
     public float mouseDragSpeed;
     public float xMin;
@@ -55,4 +56,6 @@ public class TapToDrag : MonoBehaviour
         }
 
     }
+    */
+
 }

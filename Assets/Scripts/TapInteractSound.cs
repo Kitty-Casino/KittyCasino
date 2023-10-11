@@ -56,7 +56,7 @@ public class TapInteractSound : MonoBehaviour
 
 
         // Check for mouse click on PC
-        /*if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             // Perform a raycast to check if the click hits an object
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -70,7 +70,7 @@ public class TapInteractSound : MonoBehaviour
                     audioSource.PlayOneShot(tapSound);
                 }
             }
-        }*/
+        }
        
 
     
