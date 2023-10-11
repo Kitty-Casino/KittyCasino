@@ -4,14 +4,34 @@ using UnityEngine;
 
 public class TapToDrag : MonoBehaviour
 {
+    // public float dragSpeed;
+    // public float mouseDragSpeed;
+    // public float xMin;
+    // public float xMax;
+    // public float zMin;
+    // public float zMax;
+    // public float cameraHeight;
+
+
+    public Transform target; 
+    public float smoothTime = 0.3f;
+    public float cameraDistance;
+    private Vector3 velocity = Vector3.zero;
+
+    private void LateUpdate()
+    {
+        if (target != null)
+        {
+            // Create a new position that follows the player on X and Z but maintains the camera's Y position.
+            Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z - cameraDistance);
+
+            // Smoothly move the camera towards the new position
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+        }
+    }
+
+
     /*
-    public float dragSpeed;
-    public float mouseDragSpeed;
-    public float xMin;
-    public float xMax;
-    public float zMin;
-    public float zMax;
-    public float cameraHeight;
     public void Update()
     {
         // These controls are compatible with touch, comment this part out when building the game for desktop testing
