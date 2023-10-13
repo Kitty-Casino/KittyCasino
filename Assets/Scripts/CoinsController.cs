@@ -8,7 +8,9 @@ public class CoinsController : MonoBehaviour
     public static CoinsController Instance { get; private set; }
     public int totalCoins;
     public int baseCoins;
+    [SerializeField]
     private GameObject coinsObj;
+    [SerializeField]
     private TextMeshProUGUI coinsText;
 
     private void Awake()
@@ -31,6 +33,20 @@ public class CoinsController : MonoBehaviour
         coinsObj = GameObject.Find("CoinsUI");
         coinsText = GameObject.Find("CoinsText").GetComponent<TextMeshProUGUI>();
         coinsText.text = "" + totalCoins;
+    }
+
+    void Update()
+    {
+        if (coinsObj == null)
+        {
+            coinsObj = GameObject.Find("CoinsUI");
+        }
+
+        if (coinsText == null)
+        {
+            coinsText = GameObject.Find("CoinsText").GetComponent<TextMeshProUGUI>();
+            coinsText.text = "" + totalCoins;
+        }
     }
 
     public void IncrementCoins(int numCoins)

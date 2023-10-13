@@ -36,10 +36,12 @@ public class CardManager : MonoBehaviour
     public GameObject endScreen;
 
     [Header("Betting")]
+    public int hardMultiplier;
+    public Slider betSlider;
+    public Button betButton;
     private CoinsController coinController;
     public GameObject bettingUI;
     public bool betMade;
-    public TMP_InputField bet;
     public int betValue;
     public TextMeshProUGUI winnings;
     private bool decremented = false;
@@ -54,7 +56,7 @@ public class CardManager : MonoBehaviour
     {
         coinController = GameObject.Find("CoinsController").GetComponent<CoinsController>();
         bettingUI.SetActive(false);
-        bet.onEndEdit.AddListener(BetMade);
+        betButton.onClick.AddListener(BetMade);
         StartUp();
     }
 
@@ -78,6 +80,16 @@ public class CardManager : MonoBehaviour
                 easy.SetActive(true);
                 medium.SetActive(false);
                 hard.SetActive(false);
+
+                if (coinController.totalCoins >= 20)
+                {
+                    betSlider.maxValue = 20;
+                }
+                else
+                {
+                    betSlider.maxValue = coinController.totalCoins;
+                }
+
                 totalCards = new CardController[8];
                 cardsWithDifficulty = new GameObject[8];
                 totalDetails = new GameObject[8];
@@ -97,6 +109,16 @@ public class CardManager : MonoBehaviour
                 easy.SetActive(false);
                 medium.SetActive(true);
                 hard.SetActive(false);
+
+                if (coinController.totalCoins >= 100)
+                {
+                    betSlider.maxValue = 100;
+                }
+                else
+                {
+                    betSlider.maxValue = coinController.totalCoins;
+                }
+
                 totalCards = new CardController[12];
                 cardsWithDifficulty = new GameObject[12];
                 totalDetails = new GameObject[12];
@@ -116,6 +138,16 @@ public class CardManager : MonoBehaviour
                 easy.SetActive(false);
                 medium.SetActive(false);
                 hard.SetActive(true);
+
+                if (coinController.totalCoins >= 200)
+                {
+                    betSlider.maxValue = 200;
+                }
+                else
+                {
+                    betSlider.maxValue = coinController.totalCoins;
+                }
+
                 totalCards = new CardController[16];
                 cardsWithDifficulty = new GameObject[16];
                 totalDetails = new GameObject[16];
@@ -370,15 +402,16 @@ public class CardManager : MonoBehaviour
         StartCoroutine(flipCards());
     }
 
-    public void BetMade(string input)
+    public void BetMade()
     {
         betMade = true;
-        Debug.Log(input);
-        betValue = int.Parse(input);
+        betValue = (int) betSlider.value;
+        // betValue = int.Parse(input);
+
         if (!decremented)
         {
             decremented = true;
-            coinController.DecrementCoins(int.Parse(input));
+            coinController.DecrementCoins((int) betSlider.value);
         }
     }
 
@@ -386,14 +419,29 @@ public class CardManager : MonoBehaviour
     {
         if (mistakesMade == 0)
         {
+            if (level == 3)
+            {
+                betValue *= hardMultiplier;
+            }
+
             return betValue * 3;
         }
         else if (mistakesMade == 1)
         {
+            if (level == 3)
+            {
+                betValue *= hardMultiplier;
+            }
+
             return betValue * 2;
         }
         else if (mistakesMade == 2)
         {
+            if (level == hardMultiplier)
+            {
+                betValue *= 2;
+            }
+
             return betValue * 1;
         }
         else if (mistakesMade >= 3)
