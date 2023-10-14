@@ -95,6 +95,14 @@ public class PokerManager : MonoBehaviour
     private void ShowRiver()
     {
         communityCards[4].GetComponent<Image>().sprite = communityCards[4].GetComponent<PokerCardController>().cardSides[1];
+        StartCoroutine(SeeDealer());
+    }
+
+    IEnumerator SeeDealer()
+    {
+        yield return new WaitForSeconds(3);
+        dealerCards[0].GetComponent<Image>().sprite = dealerCards[0].GetComponent<PokerCardController>().cardSides[1];
+        dealerCards[1].GetComponent<Image>().sprite = dealerCards[1].GetComponent<PokerCardController>().cardSides[1];
     }
 
     IEnumerator ViewCards()
