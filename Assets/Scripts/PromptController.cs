@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 public class PromptController : MonoBehaviour
 {
     public GameObject promptPanel;
-
     private bool isPromptActive = false;
+    private bool isInRange = false;
 
     public int sceneID;
     bool touchMoved = false;
@@ -34,7 +34,11 @@ public class PromptController : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject && hit.transform.tag == "Prompt")
                 {
-                    isPromptActive = true;
+                    if (isInRange)
+                    {
+                        isPromptActive = true;
+                    }
+                    
                 }
             }
         }
@@ -107,6 +111,20 @@ public class PromptController : MonoBehaviour
 
         isPromptActive = false;
         playerController.enabled = true;
+    }
+
+    // Handles the enabling of the isInRange boolean to determine whether the prompt should be opened or not 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            isInRange = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        isInRange = false;
     }
 
 }

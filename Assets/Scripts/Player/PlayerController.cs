@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     float timer = 0f;
     [SerializeField] float mouseHoldTime;
 
+    
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();

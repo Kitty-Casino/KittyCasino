@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TapToDrag : MonoBehaviour
+public class CameraScript : MonoBehaviour
 {
     // public float dragSpeed;
     // public float mouseDragSpeed;
@@ -22,15 +22,15 @@ public class TapToDrag : MonoBehaviour
     {
         if (target != null)
         {
-            // Create a new position that follows the player on X and Z but maintains the camera's Y position.
+            // Create a new position that follows the player on X and Z but maintains the camera's Y position. Use the cameraDistance variable to determine the cameras z distance
             Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z - cameraDistance);
 
-            // Smoothly move the camera towards the new position
+            // Smoothly moves the camera towards the new position, adjust smoothTime to determine smoothness 
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
         }
     }
 
-
+    // Leaving this here in case it's needed again
     /*
     public void Update()
     {
