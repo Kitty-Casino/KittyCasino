@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class PokerManager : MonoBehaviour
 {
     [Header("Cards")]
-    public Sprite[] cardValues; // currently length 13 bc only have 1 suit
-    public int[] usedValues;
+    public List<Sprite> cardValues; // length 52
+    // public int[] used; // tracks cards that have been dealt already
     public GameObject[] communityCards; // will always be length 5
     public GameObject[] dealerCards; // will always be length 5
     public GameObject[] playerCards; // will always be length 5
@@ -28,7 +28,7 @@ public class PokerManager : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     private void Initialize()
@@ -39,18 +39,35 @@ public class PokerManager : MonoBehaviour
 
     private void AssignCards()
     {
-        usedValues = new int[13]; // should be same as total # of cards
-
-        for (int i = 0; i < cardValues.Length; i++)
+        for (int i = 0; i < (dealerCards.Length * 2); i++)
         {
-            
+            int randomCard = Random.Range(0, cardValues.Count);
+
+            if (i % 2 == 0) // assign cards one by one, player is dealt first
+            {
+                playerCards[i % playerCards.Length].GetComponent<PokerCardController>().cardSides[1] = cardValues[randomCard];
+                cardValues.RemoveAt(randomCard);
+            }
+            else if (i % 2 == 1)
+            {
+                dealerCards[i % dealerCards.Length].GetComponent<PokerCardController>().cardSides[1] = cardValues[randomCard];
+                cardValues.RemoveAt(randomCard);
+            }
+        }
+
+        for (int i = 0; i < communityCards.Length; i++)
+        {
+            int randomCard = Random.Range(0, cardValues.Count);
+            communityCards[i].GetComponent<PokerCardController>().cardSides[1] = cardValues[randomCard];
+            cardValues.RemoveAt(randomCard);
         }
     }
 
     // shows player first 2 cards to initiate bet
     IEnumerator ShowPlayerCards()
     {
-        // flip cards
+        playerCards[0].GetComponent<Image>().sprite = playerCards[0].GetComponent<PokerCardController>().cardSides[1];
+        playerCards[1].GetComponent<Image>().sprite = playerCards[1].GetComponent<PokerCardController>().cardSides[1];
         yield return new WaitForSeconds(5);
         StartCoroutine(BettingScreen());
     }
@@ -72,7 +89,7 @@ public class PokerManager : MonoBehaviour
     public void BetMade()
     {
         betMade = true;
-        betValue = (int) betSlider.value;
+        betValue = (int)betSlider.value;
 
         // if (!decremented)
         // {
