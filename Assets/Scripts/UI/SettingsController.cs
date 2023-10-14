@@ -31,4 +31,9 @@ public class SettingsController : MonoBehaviour
     {
         QualitySettings.SetQualityLevel(index);
     }
+
+    public void SetVolume(float volume)
+    {
+        audioMixer.SetFloat("volume", volume);
+    }
 }
