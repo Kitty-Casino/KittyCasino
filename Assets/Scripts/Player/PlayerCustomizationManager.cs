@@ -34,6 +34,8 @@ public class PlayerCustomizationManager : MonoBehaviour
     public GameObject handInstance;
 
     public GameObject empty;
+    public GameObject spawnPoint;
+    public int hi;
 
     [SerializeField] private bool isNull = false;
 
@@ -91,7 +93,7 @@ public class PlayerCustomizationManager : MonoBehaviour
         if (playerPrefab != null)
         {
             
-            playerInstance = Instantiate(playerPrefab);
+            playerInstance = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
             // DontDestroyOnLoad(playerInstance);
         }
 
