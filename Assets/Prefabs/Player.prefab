@@ -19,6 +19,7 @@ GameObject:
 --- !u!4 &4498510501848457393
 Transform:
   m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622773297354960259}
@@ -47,7 +48,7 @@ GameObject:
   - component: {fileID: 9059670497790380666}
   m_Layer: 2
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +148,7 @@ MonoBehaviour:
   clickableLayers:
     serializedVersion: 2
     m_Bits: 1
-  mouseHoldTime: 0
+  mouseHoldTime: 1
 --- !u!195 &25929661036127449
 NavMeshAgent:
   m_ObjectHideFlags: 0

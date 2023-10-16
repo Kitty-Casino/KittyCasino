@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -401,6 +401,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 195ef15bbd4598942aa98aa11392be5a, type: 3}
       propertyPath: m_Name
       value: matching_table
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 195ef15bbd4598942aa98aa11392be5a, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3790,7 +3794,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000011444092}
+  m_AnchoredPosition: {x: 0, y: -0.0000038146973}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1001 &526743080
@@ -3860,6 +3864,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9c75678d0d38c20488113273d5f752fa, type: 3}
       propertyPath: m_Name
       value: hub_couch_twoseat
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9c75678d0d38c20488113273d5f752fa, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4055,6 +4063,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 614d519d4a62a8343a3c334a886080fa, type: 3}
       propertyPath: m_Name
       value: hub_ottoman
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 614d519d4a62a8343a3c334a886080fa, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6801,6 +6813,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: casino_chair
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 84a9bd840fc1f3c43985143f8f3a145b, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7029,7 +7045,7 @@ GameObject:
   - component: {fileID: 999049414}
   - component: {fileID: 999049413}
   - component: {fileID: 999049412}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7134,7 +7150,7 @@ GameObject:
   - component: {fileID: 1020119199}
   - component: {fileID: 1020119198}
   - component: {fileID: 1020119197}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8643,8 +8659,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1914720602}
   m_HandleRect: {fileID: 1914720601}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.6666666
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9680,6 +9696,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatProxy
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ee71c6d4722657942bc4118178ca2d24, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9971,7 +9991,7 @@ GameObject:
   - component: {fileID: 1368647385}
   - component: {fileID: 1368647384}
   - component: {fileID: 1368647383}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10593,9 +10613,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.486
       objectReference: {fileID: 0}
+    - target: {fileID: -4536785882441610601, guid: f5d1fc8b1e1bcad4fbe3dacdd47357e9, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4030492170287505022, guid: f5d1fc8b1e1bcad4fbe3dacdd47357e9, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f5d1fc8b1e1bcad4fbe3dacdd47357e9, type: 3}
       propertyPath: m_Name
       value: DealerProxy
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f5d1fc8b1e1bcad4fbe3dacdd47357e9, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3079210150097311646, guid: f5d1fc8b1e1bcad4fbe3dacdd47357e9, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10690,7 +10726,7 @@ GameObject:
   - component: {fileID: 1462843756}
   - component: {fileID: 1462843755}
   - component: {fileID: 1462843754}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10792,7 +10828,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1471192055}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SceneObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11576,7 +11612,7 @@ GameObject:
   - component: {fileID: 1659461596}
   - component: {fileID: 1659461595}
   - component: {fileID: 1659461594}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12585,9 +12621,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5294493478299075622, guid: e42e4e4c31ba5ea47b82739491682658, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3518868428994106043, guid: e42e4e4c31ba5ea47b82739491682658, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3451855958389025898, guid: e42e4e4c31ba5ea47b82739491682658, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e42e4e4c31ba5ea47b82739491682658, type: 3}
       propertyPath: m_Name
       value: slot_machine
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e42e4e4c31ba5ea47b82739491682658, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4980528514467486235, guid: e42e4e4c31ba5ea47b82739491682658, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7925353247054929291, guid: e42e4e4c31ba5ea47b82739491682658, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8729530915725102138, guid: e42e4e4c31ba5ea47b82739491682658, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13346,7 +13410,7 @@ GameObject:
   - component: {fileID: 1923497096}
   - component: {fileID: 1923497095}
   - component: {fileID: 1923497094}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}

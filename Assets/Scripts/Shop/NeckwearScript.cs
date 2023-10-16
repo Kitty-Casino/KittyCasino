@@ -4,29 +4,22 @@ using UnityEngine;
 
 public class NeckwearScript : MonoBehaviour
 {
-    [SerializeField] GameObject player;
     public GameObject neckPrefab;
-    CharacterCustomization charCustomization;
-
-    void Awake()
-    {
-        charCustomization = player.GetComponent<CharacterCustomization>();
-    }
     public void AttachNeckToPlayer()
     {
-        if (neckPrefab != null && charCustomization.neckSlot != null)
+       if(PlayerCustomizationManager.instance != null)
         {
-            if (charCustomization.currentNeck != null)
+            PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
+
+            if(neckPrefab != null)
             {
-                Destroy(charCustomization.currentNeck);
+                customizationManager.ApplyNeck(neckPrefab);
             }
-
-            charCustomization.currentNeck = Instantiate(neckPrefab);
-
-            charCustomization.currentNeck.transform.SetParent(charCustomization.neckSlot);
-
-            charCustomization.currentNeck.transform.localPosition = Vector3.zero;
-            charCustomization.currentNeck.transform.localRotation = Quaternion.identity;
+            else
+            {
+                GameObject emptyNeck = new GameObject();
+                customizationManager.ApplyNeck(emptyNeck);
+            }
         }
     }
 }

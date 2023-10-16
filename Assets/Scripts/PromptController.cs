@@ -10,14 +10,14 @@ public class PromptController : MonoBehaviour
     public int sceneID;
     bool touchMoved = false;
 
-    public PlayerController playerController;
+    private PlayerController playerController;
 
-    private void Start()
+    private void Awake()
     {
         // Initially, hide the prompt canvas
         promptPanel.SetActive(false);
 
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+       // playerController = GameObject.Find("Player(Clone)").GetComponent<PlayerController>();
     }
 
     private void Update()
@@ -64,7 +64,10 @@ public class PromptController : MonoBehaviour
                 {
                     if (hit.collider.gameObject == gameObject && hit.transform.tag == "Prompt")
                     {
-                        isPromptActive = true;
+                        if (isInRange)
+                        {
+                            isPromptActive = true;
+                        }
                     }
                 }
                 touchMoved = false;
@@ -74,7 +77,7 @@ public class PromptController : MonoBehaviour
         if (isPromptActive)
         {
             promptPanel.SetActive(true);
-            playerController.enabled = false;
+            // playerController.enabled = false;
         }
     }
 
@@ -110,7 +113,7 @@ public class PromptController : MonoBehaviour
         promptPanel.SetActive(false);
 
         isPromptActive = false;
-        playerController.enabled = true;
+        // playerController.enabled = true;
     }
 
     // Handles the enabling of the isInRange boolean to determine whether the prompt should be opened or not 

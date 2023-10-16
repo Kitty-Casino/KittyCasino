@@ -4,29 +4,22 @@ using UnityEngine;
 
 public class ShirtScript : MonoBehaviour
 {
-    [SerializeField] GameObject player;
     public GameObject shirtPrefab;
-    CharacterCustomization charCustomization;
-
-    void Awake()
-    {
-        charCustomization = player.GetComponent<CharacterCustomization>();
-    }
     public void AttachShirtToPlayer()
     {
-        if (shirtPrefab != null && charCustomization.shirtSlot != null)
+        if (PlayerCustomizationManager.instance != null)
         {
-            if (charCustomization.currentShirt != null)
+            PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
+
+            if (shirtPrefab != null)
             {
-                Destroy(charCustomization.currentShirt);
+                customizationManager.ApplyShirt(shirtPrefab);
             }
-
-            charCustomization.currentShirt = Instantiate(shirtPrefab);
-
-            charCustomization.currentShirt.transform.SetParent(charCustomization.shirtSlot);
-
-            charCustomization.currentShirt.transform.localPosition = Vector3.zero;
-            charCustomization.currentShirt.transform.localRotation = Quaternion.identity;
+            else
+            {
+                GameObject emptyShirt = new GameObject();
+                customizationManager.ApplyShirt(emptyShirt);
+            }
         }
     }
 }

@@ -4,20 +4,15 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    // public float dragSpeed;
-    // public float mouseDragSpeed;
-    // public float xMin;
-    // public float xMax;
-    // public float zMin;
-    // public float zMax;
-    // public float cameraHeight;
-
-
-    public Transform target; 
+    Transform target; 
     public float smoothTime = 0.3f;
     public float cameraDistance;
     private Vector3 velocity = Vector3.zero;
 
+    private void Start()
+    {
+       // target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
     private void LateUpdate()
     {
         if (target != null)
@@ -28,7 +23,19 @@ public class CameraScript : MonoBehaviour
             // Smoothly moves the camera towards the new position, adjust smoothTime to determine smoothness 
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
         }
+        else if (target == null)
+        {
+           // Debug.Log("Failed to get player target");
+        }
     }
+
+    // public float dragSpeed;
+    // public float mouseDragSpeed;
+    // public float xMin;
+    // public float xMax;
+    // public float zMin;
+    // public float zMax;
+    // public float cameraHeight;
 
     // Leaving this here in case it's needed again
     /*

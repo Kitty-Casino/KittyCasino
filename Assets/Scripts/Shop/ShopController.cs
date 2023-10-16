@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ShopController : MonoBehaviour
 {
     private GameObject currentPanel;
-
+ 
+    
     public void ShowPanel(GameObject panelToShow)
     {
         if (currentPanel != null)

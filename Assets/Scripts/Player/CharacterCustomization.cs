@@ -4,30 +4,12 @@ using UnityEngine;
 
 public class CharacterCustomization : MonoBehaviour
 {
-   // These variables hold the position and prefab that is currently equipped to the player
 
-    public Transform hatSlot;
-    public GameObject currentHat;
-
-    public Transform eyeSlot;
-    public GameObject currentEyes;
-
-    public Transform neckSlot;
-    public GameObject currentNeck;
-
-    public Transform shirtSlot;
-    public GameObject currentShirt;
-
-    public Transform handSlot;
-    public GameObject currentHands;
-
-    private void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
+    /*
+    
 
     // These methods remove the current piece of customization from the player
-
+    // Come back to make sure global varaibles are updated properly
     public void RemoveHat()
     {
         if (currentHat != null)
@@ -70,5 +52,6 @@ public class CharacterCustomization : MonoBehaviour
         }
     }
 
-
+     */
 }
+

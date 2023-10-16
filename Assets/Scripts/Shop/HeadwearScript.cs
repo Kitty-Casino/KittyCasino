@@ -4,29 +4,22 @@ using UnityEngine;
 
 public class HeadwearScript : MonoBehaviour
 {
-    [SerializeField] GameObject player;
     public GameObject hatPrefab;
-    CharacterCustomization charCustomization;
-
-    void Awake()
-    {
-        charCustomization = player.GetComponent<CharacterCustomization>();
-    }
     public void AttachHatToPlayer()
     {
-        if (hatPrefab != null && charCustomization.hatSlot != null)
+        if (PlayerCustomizationManager.instance != null)
         {
-            if (charCustomization.currentHat != null)
+            PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
+
+            if (hatPrefab != null)
             {
-                Destroy(charCustomization.currentHat);
+                customizationManager.ApplyHead(hatPrefab);
             }
-
-            charCustomization.currentHat = Instantiate(hatPrefab);
-
-            charCustomization.currentHat.transform.SetParent(charCustomization.hatSlot);
-
-            charCustomization.currentHat.transform.localPosition = Vector3.zero;
-            charCustomization.currentHat.transform.localRotation = Quaternion.identity;
+            else
+            {
+                GameObject emptyHead = new GameObject();
+                customizationManager.ApplyHead(emptyHead);
+            }
         }
     }
 }
