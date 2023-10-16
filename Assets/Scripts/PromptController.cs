@@ -91,17 +91,17 @@ public class PromptController : MonoBehaviour
             default:
                 SceneManager.LoadScene("Casino");
                 break;
-            case 1:
+            case 2:
                 SceneManager.LoadScene("Matching");
                 break;
-            case 2:
-                SceneManager.LoadScene("Blackjack");
-                break;
             case 3:
-                SceneManager.LoadScene("Poker");
+                SceneManager.LoadScene("Shop");
                 break;
             case 4:
-                SceneManager.LoadScene("Shop");
+                SceneManager.LoadScene("Poker");
+                break;
+            case 5:
+                SceneManager.LoadScene("Blackjack");
                 break;
         }
     }

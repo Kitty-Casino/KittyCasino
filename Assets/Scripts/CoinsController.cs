@@ -44,8 +44,8 @@ public class CoinsController : MonoBehaviour
 
         if (coinsText == null)
         {
-            // coinsText = GameObject.Find("CoinsText").GetComponent<TextMeshProUGUI>();
-            // coinsText.text = "" + totalCoins;
+            coinsText = GameObject.Find("CoinsText").GetComponent<TextMeshProUGUI>();
+            coinsText.text = "" + totalCoins;
         }
     }
 

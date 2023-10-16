@@ -941,6 +941,7 @@ GameObject:
   - component: {fileID: 214529796}
   - component: {fileID: 214529795}
   - component: {fileID: 214529794}
+  - component: {fileID: 214529797}
   m_Layer: 5
   m_Name: NoneButton
   m_TagString: Untagged
@@ -1013,9 +1014,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1179143596}
-        m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
-        m_MethodName: RemoveNeck
+      - m_Target: {fileID: 214529797}
+        m_TargetAssemblyTypeName: NeckwearScript, Assembly-CSharp
+        m_MethodName: AttachNeckToPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1063,6 +1064,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214529792}
   m_CullTransparentMesh: 1
+--- !u!114 &214529797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214529792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a785b06b7380c49910d1ba84a86c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neckPrefab: {fileID: 6660357074601741330, guid: f042fc117642b5b409eb3f02f32b6d89, type: 3}
 --- !u!4 &223279478 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b78400221a1855045af03f283889e9ba, type: 3}
@@ -1655,6 +1669,7 @@ GameObject:
   - component: {fileID: 279703166}
   - component: {fileID: 279703165}
   - component: {fileID: 279703164}
+  - component: {fileID: 279703167}
   m_Layer: 5
   m_Name: NoneButton
   m_TagString: Untagged
@@ -1727,9 +1742,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1179143596}
-        m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
-        m_MethodName: RemoveShirt
+      - m_Target: {fileID: 279703167}
+        m_TargetAssemblyTypeName: ShirtScript, Assembly-CSharp
+        m_MethodName: AttachShirtToPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1777,6 +1792,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279703162}
   m_CullTransparentMesh: 1
+--- !u!114 &279703167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279703162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3edd688c7bc1b294a85cf840301622c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shirtPrefab: {fileID: 6660357074601741330, guid: f042fc117642b5b409eb3f02f32b6d89, type: 3}
 --- !u!1 &326491042
 GameObject:
   m_ObjectHideFlags: 0
@@ -5409,6 +5437,7 @@ GameObject:
   - component: {fileID: 1031674829}
   - component: {fileID: 1031674828}
   - component: {fileID: 1031674827}
+  - component: {fileID: 1031674830}
   m_Layer: 5
   m_Name: NoneButton
   m_TagString: Untagged
@@ -5481,9 +5510,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1179143596}
-        m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
-        m_MethodName: RemoveEyes
+      - m_Target: {fileID: 1031674830}
+        m_TargetAssemblyTypeName: EyewearScript, Assembly-CSharp
+        m_MethodName: AttachEyesToPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5531,6 +5560,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031674825}
   m_CullTransparentMesh: 1
+--- !u!114 &1031674830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031674825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fb8e932304312a4da3facf66d9dca1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eyesPrefab: {fileID: 6660357074601741330, guid: f042fc117642b5b409eb3f02f32b6d89, type: 3}
 --- !u!4 &1047684091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b78400221a1855045af03f283889e9ba, type: 3}
@@ -6319,6 +6361,7 @@ GameObject:
   - component: {fileID: 1175633390}
   - component: {fileID: 1175633389}
   - component: {fileID: 1175633388}
+  - component: {fileID: 1175633391}
   m_Layer: 5
   m_Name: NoneButton
   m_TagString: Untagged
@@ -6391,9 +6434,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1179143596}
-        m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
-        m_MethodName: RemoveHat
+      - m_Target: {fileID: 1175633391}
+        m_TargetAssemblyTypeName: HeadwearScript, Assembly-CSharp
+        m_MethodName: AttachHatToPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6441,17 +6484,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175633385}
   m_CullTransparentMesh: 1
---- !u!114 &1179143596 stripped
+--- !u!114 &1175633391
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9059670497790380666, guid: 0164576a7797edd4db2cbe13333cdb0f, type: 3}
-  m_PrefabInstance: {fileID: 1343680060}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1175633385}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f9d66d1bf3b8a64a8f4109d76f3d6d6, type: 3}
+  m_Script: {fileID: 11500000, guid: b6cbc69346267c946abacad12c2e5124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hatPrefab: {fileID: 6660357074601741330, guid: f042fc117642b5b409eb3f02f32b6d89, type: 3}
 --- !u!1 &1198919508
 GameObject:
   m_ObjectHideFlags: 0
@@ -11174,6 +11219,7 @@ GameObject:
   - component: {fileID: 2144733835}
   - component: {fileID: 2144733834}
   - component: {fileID: 2144733833}
+  - component: {fileID: 2144733836}
   m_Layer: 5
   m_Name: NoneButton
   m_TagString: Untagged
@@ -11246,9 +11292,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1179143596}
-        m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
-        m_MethodName: RemoveHands
+      - m_Target: {fileID: 2144733836}
+        m_TargetAssemblyTypeName: HandwearScript, Assembly-CSharp
+        m_MethodName: AttachHandsToPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11296,3 +11342,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144733831}
   m_CullTransparentMesh: 1
+--- !u!114 &2144733836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144733831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e40eeefd08548545912bd6c55565e80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handsPrefab: {fileID: 6660357074601741330, guid: f042fc117642b5b409eb3f02f32b6d89, type: 3}
