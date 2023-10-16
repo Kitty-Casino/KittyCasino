@@ -15,11 +15,11 @@ public class HandwearScript : MonoBehaviour
             {
                 customizationManager.ApplyHands(handsPrefab);
             }
-            else
-            {
-                GameObject emptyHands = new GameObject();
-                customizationManager.ApplyHands(emptyHands);
-            }
+            // else
+            // {
+            //     GameObject emptyHands = new GameObject();
+            //     customizationManager.ApplyHands(emptyHands);
+            // }
         }
     }
 }

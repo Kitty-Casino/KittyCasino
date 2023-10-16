@@ -15,11 +15,11 @@ public class ShirtScript : MonoBehaviour
             {
                 customizationManager.ApplyShirt(shirtPrefab);
             }
-            else
-            {
-                GameObject emptyShirt = new GameObject();
-                customizationManager.ApplyShirt(emptyShirt);
-            }
+            // else
+            // {
+            //     GameObject emptyShirt = new GameObject();
+            //     customizationManager.ApplyShirt(emptyShirt);
+            // }
         }
     }
 }

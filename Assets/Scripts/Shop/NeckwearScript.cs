@@ -15,11 +15,11 @@ public class NeckwearScript : MonoBehaviour
             {
                 customizationManager.ApplyNeck(neckPrefab);
             }
-            else
-            {
-                GameObject emptyNeck = new GameObject();
-                customizationManager.ApplyNeck(emptyNeck);
-            }
+            // else
+            // {
+            //     GameObject emptyNeck = new GameObject();
+            //     customizationManager.ApplyNeck(emptyNeck);
+            // }
         }
     }
 }

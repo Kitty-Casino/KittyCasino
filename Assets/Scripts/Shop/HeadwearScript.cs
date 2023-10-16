@@ -15,11 +15,11 @@ public class HeadwearScript : MonoBehaviour
             {
                 customizationManager.ApplyHead(hatPrefab);
             }
-            else
-            {
-                GameObject emptyHead = new GameObject();
-                customizationManager.ApplyHead(emptyHead);
-            }
+            // else
+            // {
+            //     GameObject emptyHead = new GameObject();
+            //     customizationManager.ApplyHead(emptyHead);
+            // }
         }
     }
 }

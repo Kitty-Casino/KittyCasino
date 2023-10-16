@@ -161,10 +161,10 @@ public class PlayerCustomizationManager : MonoBehaviour
                 currentShirt.transform.localPosition = Vector3.zero;
                 currentShirt.transform.localRotation = Quaternion.identity;
             }
-            else
-            {
-                shirtInstance = empty;
-            }
+            // else
+            // {
+            //     shirtInstance = empty;
+            // }
         }
  
     }
@@ -186,10 +186,10 @@ public class PlayerCustomizationManager : MonoBehaviour
                 currentEyes.transform.localPosition = Vector3.zero;
                 currentEyes.transform.localRotation = Quaternion.identity;
             }
-            else
-            {
-                eyeInstance = empty;
-            }
+            // else
+            // {
+            //     eyeInstance = empty;
+            // }
 
         }
     }
@@ -210,10 +210,10 @@ public class PlayerCustomizationManager : MonoBehaviour
                 currentNeck.transform.localPosition = Vector3.zero;
                 currentNeck.transform.localRotation = Quaternion.identity;
             }
-            else
-            {
-                neckInstance = empty;
-            }
+            // else
+            // {
+            //     neckInstance = empty;
+            // }
         }
             
     }
@@ -235,10 +235,10 @@ public class PlayerCustomizationManager : MonoBehaviour
                 currentHat.transform.localPosition = Vector3.zero;
                 currentHat.transform.localRotation = Quaternion.identity;
             }
-            else
-            {
-                hatInstance = empty;
-            }
+            // else
+            // {
+            //     hatInstance = empty;
+            // }
         }
   
     }
@@ -260,10 +260,10 @@ public class PlayerCustomizationManager : MonoBehaviour
                 currentHands.transform.localPosition = Vector3.zero;
                 currentHands.transform.localRotation = Quaternion.identity;
             }
-            else
-            {
-                handInstance = empty;
-            }
+            // else
+            // {
+            //     handInstance = empty;
+            // }
         }
     }
 }

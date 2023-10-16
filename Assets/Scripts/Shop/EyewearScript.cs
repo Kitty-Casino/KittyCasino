@@ -15,11 +15,11 @@ public class EyewearScript : MonoBehaviour
             {
                 customizationManager.ApplyEyes(eyesPrefab);
             }
-            else
-            {
-                GameObject emptyEyes = new GameObject();
-                customizationManager.ApplyEyes(emptyEyes);
-            }
+            // else
+            // {
+            //     GameObject emptyEyes = new GameObject();
+            //     customizationManager.ApplyEyes(emptyEyes);
+            // }
         }
     }
 }
