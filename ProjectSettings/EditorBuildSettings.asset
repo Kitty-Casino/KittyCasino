@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: 51d93f5f6401e6842b7ebd69df5b155c
+  - enabled: 1
+    path: Assets/Scenes/Poker.unity
+    guid: 900837811b65b9c438b28ed983f8f49c
   m_configObjects: {}

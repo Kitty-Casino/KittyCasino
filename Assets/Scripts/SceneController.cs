@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    PlayerCustomizationManager customizationManager;
+    
     
     public void ToMainMenu()
     {
