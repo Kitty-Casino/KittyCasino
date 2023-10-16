@@ -34,8 +34,7 @@ public class PlayerCustomizationManager : MonoBehaviour
     public GameObject handInstance;
 
     public GameObject empty;
-    public GameObject spawnPoint;
-    public int hi;
+    private GameObject spawnPoint;
 
     [SerializeField] private bool isNull = false;
 
@@ -76,11 +75,33 @@ public class PlayerCustomizationManager : MonoBehaviour
             neckSlot = GameObject.Find("NeckAttachPoint").transform;
             shirtSlot = GameObject.Find("ShirtAttachPoint").transform;
             handSlot = GameObject.Find("HandAttachPoint").transform;
+            
+            spawnPoint = FindSpawnPoint();
+            if (spawnPoint != null)
+            {
+                playerInstance.transform.position = spawnPoint.transform.position;
+                playerInstance.transform.rotation = spawnPoint.transform.rotation;
+            }
+            else
+            {
+                Debug.Log("Spawn point not found, using a default spawn");
+                playerInstance.transform.position = Vector3.zero;
+                playerInstance.transform.rotation = Quaternion.identity;
+            }
+
             isNull = false;
             ApplyCustomization();
         }
        
         
+    }
+
+    private GameObject FindSpawnPoint()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        GameObject spawnPoint = GameObject.Find(sceneName + "SpawnPoint");
+
+        return spawnPoint;
     }
         
     public void InitializePlayer()
@@ -92,11 +113,10 @@ public class PlayerCustomizationManager : MonoBehaviour
 
         if (playerPrefab != null)
         {
-            
-            playerInstance = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+            playerInstance = Instantiate(playerPrefab);
             // DontDestroyOnLoad(playerInstance);
         }
-
+        
     }
 
     public void DestroyPlayer()
