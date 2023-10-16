@@ -183,16 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9d66d1bf3b8a64a8f4109d76f3d6d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hatSlot: {fileID: 4327544612658681151}
-  currentHat: {fileID: 0}
-  eyeSlot: {fileID: 1518127357240384998}
-  currentEyes: {fileID: 0}
-  neckSlot: {fileID: 753618462090801827}
-  currentNeck: {fileID: 0}
-  shirtSlot: {fileID: 4498510501848457393}
-  currentShirt: {fileID: 0}
-  handSlot: {fileID: 6400589632732103018}
-  currentHands: {fileID: 0}
 --- !u!1 &3655399079026472006
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +300,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7011770994845816707}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0.237}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
