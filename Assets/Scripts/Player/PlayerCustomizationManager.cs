@@ -149,18 +149,17 @@ public class PlayerCustomizationManager : MonoBehaviour
         shirtInstance = shirtPrefab;
         if (playerInstance != null)
         {
-            if(shirtPrefab.GetComponent<ShirtScript>() != null)
+           // if(shirtPrefab.GetComponent<ShirtScript>() != null)
+    
+            if (currentShirt != null)
             {
-                if (currentShirt != null)
-                {
-                    Destroy(currentShirt);
-                }
-
-                currentShirt = Instantiate(shirtPrefab);
-                currentShirt.transform.SetParent(shirtSlot);
-                currentShirt.transform.localPosition = Vector3.zero;
-                currentShirt.transform.localRotation = Quaternion.identity;
+                Destroy(currentShirt);
             }
+
+            currentShirt = Instantiate(shirtPrefab);
+            currentShirt.transform.SetParent(shirtSlot);
+            currentShirt.transform.localPosition = Vector3.zero;
+            currentShirt.transform.localRotation = Quaternion.identity;
             // else
             // {
             //     shirtInstance = empty;
@@ -174,18 +173,17 @@ public class PlayerCustomizationManager : MonoBehaviour
         eyeInstance = eyesPrefab;
         if (playerInstance != null)
         {
-            if(eyesPrefab.GetComponent<EyewearScript>() != null)
+            // if(eyesPrefab.GetComponent<EyewearScript>() != null)
+     
+            if (currentEyes != null)
             {
-                if (currentEyes != null)
-                {
-                    Destroy(currentEyes);
-                }
-
-                currentEyes = Instantiate(eyesPrefab);
-                currentEyes.transform.SetParent(eyeSlot);
-                currentEyes.transform.localPosition = Vector3.zero;
-                currentEyes.transform.localRotation = Quaternion.identity;
+                Destroy(currentEyes);
             }
+  
+            currentEyes = Instantiate(eyesPrefab);
+            currentEyes.transform.SetParent(eyeSlot);
+            currentEyes.transform.localPosition = Vector3.zero;
+            currentEyes.transform.localRotation = Quaternion.identity;
             // else
             // {
             //     eyeInstance = empty;
@@ -198,18 +196,17 @@ public class PlayerCustomizationManager : MonoBehaviour
         neckInstance = neckPrefab;
         if (playerInstance != null)
         {
-            if(neckPrefab.GetComponent<NeckwearScript>() != null)
-            {
-                if (currentNeck != null)
-                {
-                    Destroy(currentNeck);
-                }
+            // if(neckPrefab.GetComponent<NeckwearScript>() != null)
 
-                currentNeck = Instantiate(neckPrefab);
-                currentNeck.transform.SetParent(neckSlot);
-                currentNeck.transform.localPosition = Vector3.zero;
-                currentNeck.transform.localRotation = Quaternion.identity;
+            if (currentNeck != null)
+            {
+                Destroy(currentNeck);
             }
+
+            currentNeck = Instantiate(neckPrefab);
+            currentNeck.transform.SetParent(neckSlot);
+            currentNeck.transform.localPosition = Vector3.zero;
+            currentNeck.transform.localRotation = Quaternion.identity;
             // else
             // {
             //     neckInstance = empty;
@@ -223,18 +220,16 @@ public class PlayerCustomizationManager : MonoBehaviour
         hatInstance = hatPrefab;
         if (playerInstance != null)
         {
-            if(hatPrefab.GetComponent<HeadwearScript>() != null)
+           // if(hatPrefab.GetComponent<HeadwearScript>() != null)
+            if (currentHat != null)
             {
-                if (currentHat != null)
-                {
-                    Destroy(currentHat);
-                }
-
-                currentHat = Instantiate(hatPrefab);
-                currentHat.transform.SetParent(hatSlot);
-                currentHat.transform.localPosition = Vector3.zero;
-                currentHat.transform.localRotation = Quaternion.identity;
+                Destroy(currentHat);
             }
+
+            currentHat = Instantiate(hatPrefab);
+            currentHat.transform.SetParent(hatSlot);
+            currentHat.transform.localPosition = Vector3.zero;
+            currentHat.transform.localRotation = Quaternion.identity;
             // else
             // {
             //     hatInstance = empty;
@@ -248,18 +243,16 @@ public class PlayerCustomizationManager : MonoBehaviour
         handInstance = handsPrefab;
         if (playerInstance != null)
         {
-            if(handsPrefab.GetComponent<HandwearScript>() != null)
+           // if(handsPrefab.GetComponent<HandwearScript>() != null)
+            if (currentHat != null)
             {
-                if (currentHat != null)
-                {
-                    Destroy(currentHands);
-                }
-
-                currentHands = Instantiate(handsPrefab);
-                currentHands.transform.SetParent(handSlot);
-                currentHands.transform.localPosition = Vector3.zero;
-                currentHands.transform.localRotation = Quaternion.identity;
+                Destroy(currentHands);
             }
+
+            currentHands = Instantiate(handsPrefab);
+            currentHands.transform.SetParent(handSlot);
+            currentHands.transform.localPosition = Vector3.zero;
+            currentHands.transform.localRotation = Quaternion.identity;
             // else
             // {
             //     handInstance = empty;

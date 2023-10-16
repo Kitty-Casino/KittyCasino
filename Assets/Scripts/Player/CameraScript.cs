@@ -11,7 +11,15 @@ public class CameraScript : MonoBehaviour
 
     private void Start()
     {
-       // target = GameObject.FindGameObjectWithTag("Player").transform;
+       
+    }
+
+    private void Update()
+    {
+        if (target == null)
+        {
+            target = GameObject.Find("Player(Clone)").transform;
+        }
     }
     private void LateUpdate()
     {
