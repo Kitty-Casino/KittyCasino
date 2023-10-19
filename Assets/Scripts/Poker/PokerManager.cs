@@ -177,6 +177,8 @@ public class PokerManager : MonoBehaviour
             }
         }
 
+        int numPairs = 0;
+
         // check for four of a kind
         if (numMatching == 4)
         {
@@ -194,12 +196,18 @@ public class PokerManager : MonoBehaviour
         // check for pair 
         else if (numMatching == 2)
         {
+            numPairs++;
             Debug.Log("pair");
             handValue += 20; // bonus for getting pair
             handValue += matchedValue; // in case of 2 players getting pair, card value dictates winner
         }
 
         // check for 2 pair
+        if (numPairs > 1)
+        {
+            Debug.Log("two pair");
+
+        }
 
         // check for straight
 
