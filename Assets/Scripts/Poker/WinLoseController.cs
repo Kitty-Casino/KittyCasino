@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController : MonoBehaviour
+public class WinLoseController : MonoBehaviour
 {
-    public void ToMainMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
+    public PokerManager pokerManager;
 
     public void ToCasino()
     {
         SceneManager.LoadScene(1);
     }
-    
 
+    public void Replay()
+    {
+        pokerManager.replayAmount++;
+        pokerManager.Initialize();
+    }
 }

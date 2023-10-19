@@ -8,10 +8,8 @@ public class CoinsController : MonoBehaviour
     public static CoinsController Instance { get; private set; }
     public int totalCoins;
     public int baseCoins;
-    [SerializeField]
-    private GameObject coinsObj;
-    [SerializeField]
-    private TextMeshProUGUI coinsText;
+    public GameObject coinsObj;
+    public TextMeshProUGUI coinsText;
 
     private void Awake()
     {
