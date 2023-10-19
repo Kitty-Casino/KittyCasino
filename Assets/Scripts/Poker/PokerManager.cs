@@ -23,7 +23,11 @@ public class PokerManager : MonoBehaviour
     public TextMeshProUGUI betText;
     public GameObject checkButton;
     public TextMeshProUGUI betUIText;
-    public TextMeshProUGUI betButtonText;
+    // public TextMeshProUGUI betButtonText;
+
+    [Header("UI")]
+    public GameObject placeBetUI;
+    public GameObject raiseBetUI;   
 
     [Header("Winning")]
     private GameObject[] playerHand;
@@ -33,6 +37,7 @@ public class PokerManager : MonoBehaviour
     {
         bettingUI.SetActive(false);
         checkButton.SetActive(false);
+        raiseBetUI.SetActive(false);
         betButton.onClick.AddListener(BetMade);
         playerHand = new GameObject[7];
         dealerHand = new GameObject[7];
@@ -267,9 +272,15 @@ public class PokerManager : MonoBehaviour
 
         if (betNum > 0)
         {
-            betText.text = "RAISE YOUR BET?";
-            betButtonText.text = "Raise Bet";
-        }        
+            //  betText.text = "RAISE YOUR BET?";
+            // betButtonText.text = "Raise Bet";
+            placeBetUI.SetActive(false);
+            raiseBetUI.SetActive(true);
+        }      
+        else
+        {
+            bettingUI.SetActive(true);
+        }
 
         while (!betMade)
         {

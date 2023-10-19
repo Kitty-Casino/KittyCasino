@@ -7,10 +7,12 @@ public class MainMenuController : MonoBehaviour
     public GameObject mainManuUI;
     public GameObject settingsMenuUI;
     public SceneController sceneManager;
+    public GameObject creditsUI;
 
     void Start()
     {
         settingsMenuUI.SetActive(false);
+        creditsUI.SetActive(false);
     }
 
     public void PlayButton()
@@ -22,6 +24,18 @@ public class MainMenuController : MonoBehaviour
     {
         mainManuUI.SetActive(false);
         settingsMenuUI.SetActive(true);
+    }
+
+    public void CreditsButton()
+    {
+        mainManuUI.SetActive(false);
+        creditsUI.SetActive(true);
+    }
+
+    public void CreditsBackButton()
+    {
+        mainManuUI.SetActive(true);
+        creditsUI.SetActive(false);
     }
 
     public void QuitButton()
