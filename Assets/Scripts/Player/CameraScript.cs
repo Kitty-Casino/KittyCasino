@@ -9,10 +9,11 @@ public class CameraScript : MonoBehaviour
     public float cameraDistance;
     private Vector3 velocity = Vector3.zero;
 
-    private void Start()
-    {
-       
-    }
+    public float xMin;
+    public float xMax;
+    public float zMin;
+    public float zMax;
+    public float cameraHeight;
 
     private void Update()
     {
@@ -26,7 +27,10 @@ public class CameraScript : MonoBehaviour
         if (target != null)
         {
             // Create a new position that follows the player on X and Z but maintains the camera's Y position. Use the cameraDistance variable to determine the cameras z distance
-            Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z - cameraDistance);
+            // Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z - cameraDistance);
+
+            Vector3 targetPosition = new Vector3 (Mathf.Clamp(target.position.x, xMin, xMax), cameraHeight, Mathf.Clamp(target.position.z - cameraDistance, zMin, zMax));
+
 
             // Smoothly moves the camera towards the new position, adjust smoothTime to determine smoothness 
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
@@ -39,11 +43,6 @@ public class CameraScript : MonoBehaviour
 
     // public float dragSpeed;
     // public float mouseDragSpeed;
-    // public float xMin;
-    // public float xMax;
-    // public float zMin;
-    // public float zMax;
-    // public float cameraHeight;
 
     // Leaving this here in case it's needed again
     /*

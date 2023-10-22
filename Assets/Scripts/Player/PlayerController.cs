@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     NavMeshAgent agent;
     [SerializeField] ParticleSystem clickEffect;
     [SerializeField] LayerMask clickableLayers;
-    
+    [SerializeField] LayerMask blockRaycast;
+
     float lookRotationSpeed = 8f;
     float timer = 0f;
     [SerializeField] float mouseHoldTime;
@@ -50,7 +51,11 @@ public class PlayerController : MonoBehaviour
         if (touch.phase == TouchPhase.Ended)
         {
             RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(touch.position), out hit, 1000, clickableLayers) && !touchMoved)
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 1000, blockRaycast))
+            {
+                Debug.Log("Block Raycast");
+            }
+            else if (Physics.Raycast(Camera.main.ScreenPointToRay(touch.position), out hit, 1000, clickableLayers) && !touchMoved)
             {
                 agent.destination = hit.point;
                 if(clickEffect != null)
@@ -71,12 +76,16 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && timer <= mouseHoldTime)
         {
+            Debug.Log("Click!");
             RaycastHit hit;
-
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 1000, clickableLayers))
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 1000, blockRaycast))
+            {
+                Debug.Log("Block Raycast");
+            }
+            else if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 1000, clickableLayers))
             {
                 agent.destination = hit.point;
-                if(clickEffect != null)
+                if (clickEffect != null)
                 {
                     Instantiate(clickEffect, hit.point += new Vector3(0, 0.1f, 0), clickEffect.transform.rotation);
                 }

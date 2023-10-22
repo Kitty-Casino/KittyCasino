@@ -146,7 +146,10 @@ MonoBehaviour:
   clickEffect: {fileID: 1509650914917908479, guid: ac12e6a85f408cc4a849029c939f43f8, type: 3}
   clickableLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1024
+  blockRaycast:
+    serializedVersion: 2
+    m_Bits: 512
   mouseHoldTime: 1
 --- !u!195 &25929661036127449
 NavMeshAgent:

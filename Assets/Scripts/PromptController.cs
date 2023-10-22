@@ -7,7 +7,9 @@ public class PromptController : MonoBehaviour
     private bool isPromptActive = false;
     private bool isInRange = false;
 
-    public int sceneID;
+    public float promptRange = 2;
+
+    public string sceneID;
     bool touchMoved = false;
 
     private PlayerController playerController;
@@ -16,12 +18,15 @@ public class PromptController : MonoBehaviour
     {
         // Initially, hide the prompt canvas
         promptPanel.SetActive(false);
-
-       // playerController = GameObject.Find("Player(Clone)").GetComponent<PlayerController>();
     }
 
     private void Update()
     {
+        if (playerController == null)
+        {
+            playerController = GameObject.Find("Player(Clone)").GetComponent<PlayerController>();
+        }
+
         // These controls are compatible with mouse clicks, comment this part out when building the game for mobile 
         if (Input.GetMouseButtonUp(0))
         {
@@ -34,7 +39,7 @@ public class PromptController : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject && hit.transform.tag == "Prompt")
                 {
-                    if (isInRange)
+                    if (Vector3.Distance(playerController.gameObject.transform.position, hit.transform.position) <= promptRange)
                     {
                         isPromptActive = true;
                     }
@@ -64,7 +69,7 @@ public class PromptController : MonoBehaviour
                 {
                     if (hit.collider.gameObject == gameObject && hit.transform.tag == "Prompt")
                     {
-                        if (isInRange)
+                        if (Vector3.Distance(playerController.gameObject.transform.position, hit.transform.position) <= promptRange)
                         {
                             isPromptActive = true;
                         }
@@ -77,7 +82,7 @@ public class PromptController : MonoBehaviour
         if (isPromptActive)
         {
             promptPanel.SetActive(true);
-            // playerController.enabled = false;
+            playerController.enabled = false;
         }
     }
 
@@ -91,16 +96,16 @@ public class PromptController : MonoBehaviour
             default:
                 SceneManager.LoadScene("Casino");
                 break;
-            case 2:
+            case "Matching":
                 SceneManager.LoadScene("Matching");
                 break;
-            case 3:
+            case "Shop":
                 SceneManager.LoadScene("Shop");
                 break;
-            case 4:
+            case "Poker":
                 SceneManager.LoadScene("Poker");
                 break;
-            case 5:
+            case "Blackjack":
                 SceneManager.LoadScene("Blackjack");
                 break;
         }
@@ -113,7 +118,7 @@ public class PromptController : MonoBehaviour
         promptPanel.SetActive(false);
 
         isPromptActive = false;
-        // playerController.enabled = true;
+        playerController.enabled = true;
     }
 
     // Handles the enabling of the isInRange boolean to determine whether the prompt should be opened or not 
