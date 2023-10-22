@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class HeadwearScript : MonoBehaviour
@@ -9,10 +10,14 @@ public class HeadwearScript : MonoBehaviour
     public int price;
     public TextMeshProUGUI priceText;
     public string customizationName;
+    public Image ownedIcon;
+    public Image equippedIcon;
 
-    private void Awake()
+
+    private void Start()
     {
         priceText.text = "" + price;
+        UpdateVisualState();
     }
     public void AttachHatToPlayer()
     {
@@ -24,9 +29,13 @@ public class HeadwearScript : MonoBehaviour
             {
                 PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
 
+                customizationManager.ClearEquippedHead();
+
                 if (hatPrefab != null)
                 {
+                    customizationManager.SetHeadEquipped(hatPrefab);
                     customizationManager.ApplyHead(hatPrefab);
+                    UpdateVisualState();
                 }
             }
 
@@ -38,22 +47,26 @@ public class HeadwearScript : MonoBehaviour
             if (coinsController.totalCoins >= price)
             {
                 coinsController.DecrementCoins(price);
-                
+
 
                 PlayerPrefs.SetInt(customizationName, 1);
                 PlayerPrefs.Save();
+                UpdateVisualState();
 
                 if (PlayerCustomizationManager.instance != null)
                 {
                     PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
+                    customizationManager.ClearEquippedHead();
+                    
 
                     if (hatPrefab != null)
                     {
+                        customizationManager.SetHeadEquipped(hatPrefab);
                         customizationManager.ApplyHead(hatPrefab);
                     }
 
                 }
-                
+
             }
             else
             {
@@ -61,4 +74,38 @@ public class HeadwearScript : MonoBehaviour
             }
         }
     }
+
+    private void UpdateVisualState()
+    {
+        PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
+        bool isOwned = PlayerPrefs.GetInt(customizationName, 0) == 1;
+        bool isEquipped = customizationManager.IsHeadEquipped(hatPrefab);
+
+        if (ownedIcon != null && equippedIcon != null)
+        {
+            if (isOwned)
+            {
+                if (isEquipped)
+                {
+                    Debug.Log("Item Equipped");
+                    ownedIcon.gameObject.SetActive(false);
+                    equippedIcon.gameObject.SetActive(true);
+                }
+                else
+                {
+                    Debug.Log("Item owned but not equipped");
+                    ownedIcon.gameObject.SetActive(true);
+                    equippedIcon.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                Debug.Log("Item neither owned nor equipped");
+                ownedIcon.gameObject.SetActive(false);
+                equippedIcon.gameObject.SetActive(false);
+            }
+        }
+        
+    }
+
 }

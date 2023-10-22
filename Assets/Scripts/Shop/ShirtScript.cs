@@ -10,7 +10,7 @@ public class ShirtScript : MonoBehaviour
     public TextMeshProUGUI priceText;
     public string customizationName;
 
-    private void Awake()
+    private void Start()
     {
         priceText.text = "" + price;
     }
@@ -21,7 +21,6 @@ public class ShirtScript : MonoBehaviour
 
         if (isOwned)
         {
-            Debug.Log("isOwned is exec");
             if (PlayerCustomizationManager.instance != null)
             {
                 PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
@@ -35,12 +34,10 @@ public class ShirtScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("Else is exec");
             CoinsController coinsController = CoinsController.Instance;
 
             if (coinsController.totalCoins >= price)
             {
-                Debug.Log("If is exec");
                 coinsController.DecrementCoins(price);
                 
 

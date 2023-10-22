@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    public void Start()
+    {
+        PlayerPrefs.DeleteAll();
+    }
     public void ToMainMenu()
     {
         SceneManager.LoadScene(0);

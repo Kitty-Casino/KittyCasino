@@ -127,21 +127,6 @@ public class PlayerCustomizationManager : MonoBehaviour
         }
     }
 
-    /*
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if(playerInstance != null)
-        {
-            Destroy(playerInstance);
-        }
-
-        if (scene.name != "MainMenu")
-        {
-            InitializePlayer();
-        }
-    }
-    */
-
     public void ApplyCustomization()
     {
         if(shirtInstance != null)
@@ -258,6 +243,19 @@ public class PlayerCustomizationManager : MonoBehaviour
             // }
         }
   
+    }
+
+    public bool IsHeadEquipped(GameObject hatPrefab)
+    {
+        return hatInstance == hatPrefab;
+    }
+    public void SetHeadEquipped(GameObject hatPrefab)
+    {
+        hatInstance = hatPrefab;
+    }
+    public void ClearEquippedHead()
+    {
+        hatInstance = null;
     }
 
     public void ApplyHands(GameObject handsPrefab)
