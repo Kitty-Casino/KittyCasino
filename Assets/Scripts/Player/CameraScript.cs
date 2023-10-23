@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    Transform target; 
+    Transform target;
+    private FaderScript fader;
     public float smoothTime = 0.3f;
     public float cameraDistance;
     private Vector3 velocity = Vector3.zero;
@@ -17,6 +18,38 @@ public class CameraScript : MonoBehaviour
 
     private void Update()
     {
+        GameObject player = GameObject.Find("Player(Clone)");
+        if (player != null)
+        {
+            Vector3 dir = player.transform.position - transform.position;
+            Ray ray = new Ray(transform.position, dir);
+            RaycastHit hit;
+
+            if(Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider == null)
+                
+                    return;
+                
+                if (hit.collider.gameObject == player)
+                {
+                    Debug.Log("Hitting player");
+                    if(fader != null)
+                    {
+                        fader.doFade = false;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Hitting object");
+                    fader = hit.collider.gameObject.GetComponent<FaderScript>(); 
+                    if (fader != null)
+                    {
+                        fader.doFade = true;
+                    }
+                }
+            }
+        }
         if (target == null)
         {
             target = GameObject.Find("Player(Clone)").transform;

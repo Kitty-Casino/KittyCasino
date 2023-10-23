@@ -7,7 +7,7 @@ public class SceneController : MonoBehaviour
 {
     public void Start()
     {
-        PlayerPrefs.DeleteAll();
+       // PlayerPrefs.DeleteAll();
     }
     public void ToMainMenu()
     {
