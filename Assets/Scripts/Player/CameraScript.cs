@@ -18,38 +18,46 @@ public class CameraScript : MonoBehaviour
 
     private void Update()
     {
+        
+        
         GameObject player = GameObject.Find("Player(Clone)");
         if (player != null)
         {
+
             Vector3 dir = player.transform.position - transform.position;
             Ray ray = new Ray(transform.position, dir);
             RaycastHit hit;
+            Debug.DrawRay(transform.position, dir, Color.red);
 
-            if(Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit))
             {
+
+                Debug.Log(hit.collider.gameObject.name);
                 if (hit.collider == null)
                 
                     return;
                 
-                if (hit.collider.gameObject == player)
-                {
-                    Debug.Log("Hitting player");
-                    if(fader != null)
-                    {
-                        fader.doFade = false;
-                    }
-                }
-                else
+                if (hit.collider.gameObject.GetComponent<FaderScript>() != null)
                 {
                     Debug.Log("Hitting object");
-                    fader = hit.collider.gameObject.GetComponent<FaderScript>(); 
+                    fader = hit.collider.gameObject.GetComponent<FaderScript>();
                     if (fader != null)
                     {
                         fader.doFade = true;
                     }
                 }
+                else
+                {
+                    Debug.Log("Hitting player");
+
+                    if (fader != null)
+                    {
+                        fader.doFade = false;
+                    }
+                }
             }
         }
+        
         if (target == null)
         {
             target = GameObject.Find("Player(Clone)").transform;

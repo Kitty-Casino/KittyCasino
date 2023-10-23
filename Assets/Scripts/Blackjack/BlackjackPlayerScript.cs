@@ -49,7 +49,7 @@ public class BlackjackPlayerScript : MonoBehaviour
             aceList.Add(hand[cardIndex].GetComponent<CardScript>());
         }
         // Decides if 11 should be used instead of 1 for an Ace
-        // AceCheck();
+        AceCheck();
         cardIndex++;
             return handValue;
     }

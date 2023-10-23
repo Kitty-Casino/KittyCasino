@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FaderScript : MonoBehaviour
 {
-    public float fadeSpeed;
-    public float fadeAmount;
+    public float fadeSpeed = 10f;
+    public float fadeAmount = 0.5f;
     public bool doFade = false;
     float originalOpacity;
 
