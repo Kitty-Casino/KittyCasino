@@ -6,14 +6,19 @@ using TMPro;
 
 public class MinigameManager : MonoBehaviour
 {
-    public static int orderValue;
-    public static int drinkValue;
+    [Header("Ingredients")]
     public int ingredient1;
     public int ingredient2;
     public int ingredient3;
     public int ingredient4;
     public int ingredient5;
     public int maxIngredients;
+
+    [Header("Computation")]
+    public static int orderValue;
+    public static int drinkValue;
+    public LayerMask ingredientLayer;
+    private bool touchOver = true;
 
     [Header("UI")]
     public TextMeshProUGUI ingredientAmount1;
@@ -32,24 +37,66 @@ public class MinigameManager : MonoBehaviour
         System.Random rng = new System.Random();
         ingredient1 = rng.Next(0, maxIngredients);
         ingredientAmount1.text = "" + ingredient1;
-        
+
         int tempIng2 = rng.Next(0, maxIngredients);
         ingredient2 = tempIng2 * 10;
-        ingredientAmount2.text = "" + (ingredient2 / 10);
+        ingredientAmount2.text = "" + tempIng2;
 
         int tempIng3 = rng.Next(0, maxIngredients);
         ingredient3 = tempIng3 * 100;
-        ingredientAmount3.text = "" + (ingredient3 / 100);
+        ingredientAmount3.text = "" + tempIng3;
 
         int tempIng4 = rng.Next(0, maxIngredients);
         ingredient4 = tempIng4 * 1000;
-        ingredientAmount4.text = "" + (ingredient4 / 1000);
+        ingredientAmount4.text = "" + tempIng4;
 
         int tempIng5 = rng.Next(0, maxIngredients);
         ingredient5 = tempIng5 * 10000;
-        ingredientAmount5.text = "" + (ingredient5 / 10000);
+        ingredientAmount5.text = "" + tempIng5;
 
         orderValue = ingredient1 + ingredient2 + ingredient3 + ingredient4 + ingredient5;
         Debug.Log("order value: " + orderValue);
+    }
+
+    void Update()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            touchOver = false;
+
+            if (touch.phase == TouchPhase.Ended)
+            {
+                RaycastHit hit;
+
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(touch.position), out hit, 1000, ingredientLayer) && !touchOver)
+                {
+                    // change drink colors?
+                    drinkValue += hit.transform.gameObject.GetComponent<IngredientController>().value;
+                    touchOver = true;
+                }
+            }
+        }
+    }
+
+    public void CheckDrink()
+    {
+        if (orderValue == drinkValue)
+        {
+            Debug.Log("win"); // tips here
+        }
+        else
+        {
+            Debug.Log("lose");
+        }
+
+        StartCoroutine(GetNewOrder());
+    }
+
+    IEnumerator GetNewOrder()
+    {
+        Debug.Log("entered");
+        yield return new WaitForSeconds(2);
+        CreateOrder();
     }
 }

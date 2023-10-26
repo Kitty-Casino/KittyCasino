@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.605
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.35182193, g: 0.39224228, b: 0.45583546, a: 0.605}
+  m_IndirectSpecularColor: {r: 0.35182154, g: 0.39224178, b: 0.45583475, a: 0.605}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -22967,6 +22967,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2699956890216938106, guid: 1273c9ebc34e4eb40a63946675876e98, type: 3}
+      propertyPath: coinsObj
+      value: 
+      objectReference: {fileID: 877364806}
+    - target: {fileID: 2699956890216938106, guid: 1273c9ebc34e4eb40a63946675876e98, type: 3}
+      propertyPath: coinsText
+      value: 
+      objectReference: {fileID: 230967599}
     - target: {fileID: 6530309281073696580, guid: 1273c9ebc34e4eb40a63946675876e98, type: 3}
       propertyPath: m_RootOrder
       value: 9
