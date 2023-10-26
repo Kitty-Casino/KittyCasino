@@ -95,7 +95,6 @@ public class MinigameManager : MonoBehaviour
 
     IEnumerator GetNewOrder()
     {
-        Debug.Log("entered");
         yield return new WaitForSeconds(2);
         CreateOrder();
     }
