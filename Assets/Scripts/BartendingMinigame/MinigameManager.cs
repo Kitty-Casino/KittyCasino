@@ -19,6 +19,7 @@ public class MinigameManager : MonoBehaviour
     public static int drinkValue;
     public LayerMask ingredientLayer;
     private bool touchOver = true;
+    public int orderTimer;
 
     [Header("UI")]
     public TextMeshProUGUI ingredientAmount1;
@@ -27,9 +28,19 @@ public class MinigameManager : MonoBehaviour
     public TextMeshProUGUI ingredientAmount4;
     public TextMeshProUGUI ingredientAmount5;
 
+    [Header("References")]
+    private CoinsController coinsController;
+    private CountdownTimer countdownTimer;
+
     void Awake()
     {
         CreateOrder();
+    }
+
+    void Start()
+    {
+        coinsController = GameObject.Find("CoinsController").GetComponent<CoinsController>();
+        countdownTimer = GameObject.Find("Timer").GetComponent<CountdownTimer>();
     }
 
     private void CreateOrder()
@@ -73,17 +84,37 @@ public class MinigameManager : MonoBehaviour
                 {
                     // change drink colors?
                     drinkValue += hit.transform.gameObject.GetComponent<IngredientController>().value;
+                    Debug.Log("drink value: " + drinkValue);
                     touchOver = true;
                 }
             }
+        }
+
+        if (countdownTimer.currentTime <= 0f)
+        {
+            CheckDrink();
         }
     }
 
     public void CheckDrink()
     {
+        bool canEarnMoney = true;
+
+        if (coinsController.totalCoins > 100)
+        {
+            canEarnMoney = false;
+        }
+
+        countdownTimer.StopTimer();
+
         if (orderValue == drinkValue)
         {
             Debug.Log("win"); // tips here
+
+            if (canEarnMoney)
+            {
+                coinsController.IncrementCoins((int)countdownTimer.currentTime);
+            }
         }
         else
         {
@@ -96,6 +127,8 @@ public class MinigameManager : MonoBehaviour
     IEnumerator GetNewOrder()
     {
         yield return new WaitForSeconds(2);
+        countdownTimer.RestartTimer();
         CreateOrder();
+        drinkValue = 0;
     }
 }
