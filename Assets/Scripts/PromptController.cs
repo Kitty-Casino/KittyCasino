@@ -108,6 +108,9 @@ public class PromptController : MonoBehaviour
             case "Blackjack":
                 SceneManager.LoadScene("Blackjack");
                 break;
+            case "Bartending":
+                SceneManager.LoadScene("Bartending");
+                break;
         }
     }
 

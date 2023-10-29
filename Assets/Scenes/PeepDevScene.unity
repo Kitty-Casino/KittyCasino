@@ -154,8 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardsUI: {fileID: 2109346485}
   claimRewardButton: {fileID: 1450107085}
-  rewardDelay: 10
-  checkRewardDelay: 5
+  rewardDelay: 86400
+  checkRewardDelay: 3600
 --- !u!4 &66414848
 Transform:
   m_ObjectHideFlags: 0

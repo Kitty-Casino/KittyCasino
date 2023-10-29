@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DailyRewardsSystem : MonoBehaviour
 {
@@ -12,8 +13,8 @@ public class DailyRewardsSystem : MonoBehaviour
     private CoinsController coinsController;
 
     [Header("Rewards Data")]
-    [SerializeField] private double rewardDelay = 10f;
-    [SerializeField] private float checkRewardDelay = 5f; // checks for new reward every __ hr
+    [SerializeField] private double rewardDelay = 86400f; // whole thing breaks unless i use seconds. not hours. idk man
+    [SerializeField] private float checkRewardDelay = 3600f; // checks for new reward every 1 hr (in seconds)
     private bool isRewardReady;
 
     void Start()
@@ -42,12 +43,20 @@ public class DailyRewardsSystem : MonoBehaviour
                 DateTime currentDateTime = DateTime.Now;
                 DateTime rewardClaimTime = DateTime.Parse(PlayerPrefs.GetString("RewardClaim_DateTime", currentDateTime.ToString()));
 
-                // get total seconds between these times - SWITCH TO HOURS AFTER TESTING
+                // get total seconds between these times
                 double elapsedSeconds = (currentDateTime - rewardClaimTime).TotalSeconds;
+                Debug.Log("elapsed seconds: " + elapsedSeconds);
 
                 if (elapsedSeconds >= rewardDelay)
                 {
-                    ActivateReward();   // make coroutine so this only runs in the casino
+                    if (SceneManager.GetActiveScene().buildIndex != 1) // if not in casino scene when 24 hours is up
+                    {
+                        StartCoroutine(WaitForCasino());
+                    }
+                    else
+                    {
+                        ActivateReward();
+                    }
                 }
                 else
                 {
@@ -57,6 +66,18 @@ public class DailyRewardsSystem : MonoBehaviour
 
             yield return new WaitForSeconds(checkRewardDelay);
         }
+    }
+
+    IEnumerator WaitForCasino()
+    {
+        Debug.Log("here");
+        while (SceneManager.GetActiveScene().buildIndex != 1) // waits until in Casino to activate Daily Reward
+        {
+            yield return null;
+        }
+
+        Debug.Log("here 1");
+        ActivateReward();
     }
 
     private void ActivateReward()
