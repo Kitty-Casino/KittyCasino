@@ -4310,7 +4310,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583723297}
+      - m_Target: {fileID: 1119486394}
         m_TargetAssemblyTypeName: PromptController, Assembly-CSharp
         m_MethodName: LoadAnotherScene
         m_Mode: 1
