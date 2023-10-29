@@ -12,8 +12,8 @@ public class DailyRewardsSystem : MonoBehaviour
     private CoinsController coinsController;
 
     [Header("Rewards Data")]
-    [SerializeField] private double rewardDelay = 20f; // seconds rn, for testing only
-    [SerializeField] private float checkRewardDelay = 5f; // checks for new reward every 5 seconds
+    [SerializeField] private double rewardDelay = 24f;
+    [SerializeField] private float checkRewardDelay = 1f; // checks for new reward every 1 hr
     private bool isRewardReady;
 
     void Start()
@@ -43,7 +43,7 @@ public class DailyRewardsSystem : MonoBehaviour
                 DateTime rewardClaimTime = DateTime.Parse(PlayerPrefs.GetString("RewardClaim_DateTime", currentDateTime.ToString()));
 
                 // get total seconds between these times - SWITCH TO HOURS AFTER TESTING
-                double elapsedSeconds = (currentDateTime - rewardClaimTime).TotalSeconds;
+                double elapsedSeconds = (currentDateTime - rewardClaimTime).TotalHours;
 
                 if (elapsedSeconds >= rewardDelay)
                 {
