@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Button hitButton;
     public Button standButton;
     public Button betButton;
+    public Button doubleButton;
     
     private int standClicks = 0;
 
@@ -47,9 +48,11 @@ public class GameManager : MonoBehaviour
         hitButton.onClick.AddListener(() => HitClicked());
         standButton.onClick.AddListener(() => StandClicked());
         betButton.onClick.AddListener(() => BetClicked());
+        doubleButton.onClick.AddListener(() => DoubleClicked());
 
         hitButton.gameObject.SetActive(false);
         standButton.gameObject.SetActive(false);
+        doubleButton.gameObject.SetActive(false);
 
     }
 
@@ -75,7 +78,9 @@ public class GameManager : MonoBehaviour
         standText.text = "Stand";
 
  
-        betText.text = "Current Pot: \n" + "$" + pot.ToString();
+        betText.text = "Current Bet: \n" + "$" + pot.ToString();
+
+        DoubleDownCheck();
       
     }
 
@@ -95,7 +100,22 @@ public class GameManager : MonoBehaviour
         standClicks++;
         RoundOver();
         HitDealer();
-        // standText.text = "Confirm";
+    }
+
+    private void DoubleClicked()
+    {
+        coinsController.DecrementCoins(pot);
+        pot += pot;
+        betText.text = "Current Bet: \n" + "$" + pot.ToString();
+
+        if (playerScript.cardIndex <= 10)
+        {
+            playerScript.GetCard();
+            scoreText.text = "Your Hand: \n" + playerScript.handValue.ToString();
+        }
+        standClicks++;
+        RoundOver();
+        HitDealer();
     }
 
     private void HitDealer()
@@ -114,8 +134,8 @@ public class GameManager : MonoBehaviour
         int intBet = 20; 
        
         coinsController.DecrementCoins(intBet);
-        pot += (intBet * 2);
-        betText.text = "Current Pot: \n" + "$" + pot.ToString();
+        pot += (intBet);
+        betText.text = "Current Bet: \n" + "$" + pot.ToString();
     }
 
     void RoundOver()
@@ -133,7 +153,7 @@ public class GameManager : MonoBehaviour
         {
             mainText.text = "All Bust: Bets Returned";
             mainText.gameObject.SetActive(true);
-            coinsController.IncrementCoins(pot / 2);
+            coinsController.IncrementCoins(pot);
         }
         // If player bust but dealer didn't, or dealer has more points, dealer wins
         else if (playerBust || (!dealerBust && dealerScript.handValue > playerScript.handValue))
@@ -144,14 +164,14 @@ public class GameManager : MonoBehaviour
         else if (dealerBust || playerScript.handValue > dealerScript.handValue)
         {
             winPanel.SetActive(true);
-            coinsController.IncrementCoins(pot);
+            coinsController.IncrementCoins(pot * 2);
         }
         // Tie check, return bets
         else if (playerScript.handValue == dealerScript.handValue)
         {
-            mainText.text = "Push: Bets Returned";
+            mainText.text = "Tie: Bets Returned";
             mainText.gameObject.SetActive(true);
-            coinsController.IncrementCoins(pot / 2);
+            coinsController.IncrementCoins(pot);
         }
         else
         {
@@ -162,16 +182,36 @@ public class GameManager : MonoBehaviour
         {
             hitButton.gameObject.SetActive(false);
             standButton.gameObject.SetActive(false);
+            doubleButton.gameObject.SetActive(false);
             dealButton.gameObject.SetActive(true);
             betButton.gameObject.SetActive(true);
             dealerScoreText.gameObject.SetActive(true);
             hideCard.GetComponent<Renderer>().enabled = false;
             standClicks = 0;
             pot = 0;
-            betText.text = "Current Pot: \n" + "$" + pot.ToString();
+            betText.text = "Current Bet: \n" + "$" + pot.ToString();
         }
     }
 
+    private void DoubleDownCheck()
+    {
+        if (coinsController.totalCoins >= pot)
+        {
+            switch (playerScript.handValue)
+            {
+                case 9:
+                    doubleButton.gameObject.SetActive(true);
+                    break;
+                case 10:
+                    doubleButton.gameObject.SetActive(true);
+                    break;
+                case 11:
+                    doubleButton.gameObject.SetActive(true);
+                    break;
+            }
+        }
+        
+    }
     public void PromptHide()
     {
         winPanel.SetActive(false);
