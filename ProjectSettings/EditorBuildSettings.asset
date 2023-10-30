@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bartending.unity
     guid: c555d790f18608a4e9ece8024e125b14
+  - enabled: 1
+    path: Assets/Scenes/Slots.unity
+    guid: 64929646993d2b94b8893c73fdf0a53d
   m_configObjects: {}
