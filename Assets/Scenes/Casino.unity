@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.605
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.35182154, g: 0.39224178, b: 0.45583475, a: 0.605}
+  m_IndirectSpecularColor: {r: 0.35182193, g: 0.39224228, b: 0.45583546, a: 0.605}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12318,7 +12318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptPanel: {fileID: 2091075279}
-  promptRange: 2
+  promptRange: 4
   sceneID: Bartending
 --- !u!136 &1119486397
 CapsuleCollider:
@@ -16809,7 +16809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardsUI: {fileID: 809910283}
   claimRewardButton: {fileID: 1645173541}
-  rewardDelay: 60
+  rewardDelay: 180
   checkRewardDelay: 10
 --- !u!4 &1627742788
 Transform:
