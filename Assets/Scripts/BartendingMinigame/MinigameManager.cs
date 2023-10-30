@@ -27,6 +27,8 @@ public class MinigameManager : MonoBehaviour
     public TextMeshProUGUI ingredientAmount3;
     public TextMeshProUGUI ingredientAmount4;
     public TextMeshProUGUI ingredientAmount5;
+    public GameObject check;
+    public GameObject x;
 
     [Header("References")]
     private CoinsController coinsController;
@@ -41,6 +43,8 @@ public class MinigameManager : MonoBehaviour
     {
         coinsController = GameObject.Find("CoinsController").GetComponent<CoinsController>();
         countdownTimer = GameObject.Find("Timer").GetComponent<CountdownTimer>();
+        check.SetActive(false);
+        x.SetActive(false);
     }
 
     private void CreateOrder()
@@ -127,7 +131,7 @@ public class MinigameManager : MonoBehaviour
 
         if (orderValue == drinkValue)
         {
-            Debug.Log("win"); // tips here
+            StartCoroutine(WinLose(true));
 
             if (canEarnMoney)
             {
@@ -136,10 +140,33 @@ public class MinigameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("lose");
+            StartCoroutine(WinLose(false));
         }
 
         StartCoroutine(GetNewOrder());
+    }
+
+    IEnumerator WinLose(bool win)
+    {
+        if (win)
+        {
+            check.SetActive(true);
+        }
+        else
+        {
+            x.SetActive(true);
+        }
+
+        yield return new WaitForSeconds(0.75f);
+
+        if (win)
+        {
+            check.SetActive(false);
+        }
+        else
+        {
+            x.SetActive(false);
+        }
     }
 
     IEnumerator GetNewOrder()
