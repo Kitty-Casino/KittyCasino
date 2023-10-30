@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.605
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.35182193, g: 0.39224228, b: 0.45583546, a: 0.605}
+  m_IndirectSpecularColor: {r: 0.35182154, g: 0.39224178, b: 0.45583475, a: 0.605}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19526,7 +19526,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583723297}
+      - m_Target: {fileID: 1119486394}
         m_TargetAssemblyTypeName: PromptController, Assembly-CSharp
         m_MethodName: ClosePrompt
         m_Mode: 1

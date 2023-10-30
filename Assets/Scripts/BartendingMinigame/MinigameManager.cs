@@ -71,7 +71,7 @@ public class MinigameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0) // use touch
         {
             Touch touch = Input.GetTouch(0);
             touchOver = false;
@@ -89,11 +89,29 @@ public class MinigameManager : MonoBehaviour
                 }
             }
         }
+        else if (Input.GetMouseButtonUp(0)) // use clicks
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 1000, ingredientLayer))
+            {
+                hit.transform.gameObject.GetComponent<IngredientController>().selected = true;
+                StartCoroutine(ChangeIngredientColor(hit.transform.gameObject));
+                drinkValue += hit.transform.gameObject.GetComponent<IngredientController>().value;
+                Debug.Log("drink value: " + drinkValue);
+            }
+        }
 
         if (countdownTimer.currentTime <= 0f)
         {
             CheckDrink();
         }
+    }
+
+    IEnumerator ChangeIngredientColor(GameObject ingredient)
+    {
+        yield return new WaitForSeconds(0.5f);
+        ingredient.GetComponent<IngredientController>().selected = false;
     }
 
     public void CheckDrink()

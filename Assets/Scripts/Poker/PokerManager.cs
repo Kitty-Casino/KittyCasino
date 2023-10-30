@@ -278,10 +278,12 @@ public class PokerManager : MonoBehaviour
             coinsController.totalCoins -= betValue;
             coinsController.coinsText.text = "" + coinsController.totalCoins;
         }
-        else // equivalency
+        else // equivalency - player wins
         {
-            Debug.Log("win half");
-            coinsController.totalCoins += (betValue / 2);
+            Debug.Log("tie");
+            winScreen.SetActive(true);
+            coinsController.totalCoins += betValue;
+            coinsController.coinsText.text = "" + coinsController.totalCoins;
         }
     }
 
@@ -489,9 +491,11 @@ public class PokerManager : MonoBehaviour
 
         // check for straight -------------- DOES NOT ACCOUNT FOR ACE BEING LOW !!!!!
         int numContiguous = 0;
-
-        for (int i = 0; i < usedValues.Length; i++)
+        
+        for (int i = 0; i < usedValues.Length; i++) // broken
         {
+            Debug.Log("usedvalues[" + i + "]: " + usedValues[i]);
+
             if (usedValues[i] > 0)
             {
                 int index = i;
@@ -513,6 +517,8 @@ public class PokerManager : MonoBehaviour
                 }
             }
         }
+
+        Debug.Log(numContiguous);
 
         if (numContiguous >= 5 && !isFlush)
         {
