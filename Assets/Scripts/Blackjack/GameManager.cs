@@ -15,12 +15,14 @@ public class GameManager : MonoBehaviour
     public Button standButton;
     public Button betButton;
     public Button doubleButton;
+    public Button splitButton;
     
     private int standClicks = 0;
 
     // Refs to player and dealers script/hand
     public BlackjackPlayerScript playerScript;
     public BlackjackPlayerScript dealerScript;
+    public BlackjackPlayerScript splitScript;
 
     // HUD Text for scores and bets
     public TextMeshProUGUI scoreText;
@@ -53,7 +55,7 @@ public class GameManager : MonoBehaviour
         hitButton.gameObject.SetActive(false);
         standButton.gameObject.SetActive(false);
         doubleButton.gameObject.SetActive(false);
-
+        splitButton.gameObject.SetActive(false);
     }
 
     private void DealClicked()
@@ -116,6 +118,7 @@ public class GameManager : MonoBehaviour
         standClicks++;
         RoundOver();
         HitDealer();
+        doubleButton.gameObject.SetActive(false);
     }
 
     private void HitDealer()
@@ -183,6 +186,7 @@ public class GameManager : MonoBehaviour
             hitButton.gameObject.SetActive(false);
             standButton.gameObject.SetActive(false);
             doubleButton.gameObject.SetActive(false);
+            splitButton.gameObject.SetActive(false);
             dealButton.gameObject.SetActive(true);
             betButton.gameObject.SetActive(true);
             dealerScoreText.gameObject.SetActive(true);
@@ -211,6 +215,16 @@ public class GameManager : MonoBehaviour
             }
         }
         
+    }
+
+    private void SplitCheck()
+    {
+        int card1Value = GameObject.Find("PlayerCard1").GetComponent<CardScript>().value;
+        int card2Value = GameObject.Find("PlayerCard2").GetComponent<CardScript>().value;
+        if (card1Value == card2Value)
+        {
+            splitButton.gameObject.SetActive(true);
+        }
     }
     public void PromptHide()
     {

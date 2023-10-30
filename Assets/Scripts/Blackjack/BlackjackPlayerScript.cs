@@ -14,9 +14,6 @@ public class BlackjackPlayerScript : MonoBehaviour
     // Total value of the player/dealers hand
     public int handValue = 0;
 
-    // Ref to CoinsController for money management
-    CoinsController coinsController = CoinsController.Instance;
-
     //Array of card objects on the board
     public GameObject[] hand;
 
