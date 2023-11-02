@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
+using System.Collections;
 
 public class SlotsController : MonoBehaviour
 {
+    public int spinCost;
     CoinsController coinsController = CoinsController.Instance;
 
     public static event Action HandlePulled = delegate { };
@@ -15,13 +16,35 @@ public class SlotsController : MonoBehaviour
     [SerializeField] private RowScript[] rows;
     [SerializeField] private Transform handle;
 
-    private int prizeValue;
-
     private bool resultsChecked = false;
+
+    // Defines payout values for 3 and 2 matches using dictionaries, if you want to modify payouts do that here
+    private Dictionary<string, int> threeMatchesPayouts = new Dictionary<string, int>
+    {
+        { "Diamond", 200 },
+        { "Crown", 400 },
+        { "Melon", 600 },
+        { "Bar", 800 },
+        { "Seven", 1500 },
+        { "Cherry", 3000 },
+        { "Lemon", 5000 },
+    };
+
+    private Dictionary<string, int> twoMatchesPayouts = new Dictionary<string, int>
+    {
+        { "Diamond", 100 },
+        { "Crown", 300 },
+        { "Melon", 500 },
+        { "Bar", 700 },
+        { "Seven", 1000 },
+        { "Cherry", 2000 },
+        { "Lemon", 4000 },
+    };
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -29,29 +52,37 @@ public class SlotsController : MonoBehaviour
     {
         if (!rows[0].rowStopped || !rows[1].rowStopped || !rows[2].rowStopped)
         {
-            prizeValue = 0;
             prizeText.enabled = false;
             resultsChecked = false;
         }
-        
+
         if (rows[0].rowStopped && rows[1].rowStopped && rows[2].rowStopped && !resultsChecked)
         {
-            CheckResults();
+            int prizeValue = CheckResults();
             prizeText.enabled = true;
             prizeText.text = "Prize: " + prizeValue;
         }
     }
 
+    // Method that checks if the slot rows are stopped and if so, allows the PullHandle coroutine to begin and the slots to start spinning
     public void OnSlotPull()
     {
-        coinsController.DecrementCoins(50);
-
-        if (rows[0].rowStopped && rows[1].rowStopped && rows[2].rowStopped)
+        if (coinsController.totalCoins >= spinCost)
         {
-            StartCoroutine("PullHandle");
+            coinsController.DecrementCoins(spinCost);
+
+            if (rows[0].rowStopped && rows[1].rowStopped && rows[2].rowStopped)
+            {
+                StartCoroutine(PullHandle());
+            }
+        }
+        else
+        {
+            Debug.Log("Insufficient coins");
         }
     }
 
+    // Tells the slots to start spinning and the handle to rotate 
     private IEnumerator PullHandle()
     {
         for (int i = 0; i < 15; i += 5)
@@ -67,96 +98,39 @@ public class SlotsController : MonoBehaviour
             handle.Rotate(0f, 0f, -i);
         }
     }
-    
-    private void CheckResults()
+
+    // Determines the payouts of slots based on the results of the rows
+    private int CheckResults()
     {
-        if (rows[0].stoppedSlot == "Diamond" && rows[1].stoppedSlot == "Diamond" && rows[2].stoppedSlot == "Diamond")
+        string symbol1 = rows[0].stoppedSlot;
+        string symbol2 = rows[1].stoppedSlot;
+        string symbol3 = rows[2].stoppedSlot;
+
+        // Check for three matches
+        if (symbol1 == symbol2 && symbol2 == symbol3)
         {
-            prizeValue = 200;
-            coinsController.IncrementCoins(prizeValue);
-        }
-        else if (rows[0].stoppedSlot == "Crown" && rows[1].stoppedSlot == "Crown" && rows[2].stoppedSlot == "Crown")
-        {
-            prizeValue = 400;
-            coinsController.IncrementCoins(prizeValue);
-        }
-        else if (rows[0].stoppedSlot == "Melon" && rows[1].stoppedSlot == "Melon" && rows[2].stoppedSlot == "Melon")
-        {
-            prizeValue = 600;
-            coinsController.IncrementCoins(prizeValue);
-        }
-        else if (rows[0].stoppedSlot == "Bar" && rows[1].stoppedSlot == "Bar" && rows[2].stoppedSlot == "Bar")
-        {
-            prizeValue = 800;
-            coinsController.IncrementCoins(prizeValue);
-        }
-        else if (rows[0].stoppedSlot == "Seven" && rows[1].stoppedSlot == "Seven" && rows[2].stoppedSlot == "Seven")
-        {
-            prizeValue = 1500;
-            coinsController.IncrementCoins(prizeValue);
-        }
-        else if (rows[0].stoppedSlot == "Cherry" && rows[1].stoppedSlot == "Cherry" && rows[2].stoppedSlot == "Cherry")
-        {
-            prizeValue = 3000;
-            coinsController.IncrementCoins(prizeValue);
-        }
-        else if (rows[0].stoppedSlot == "Lemon" && rows[1].stoppedSlot == "Lemon" && rows[2].stoppedSlot == "Lemon")
-        {
-            prizeValue = 5000;
-            coinsController.IncrementCoins(prizeValue);
+            if (threeMatchesPayouts.ContainsKey(symbol1))
+            {
+                int prizeValue = threeMatchesPayouts[symbol1];
+                coinsController.IncrementCoins(prizeValue);
+                resultsChecked = true;
+                return prizeValue;
+            }
         }
 
+        // Check for two matches
+        if ((symbol1 == symbol2 && twoMatchesPayouts.ContainsKey(symbol1)) ||
+            (symbol1 == symbol3 && twoMatchesPayouts.ContainsKey(symbol1)) ||
+            (symbol2 == symbol3 && twoMatchesPayouts.ContainsKey(symbol2)))
+        {
+            string matchingSymbol = (symbol1 == symbol2) ? symbol1 : (symbol1 == symbol3) ? symbol1 : symbol2;
+            int prizeValue = twoMatchesPayouts[matchingSymbol];
+            coinsController.IncrementCoins(prizeValue);
+            resultsChecked = true;
+            return prizeValue;
+        }
 
-
-        else if (((rows[0].stoppedSlot == rows[1].stoppedSlot) && (rows[0].stoppedSlot == "Diamond")) 
-             || ((rows[0].stoppedSlot == rows[2].stoppedSlot) && (rows[0].stoppedSlot == "Diamond")) 
-             || ((rows[1].stoppedSlot == rows[2].stoppedSlot) && (rows[1].stoppedSlot == "Diamond")))
-        {
-            prizeValue = 100;
-            coinsController.IncrementCoins(prizeValue);
-        }
-        else if (((rows[0].stoppedSlot == rows[1].stoppedSlot) && (rows[0].stoppedSlot == "Crown"))
-             || ((rows[0].stoppedSlot == rows[2].stoppedSlot) && (rows[0].stoppedSlot == "Crown"))
-             || ((rows[1].stoppedSlot == rows[2].stoppedSlot) && (rows[1].stoppedSlot == "Crown")))
-        {
-            prizeValue = 300;
-            coinsController.IncrementCoins(prizeValue);
-        }
-        else if (((rows[0].stoppedSlot == rows[1].stoppedSlot) && (rows[0].stoppedSlot == "Melon"))
-             || ((rows[0].stoppedSlot == rows[2].stoppedSlot) && (rows[0].stoppedSlot == "Melon"))
-             || ((rows[1].stoppedSlot == rows[2].stoppedSlot) && (rows[1].stoppedSlot == "Melon")))
-        {
-            prizeValue = 500;
-            coinsController.IncrementCoins(prizeValue);
-        }
-        else if (((rows[0].stoppedSlot == rows[1].stoppedSlot) && (rows[0].stoppedSlot == "Bar"))
-             || ((rows[0].stoppedSlot == rows[2].stoppedSlot) && (rows[0].stoppedSlot == "Bar"))
-             || ((rows[1].stoppedSlot == rows[2].stoppedSlot) && (rows[1].stoppedSlot == "Bar")))
-        {
-            prizeValue = 700;
-            coinsController.IncrementCoins(prizeValue);
-        }
-        else if (((rows[0].stoppedSlot == rows[1].stoppedSlot) && (rows[0].stoppedSlot == "Seven"))
-             || ((rows[0].stoppedSlot == rows[2].stoppedSlot) && (rows[0].stoppedSlot == "Seven"))
-             || ((rows[1].stoppedSlot == rows[2].stoppedSlot) && (rows[1].stoppedSlot == "Seven")))
-        {
-            prizeValue = 1000;
-            coinsController.IncrementCoins(prizeValue);
-        }
-        else if (((rows[0].stoppedSlot == rows[1].stoppedSlot) && (rows[0].stoppedSlot == "Cherry"))
-             || ((rows[0].stoppedSlot == rows[2].stoppedSlot) && (rows[0].stoppedSlot == "Cherry"))
-             || ((rows[1].stoppedSlot == rows[2].stoppedSlot) && (rows[1].stoppedSlot == "Cherry")))
-        {
-            prizeValue = 2000;
-            coinsController.IncrementCoins(prizeValue);
-        }
-        else if (((rows[0].stoppedSlot == rows[1].stoppedSlot) && (rows[0].stoppedSlot == "Lemon"))
-             || ((rows[0].stoppedSlot == rows[2].stoppedSlot) && (rows[0].stoppedSlot == "Lemon"))
-             || ((rows[1].stoppedSlot == rows[2].stoppedSlot) && (rows[1].stoppedSlot == "Lemon")))
-        {
-            prizeValue = 4000;
-            coinsController.IncrementCoins(prizeValue);
-        }
         resultsChecked = true;
+        return 0; // No matches
     }
 }

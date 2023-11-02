@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     int pot = 0;
     void Start()
     {
+        // Declares all buttons and UI elements and adds listeners for them
         winPanel.SetActive(false);
         losePanel.SetActive(false);
 
@@ -57,7 +58,8 @@ public class GameManager : MonoBehaviour
         doubleButton.gameObject.SetActive(false);
         splitButton.gameObject.SetActive(false);
     }
-
+    
+    // Handles dealing of the cards, resets both players and dealers hands and shuffles the deck and activates/deactivates approrpriate buttons
     private void DealClicked()
     {
         playerScript.ResetHand();
@@ -86,6 +88,7 @@ public class GameManager : MonoBehaviour
       
     }
 
+    // Gives player a new card and checks to see if they end up going over 20 and either hitting Blackjack or going bust
     private void HitClicked()
     {
         // Checks if there is still room on the board
@@ -97,6 +100,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Immediately goes to game round resolution
     private void StandClicked()
     {
         standClicks++;
@@ -104,23 +108,28 @@ public class GameManager : MonoBehaviour
         HitDealer();
     }
 
+    // If the player doubles down, takes another bet equal to initial bet, gives the player one card, and resolves the round (Sometimes it doesn't resolve though but you can still end via standing)
     private void DoubleClicked()
     {
-        coinsController.DecrementCoins(pot);
-        pot += pot;
-        betText.text = "Current Bet: \n" + "$" + pot.ToString();
-
-        if (playerScript.cardIndex <= 10)
+        if (coinsController.totalCoins >= pot)
         {
-            playerScript.GetCard();
-            scoreText.text = "Your Hand: \n" + playerScript.handValue.ToString();
+            coinsController.DecrementCoins(pot);
+            pot += pot;
+            betText.text = "Current Bet: \n" + "$" + pot.ToString();
+
+            if (playerScript.cardIndex <= 10)
+            {
+                playerScript.GetCard();
+                scoreText.text = "Your Hand: \n" + playerScript.handValue.ToString();
+            }
+            standClicks++;
+            RoundOver();
+            HitDealer();
+            doubleButton.gameObject.SetActive(false);
         }
-        standClicks++;
-        RoundOver();
-        HitDealer();
-        doubleButton.gameObject.SetActive(false);
     }
 
+    // Whenever this is called, the dealer draws until the hand is greater than 16 and checks to see if they hit blackjack or bust
     private void HitDealer()
     {
         while (dealerScript.handValue < 16 && dealerScript.cardIndex < 10)
@@ -131,16 +140,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Adds more bet to the pot, int bet can be adjusted to whatever seems reasonable (I can add a decrement bet button, and additional increments as well if needed)
     public void BetClicked()
     {
         
-        int intBet = 20; 
-       
-        coinsController.DecrementCoins(intBet);
-        pot += (intBet);
-        betText.text = "Current Bet: \n" + "$" + pot.ToString();
+       int intBet = 20; 
+       if (coinsController.totalCoins >= intBet)
+       {
+            coinsController.DecrementCoins(intBet);
+            pot += (intBet);
+            betText.text = "Current Bet: \n" + "$" + pot.ToString();
+       }
     }
 
+    // Resolves the game and handles all possible blackjack outcomes, then it sets itself back to false so it the next round of play can happen
     void RoundOver()
     {
         bool playerBust = playerScript.handValue > 21;
@@ -197,6 +210,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Check to see if player is eligeble to double down
     private void DoubleDownCheck()
     {
         if (coinsController.totalCoins >= pot)
@@ -217,6 +231,7 @@ public class GameManager : MonoBehaviour
         
     }
 
+    // Check to see if player is eligeble to split 
     private void SplitCheck()
     {
         int card1Value = GameObject.Find("PlayerCard1").GetComponent<CardScript>().value;
@@ -226,6 +241,8 @@ public class GameManager : MonoBehaviour
             splitButton.gameObject.SetActive(true);
         }
     }
+
+    // Hides win/lose panels
     public void PromptHide()
     {
         winPanel.SetActive(false);

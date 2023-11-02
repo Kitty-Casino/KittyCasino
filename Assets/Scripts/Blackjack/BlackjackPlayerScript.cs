@@ -49,7 +49,7 @@ public class BlackjackPlayerScript : MonoBehaviour
         cardIndex++;
             return handValue;
     }
-
+    // Checks for aces and decides if it should come out to be 11 or 1 depending on player/dealers current hand
     public void AceCheck()
     {
         foreach (CardScript ace in aceList)

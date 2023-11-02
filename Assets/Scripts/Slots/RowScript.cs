@@ -21,6 +21,7 @@ public class RowScript : MonoBehaviour
         StartCoroutine("Rotate");
     }
 
+    // Rotates through the slots based on the i < x in the for loop, adjust this for more/longer spins
     private IEnumerator Rotate()
     {
         rowStopped = false;
@@ -77,7 +78,7 @@ public class RowScript : MonoBehaviour
         rowStopped = true;
     }
 
-
+    // Unsubscribes to HandlePulled
     private void OnDestroy()
     {
         SlotsController.HandlePulled -= StartRotating;
