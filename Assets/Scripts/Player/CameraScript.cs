@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    // Players position
     Transform target;
+    // Ref to faderscript to know what objects should be fading
     private FaderScript fader;
+    // Smooths fade transition, alter this value to change smoothness
     public float smoothTime = 0.3f;
     public float cameraDistance;
     private Vector3 velocity = Vector3.zero;
@@ -18,13 +21,17 @@ public class CameraScript : MonoBehaviour
 
     private void Update()
     {
+
+        if (target == null)
+        {
+            target = GameObject.Find("Player(Clone)").transform;
+        }
+
         
-        
-        GameObject player = GameObject.Find("Player(Clone)");
-        if (player != null)
+        if (target != null)
         {
 
-            Vector3 dir = player.transform.position - transform.position;
+            Vector3 dir = target.transform.position - transform.position;
             Ray ray = new Ray(transform.position, dir);
             RaycastHit hit;
             Debug.DrawRay(transform.position, dir, Color.red);
@@ -58,10 +65,7 @@ public class CameraScript : MonoBehaviour
             }
         }
         
-        if (target == null)
-        {
-            target = GameObject.Find("Player(Clone)").transform;
-        }
+        
     }
     private void LateUpdate()
     {

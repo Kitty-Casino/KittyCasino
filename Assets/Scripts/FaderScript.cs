@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class FaderScript : MonoBehaviour
 {
+    // How fast object fades
     public float fadeSpeed = 10f;
+    // How much object fades (lower = more fade)
     public float fadeAmount = 0.5f;
+    // Controls whether object should be faded or not
     public bool doFade = false;
+    // Stores original material opacity to restore the material to
     float originalOpacity;
 
     Material[] Mats;
