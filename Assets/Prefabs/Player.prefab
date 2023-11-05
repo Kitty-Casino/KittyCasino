@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fbcee18deb110b46bf9ad033568c5c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickEffect: {fileID: 1509650914917908479, guid: ac12e6a85f408cc4a849029c939f43f8, type: 3}
+  clickEffect: {fileID: 6826141227878744197, guid: ac12e6a85f408cc4a849029c939f43f8, type: 3}
   clickableLayers:
     serializedVersion: 2
     m_Bits: 1024
