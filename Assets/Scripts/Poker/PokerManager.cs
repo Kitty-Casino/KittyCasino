@@ -75,7 +75,7 @@ public class PokerManager : MonoBehaviour
             dealerCards[0].GetComponent<Image>().sprite = playerCards[0].GetComponent<PokerCardController>().cardSides[0];
             dealerCards[1].GetComponent<Image>().sprite = playerCards[1].GetComponent<PokerCardController>().cardSides[0];
         }
-        
+
         playerHand = new GameObject[7];
         dealerHand = new GameObject[7];
         betNum = 0;
@@ -177,7 +177,7 @@ public class PokerManager : MonoBehaviour
             placeBetUI.SetActive(false);
             raiseBetUI.SetActive(true);
             betSlider.maxValue = coinsController.totalCoins;
-        }      
+        }
         else
         {
             bettingUI.SetActive(true);
@@ -206,14 +206,14 @@ public class PokerManager : MonoBehaviour
                 ShowRiver();
                 break;
         }
-        
+
         betNum++;
     }
 
     public void BetMade()
     {
         betMade = true;
-        betValue = (int) betSlider.value;
+        betValue = (int)betSlider.value;
         betUIText.text = "" + betValue;
 
         // if (!decremented)
@@ -339,7 +339,7 @@ public class PokerManager : MonoBehaviour
         int numMatching = 0;
         int matchedValue = 0;
         List<int> existingValues = new List<int>();
-        int[] usedValues = new int[15]; 
+        int[] usedValues = new int[15];
         int[] valuesSorted = (int[])values.Clone();
         Array.Sort(valuesSorted);
 
@@ -490,29 +490,8 @@ public class PokerManager : MonoBehaviour
         }
 
         // check for straight -------------- DOES NOT ACCOUNT FOR ACE BEING LOW !!!!!
-        int numContiguous = 0;
-        
-        for (int i = 0; i < usedValues.Length; i++) // broken
-        {
-            if (usedValues[i] > 0)
-            {
-                int index = i;
-
-                while (usedValues[index] > 0)
-                {
-                    numContiguous++;
-
-                    if (index <= usedValues.Length - 1)
-                    {
-                        index++;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-            }
-        }
+        int numContiguous = straightCheck(usedValues);
+        Debug.Log("numContiguous: " + numContiguous);
 
         if (numContiguous >= 5 && !isFlush)
         {
@@ -529,5 +508,30 @@ public class PokerManager : MonoBehaviour
         }
 
         return handValue;
+    }
+
+    private int straightCheck(int[] usedValues)
+    {
+        int numContiguous = 0;
+        int maxContiguous = 0;
+
+        for (int i = 0; i < usedValues.Length; i++)
+        {
+            if (usedValues[i] > 0)
+            {
+                numContiguous++;
+
+                if (numContiguous > maxContiguous)
+                {
+                    maxContiguous = numContiguous;
+                }
+            }
+            else
+            {
+                numContiguous = 0;
+            }
+        }
+
+        return maxContiguous;
     }
 }
