@@ -177,6 +177,7 @@ public class PokerManager : MonoBehaviour
             placeBetUI.SetActive(false);
             raiseBetUI.SetActive(true);
             betSlider.maxValue = coinsController.totalCoins;
+            betSlider.minValue = betValue;
         }
         else
         {
@@ -343,7 +344,12 @@ public class PokerManager : MonoBehaviour
         int[] valuesSorted = (int[])values.Clone();
         Array.Sort(valuesSorted);
 
-        for (int i = 0; i < valuesSorted.Length - 1; i++)
+        // for (int i = 0; i < valuesSorted.Length; i++)
+        // {
+        //     Debug.Log("values sorted[" + i + "]: " + valuesSorted[i]);
+        // }
+
+        for (int i = 0; i < valuesSorted.Length; i++)
         {
             if (!existingValues.Contains(valuesSorted[i]))
             {
@@ -354,13 +360,22 @@ public class PokerManager : MonoBehaviour
             {
                 usedValues[valuesSorted[i]]++;
             }
+        }
 
+        for (int i = 0; i < valuesSorted.Length - 1; i++)
+        {
             if (valuesSorted[i] == valuesSorted[i + 1])
             {
                 numMatching++;
                 matchedValue = valuesSorted[i];
+                Debug.Log("matched value: " + matchedValue);
             }
         }
+
+        // for (int i = 0; i < usedValues.Length; i++)
+        // {
+        //     Debug.Log("used value[" + i + "]: " + usedValues[i]);
+        // }
 
         bool isPair = false;
         bool isThreeOfKind = false;

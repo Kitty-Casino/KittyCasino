@@ -311,7 +311,7 @@ public class CardManager : MonoBehaviour
     IEnumerator flipCards()
     {
         showRandomCards(cardsWithDifficulty);  
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         coroutineOver = true;
 
         for (int i = 0; i < totalCards.Length; i++)
@@ -323,7 +323,7 @@ public class CardManager : MonoBehaviour
     IEnumerator removeCards()
     {
         coroutineOver = false;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         cardsWithDifficulty[savedCardNum].SetActive(false);
         cardsWithDifficulty[finalCardNum].SetActive(false);
 
