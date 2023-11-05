@@ -32,7 +32,6 @@ public class BlackjackPlayerScript : MonoBehaviour
     // Add a hand to the player/dealer hand
     public int GetCard()
     {
-        Debug.Log("Card gotten");
         // Gets a card and uses DealCard to assign correct sprite and value to the card on the board
         int cardValue = deckScript.DealCard(hand[cardIndex].GetComponent<CardScript>());
         // Show card on screen
@@ -56,11 +55,13 @@ public class BlackjackPlayerScript : MonoBehaviour
         {
             if (handValue + 10 < 22 && ace.GetValueOfCard() == 1)
             {
+                Debug.Log("Ace value set to 11");
                 ace.SetValue(11);
                 handValue += 10;
             }
-            else if (handValue < 21 && ace.GetValueOfCard() == 11)
+            else if (handValue > 21 && ace.GetValueOfCard() == 11)
             {
+                Debug.Log("Ace value set to 1");
                 ace.SetValue(1);
                 handValue -= 10;
             }

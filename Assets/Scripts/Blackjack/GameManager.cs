@@ -62,30 +62,34 @@ public class GameManager : MonoBehaviour
     // Handles dealing of the cards, resets both players and dealers hands and shuffles the deck and activates/deactivates approrpriate buttons
     private void DealClicked()
     {
-        playerScript.ResetHand();
-        dealerScript.ResetHand();
-        dealerScoreText.gameObject.SetActive(false);
-        mainText.gameObject.SetActive(false);
-        GameObject.Find("Deck").GetComponent<DeckScript>().Shuffle();
+        if (pot > 0)
+        {
+            playerScript.ResetHand();
+            dealerScript.ResetHand();
+            dealerScoreText.gameObject.SetActive(false);
+            mainText.gameObject.SetActive(false);
+            GameObject.Find("Deck").GetComponent<DeckScript>().Shuffle();
 
-        playerScript.StartHand();
-        dealerScript.StartHand();
+            playerScript.StartHand();
+            dealerScript.StartHand();
 
-        scoreText.text = "Your Hand: \n" + playerScript.handValue.ToString();
-        dealerScoreText.text = "Dealers Hand: " + dealerScript.handValue.ToString();
-        hideCard.GetComponent<Renderer>().enabled = true;
+            scoreText.text = "Your Hand: \n" + playerScript.handValue.ToString();
+            dealerScoreText.text = "Dealers Hand: " + dealerScript.handValue.ToString();
+            hideCard.GetComponent<Renderer>().enabled = true;
 
-        dealButton.gameObject.SetActive(false);
-        betButton.gameObject.SetActive(false);
-        hitButton.gameObject.SetActive(true);
-        standButton.gameObject.SetActive(true);
-        standText.text = "Stand";
+            dealButton.gameObject.SetActive(false);
+            betButton.gameObject.SetActive(false);
+            hitButton.gameObject.SetActive(true);
+            standButton.gameObject.SetActive(true);
+            standText.text = "Stand";
 
- 
-        betText.text = "Current Bet: \n" + "$" + pot.ToString();
 
-        DoubleDownCheck();
-      
+            betText.text = "Current Bet: \n" + "$" + pot.ToString();
+
+            DoubleDownCheck();
+            if (playerScript.handValue > 20) RoundOver();
+        }
+
     }
 
     // Gives player a new card and checks to see if they end up going over 20 and either hitting Blackjack or going bust
@@ -98,14 +102,16 @@ public class GameManager : MonoBehaviour
             scoreText.text = "Your Hand: \n" + playerScript.handValue.ToString();
             if (playerScript.handValue > 20) RoundOver();
         }
+
+        DoubleDownCheck();
     }
 
     // Immediately goes to game round resolution
     private void StandClicked()
     {
         standClicks++;
-        RoundOver();
         HitDealer();
+        RoundOver();
     }
 
     // If the player doubles down, takes another bet equal to initial bet, gives the player one card, and resolves the round (Sometimes it doesn't resolve though but you can still end via standing)
@@ -123,16 +129,16 @@ public class GameManager : MonoBehaviour
                 scoreText.text = "Your Hand: \n" + playerScript.handValue.ToString();
             }
             standClicks++;
-            RoundOver();
             HitDealer();
+            RoundOver();
             doubleButton.gameObject.SetActive(false);
         }
     }
 
-    // Whenever this is called, the dealer draws until the hand is greater than 16 and checks to see if they hit blackjack or bust
+    // Whenever this is called, the dealer draws until the hand is greater than 17 and checks to see if they hit blackjack or bust
     private void HitDealer()
     {
-        while (dealerScript.handValue < 16 && dealerScript.cardIndex < 10)
+        while (dealerScript.handValue < 17 && dealerScript.cardIndex < 10)
         {
             dealerScript.GetCard();
             dealerScoreText.text = "Dealer's Hand: " + dealerScript.handValue.ToString();
@@ -167,24 +173,28 @@ public class GameManager : MonoBehaviour
         // Both sides bust, push happens
         if (playerBust && dealerBust)
         {
+            Debug.Log("Everyone bust!");
             mainText.text = "All Bust: Bets Returned";
             mainText.gameObject.SetActive(true);
             coinsController.IncrementCoins(pot);
         }
         // If player bust but dealer didn't, or dealer has more points, dealer wins
-        else if (playerBust || (!dealerBust && dealerScript.handValue > playerScript.handValue))
+        else if (playerBust || dealer21 || (!dealerBust && dealerScript.handValue > playerScript.handValue))
         {
+            Debug.Log("Dealer won");
             losePanel.SetActive(true);
         }
         // If dealer bust, player didn't, or player has more points, player wins
-        else if (dealerBust || playerScript.handValue > dealerScript.handValue)
+        else if (dealerBust || player21 || playerScript.handValue > dealerScript.handValue)
         {
+            Debug.Log("Player won");
             winPanel.SetActive(true);
             coinsController.IncrementCoins(pot * 2);
         }
         // Tie check, return bets
-        else if (playerScript.handValue == dealerScript.handValue)
+        else if (playerScript.handValue == dealerScript.handValue || dealer21 && player21)
         {
+            Debug.Log("Tie");
             mainText.text = "Tie: Bets Returned";
             mainText.gameObject.SetActive(true);
             coinsController.IncrementCoins(pot);
@@ -217,6 +227,9 @@ public class GameManager : MonoBehaviour
         {
             switch (playerScript.handValue)
             {
+                default:
+                    doubleButton.gameObject.SetActive(false);
+                    break;
                 case 9:
                     doubleButton.gameObject.SetActive(true);
                     break;
