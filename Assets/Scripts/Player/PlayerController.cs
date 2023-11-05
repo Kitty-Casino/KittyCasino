@@ -16,10 +16,13 @@ public class PlayerController : MonoBehaviour
     float timer = 0f;
     [SerializeField] float mouseHoldTime;
 
+    private Animator animator;
+    private bool isMoving;
     
 
     void Awake()
     {
+        animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -37,6 +40,9 @@ public class PlayerController : MonoBehaviour
         {
             CloseApp();
         }
+
+        isMoving = agent.velocity.magnitude > 0.1f;
+        animator.SetBool("isMoving?", isMoving);
     }
 
     void TapToMove()
@@ -64,6 +70,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
             touchMoved = false;
+            
         }
     }
 
@@ -94,6 +101,7 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetMouseButtonUp(0)) 
         {
             timer = 0f;
+            
         }
     }
 
