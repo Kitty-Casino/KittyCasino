@@ -494,17 +494,13 @@ public class PokerManager : MonoBehaviour
         
         for (int i = 0; i < usedValues.Length; i++) // broken
         {
-            Debug.Log("usedvalues[" + i + "]: " + usedValues[i]);
-
             if (usedValues[i] > 0)
             {
                 int index = i;
-                numContiguous = 0;
 
                 while (usedValues[index] > 0)
                 {
                     numContiguous++;
-                    // Debug.Log("num contiguous: " + numContiguous);           <-- seems to work
 
                     if (index <= usedValues.Length - 1)
                     {
@@ -517,8 +513,6 @@ public class PokerManager : MonoBehaviour
                 }
             }
         }
-
-        Debug.Log(numContiguous);
 
         if (numContiguous >= 5 && !isFlush)
         {
