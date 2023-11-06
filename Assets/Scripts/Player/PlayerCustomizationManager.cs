@@ -33,6 +33,10 @@ public class PlayerCustomizationManager : MonoBehaviour
     public GameObject currentHands;
     public GameObject handInstance;
 
+    public Transform righthandSlot;
+    public GameObject currentRighthand;
+    public GameObject righthandInstance;
+
     public GameObject empty;
     private GameObject spawnPoint;
 
@@ -62,7 +66,7 @@ public class PlayerCustomizationManager : MonoBehaviour
             InitializePlayer();
         }
 
-        if (hatSlot == null || eyeSlot == null || neckSlot == null || shirtSlot == null || handSlot == null) 
+        if (hatSlot == null || eyeSlot == null || neckSlot == null || shirtSlot == null || handSlot == null || righthandSlot == null) 
         {
             isNull = true;
         }
@@ -75,6 +79,7 @@ public class PlayerCustomizationManager : MonoBehaviour
             neckSlot = GameObject.Find("NeckAttachPoint").transform;
             shirtSlot = GameObject.Find("ShirtAttachPoint").transform;
             handSlot = GameObject.Find("HandAttachPoint").transform;
+            righthandSlot = GameObject.Find("RightHandAttachPoint").transform;
             
             spawnPoint = FindSpawnPoint();
             if (spawnPoint != null)
@@ -149,6 +154,10 @@ public class PlayerCustomizationManager : MonoBehaviour
         {
             ApplyHead(hatInstance);
         }
+        if(righthandInstance != null)
+        {
+            ApplyRightHands(righthandInstance);
+        }
         
     }
     public void ApplyShirt(GameObject shirtPrefab)
@@ -222,6 +231,45 @@ public class PlayerCustomizationManager : MonoBehaviour
             
     }
 
+    public void ApplyHands(GameObject handsPrefab)
+    {
+        handInstance = handsPrefab;
+        if (playerInstance != null)
+        {
+            // if(handsPrefab.GetComponent<HandwearScript>() != null)
+            if (currentHat != null)
+            {
+                Destroy(currentHands);
+            }
+
+            currentHands = Instantiate(handsPrefab);
+            currentHands.transform.SetParent(handSlot);
+            currentHands.transform.localPosition = Vector3.zero;
+            currentHands.transform.localRotation = Quaternion.identity;
+            // else
+            // {
+            //     handInstance = empty;
+            // }
+        }
+    }
+
+    public void ApplyRightHands(GameObject righthandsPrefab)
+    {
+        righthandInstance = righthandsPrefab;
+        if (playerInstance != null)
+        {
+            if(currentHat != null)
+            {
+                Destroy(currentRighthand);
+            }
+
+            currentRighthand = Instantiate(righthandsPrefab);
+            currentRighthand.transform.SetParent(righthandSlot);
+            currentRighthand.transform.localPosition = Vector3.zero;
+            currentHands.transform.localRotation = Quaternion.identity;
+        }
+    }
+
     public void ApplyHead(GameObject hatPrefab)
     {
         hatInstance = hatPrefab;
@@ -258,25 +306,5 @@ public class PlayerCustomizationManager : MonoBehaviour
         hatInstance = null;
     }
 
-    public void ApplyHands(GameObject handsPrefab)
-    {
-        handInstance = handsPrefab;
-        if (playerInstance != null)
-        {
-           // if(handsPrefab.GetComponent<HandwearScript>() != null)
-            if (currentHat != null)
-            {
-                Destroy(currentHands);
-            }
-
-            currentHands = Instantiate(handsPrefab);
-            currentHands.transform.SetParent(handSlot);
-            currentHands.transform.localPosition = Vector3.zero;
-            currentHands.transform.localRotation = Quaternion.identity;
-            // else
-            // {
-            //     handInstance = empty;
-            // }
-        }
-    }
+    
 }
