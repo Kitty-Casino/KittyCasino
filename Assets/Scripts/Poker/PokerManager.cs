@@ -9,6 +9,7 @@ public class PokerManager : MonoBehaviour
 {
     [Header("Cards")]
     public List<Sprite> cardValues; // length 52
+    public List<Sprite> cardPool; // length 52
     public GameObject[] communityCards; // will always be length 5
     public GameObject[] dealerCards; // will always be length 2
     public GameObject[] playerCards; // will always be length 2
@@ -52,6 +53,13 @@ public class PokerManager : MonoBehaviour
 
     public void Initialize()
     {
+        Debug.Log("Addcards");
+        foreach (Sprite card in cardPool)
+        {
+            cardValues.Add(card);
+            Debug.Log("Adding a card");
+        }
+        cardPool.Clear();
         if (replayAmount > 0)
         {
             winScreen.SetActive(false);
@@ -95,12 +103,14 @@ public class PokerManager : MonoBehaviour
             if (i % 2 == 0) // assign cards one by one, player is dealt first
             {
                 playerCards[index1].GetComponent<PokerCardController>().cardSides[1] = cardValues[randomCard];
+                cardPool.Add(cardValues[randomCard]);
                 cardValues.RemoveAt(randomCard);
                 index1++;
             }
             else if (i % 2 == 1)
             {
                 dealerCards[index2].GetComponent<PokerCardController>().cardSides[1] = cardValues[randomCard];
+                cardPool.Add(cardValues[randomCard]);
                 cardValues.RemoveAt(randomCard);
                 index2++;
             }
@@ -110,6 +120,7 @@ public class PokerManager : MonoBehaviour
         {
             int randomCard = UnityEngine.Random.Range(0, cardValues.Count);
             communityCards[i].GetComponent<PokerCardController>().cardSides[1] = cardValues[randomCard];
+            cardPool.Add(cardValues[randomCard]);
             cardValues.RemoveAt(randomCard);
         }
     }
