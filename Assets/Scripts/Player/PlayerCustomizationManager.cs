@@ -38,7 +38,6 @@ public class PlayerCustomizationManager : MonoBehaviour
     public GameObject currentRighthand;
     public GameObject righthandInstance;
 
-    public GameObject empty;
     private GameObject spawnPoint;
 
     [SerializeField] private bool isNull = false;
@@ -54,70 +53,72 @@ public class PlayerCustomizationManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 
-    private void Start()
-    {
-        
-    }
     private void Update()
     {
+        if (playerInstance == null)
+        {
+            InitializePlayer();
+        }
+
+        FindAttachPoints();
+        //ApplyCustomization();
         if (hatSlot == null || eyeSlot == null || neckSlot == null || player == null || handSlot == null || righthandSlot == null)
         {
             isNull = true;
-            
         }
 
-        if (playerInstance == null)
+        if (spawnPoint == null)
         {
-            InitializePlayer(); 
-            
+            FindSpawnPoint();
         }
 
-        
-        
         if(isNull)
         {
             Debug.Log("isNull = true");
-            
-            
-            spawnPoint = FindSpawnPoint();
-            if (spawnPoint != null)
-            {
-                Debug.Log("Spawnpoint found!");
-                playerInstance.transform.position = spawnPoint.transform.position;
-                playerInstance.transform.rotation = spawnPoint.transform.rotation;
-            }
-            else
-            {
-                Debug.Log("Spawn point not found, using a default spawn");
-                playerInstance.transform.position = Vector3.zero;
-                playerInstance.transform.rotation = Quaternion.identity;
-            }
 
             isNull = false;
+            FindAttachPoints();
             ApplyCustomization();
-
         }
+
+        Customize();
     }
 
     private void FindAttachPoints()
     {
-        player = GameObject.Find("Player(Clone)").transform;
-        hatSlot = GameObject.Find("HatAttachPoint").transform;
-        eyeSlot = GameObject.Find("EyeAttachPoint").transform;
-        neckSlot = GameObject.Find("NeckAttachPoint").transform;
-        handSlot = GameObject.Find("HandAttachPoint").transform;
-        righthandSlot = GameObject.Find("RightHandAttachPoint").transform;
+        if (player == null)
+            player = GameObject.Find("Player(Clone)").transform;
+        if (hatSlot == null)
+            hatSlot = GameObject.Find("HatAttachPoint").transform;
+        if (eyeSlot == null)
+            eyeSlot = GameObject.Find("EyeAttachPoint").transform;
+        if (neckSlot == null)
+            neckSlot = GameObject.Find("NeckAttachPoint").transform;
+        if (handSlot == null)
+            handSlot = GameObject.Find("HandAttachPoint").transform;
+        if (righthandSlot == null)
+            righthandSlot = GameObject.Find("RightHandAttachPoint").transform;
     }
 
-    private GameObject FindSpawnPoint()
+    private void FindSpawnPoint()
     {
         string sceneName = SceneManager.GetActiveScene().name;
-        GameObject spawnPoint = GameObject.Find(sceneName + "SpawnPoint");
+        spawnPoint = GameObject.Find(sceneName + "SpawnPoint");
 
-        return spawnPoint;
+        if (spawnPoint != null)
+        {
+            Debug.Log("Spawnpoint found!");
+            playerInstance.transform.position = spawnPoint.transform.position;
+            playerInstance.transform.rotation = spawnPoint.transform.rotation;
+        }
+        else
+        {
+            Debug.Log("Spawn point not found, using a default spawn");
+            playerInstance.transform.position = Vector3.zero;
+            playerInstance.transform.rotation = Quaternion.identity;
+        }
     }
         
     public void InitializePlayer()
@@ -137,10 +138,8 @@ public class PlayerCustomizationManager : MonoBehaviour
             }
         }
 
-
         FindAttachPoints();
         ApplyCustomization();
-
     }
 
     public void DestroyPlayer()
@@ -151,13 +150,36 @@ public class PlayerCustomizationManager : MonoBehaviour
         }
     }
 
+    private void Customize()
+    {
+        if (currentHat == null && hatInstance != null)
+        {
+            ApplyHead(hatInstance);
+        }
+
+        if (currentEyes == null && eyeInstance != null)
+        {
+            ApplyEyes(eyeInstance);
+        }
+
+        if (currentHands == null && handInstance != null)
+        {
+            ApplyHands(handInstance);
+        }
+
+        if (currentRighthand == null && righthandInstance != null)
+        {
+            ApplyRightHands(righthandInstance);
+        }
+    }
+
     public void ApplyCustomization()
     {
         if (shirtInstance != null)
         {
             ApplyShirt(shirtInstance);
-            FindAttachPoints();
         }
+        FindAttachPoints();
 
         if (handInstance != null)
         {
@@ -183,8 +205,8 @@ public class PlayerCustomizationManager : MonoBehaviour
     }
     public void ApplyShirt(GameObject shirtPrefab)
     {
-        
         shirtInstance = shirtPrefab;
+        defaultPlayerMesh = shirtInstance;
         if (playerInstance != null)
         {
             if (currentShirt == null || currentShirt != shirtPrefab)
@@ -200,11 +222,20 @@ public class PlayerCustomizationManager : MonoBehaviour
                 currentShirt.transform.localRotation = Quaternion.identity;
             }
         }
-        
+        else
+        {
+            playerInstance = Instantiate(playerPrefab);
+            if (currentShirt == null)
+            {
+                defaultPlayerMesh = GameObject.Find("Player_Base");
+                currentShirt = defaultPlayerMesh;
+            }
+        }
     }
 
     public void ApplyEyes(GameObject eyesPrefab)
     {
+        Debug.Log("Apply Eyes");
         eyeInstance = eyesPrefab;
         if (playerInstance != null)
         {
@@ -213,17 +244,14 @@ public class PlayerCustomizationManager : MonoBehaviour
             if (currentEyes != null)
             {
                 Destroy(currentEyes);
+                Debug.Log("Destroy Old Eyes");
             }
-  
+
+            Debug.Log("Instantiate new eyes");
             currentEyes = Instantiate(eyesPrefab);
             currentEyes.transform.SetParent(eyeSlot);
             currentEyes.transform.localPosition = Vector3.zero;
             currentEyes.transform.localRotation = Quaternion.identity;
-            // else
-            // {
-            //     eyeInstance = empty;
-            // }
-
         }
     }
     public void ApplyNeck(GameObject neckPrefab)
@@ -242,12 +270,7 @@ public class PlayerCustomizationManager : MonoBehaviour
             currentNeck.transform.SetParent(neckSlot);
             currentNeck.transform.localPosition = Vector3.zero;
             currentNeck.transform.localRotation = Quaternion.identity;
-            // else
-            // {
-            //     neckInstance = empty;
-            // }
         }
-            
     }
 
     public void ApplyHands(GameObject handsPrefab)
@@ -256,7 +279,7 @@ public class PlayerCustomizationManager : MonoBehaviour
         if (playerInstance != null)
         {
             // if(handsPrefab.GetComponent<HandwearScript>() != null)
-            if (currentHat != null)
+            if (currentHands != null)
             {
                 Destroy(currentHands);
             }
@@ -265,10 +288,6 @@ public class PlayerCustomizationManager : MonoBehaviour
             currentHands.transform.SetParent(handSlot);
             currentHands.transform.localPosition = Vector3.zero;
             currentHands.transform.localRotation = Quaternion.identity;
-            // else
-            // {
-            //     handInstance = empty;
-            // }
         }
     }
 
@@ -277,7 +296,7 @@ public class PlayerCustomizationManager : MonoBehaviour
         righthandInstance = righthandsPrefab;
         if (playerInstance != null)
         {
-            if(currentHat != null)
+            if(currentRighthand != null)
             {
                 Destroy(currentRighthand);
             }
@@ -304,10 +323,6 @@ public class PlayerCustomizationManager : MonoBehaviour
             currentHat.transform.SetParent(hatSlot);
             currentHat.transform.localPosition = Vector3.zero;
             currentHat.transform.localRotation = Quaternion.identity;
-            // else
-            // {
-            //     hatInstance = empty;
-            // }
         }
   
     }
@@ -324,6 +339,4 @@ public class PlayerCustomizationManager : MonoBehaviour
     {
         hatInstance = null;
     }
-
-    
 }
