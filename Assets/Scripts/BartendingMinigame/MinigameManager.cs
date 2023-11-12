@@ -13,6 +13,7 @@ public class MinigameManager : MonoBehaviour
     public int ingredient4;
     public int ingredient5;
     public int maxIngredients;
+    public GameObject liquid;
 
     [Header("Computation")]
     public static int orderValue;
@@ -43,6 +44,7 @@ public class MinigameManager : MonoBehaviour
     {
         coinsController = GameObject.Find("CoinsController").GetComponent<CoinsController>();
         countdownTimer = GameObject.Find("Timer").GetComponent<CountdownTimer>();
+        liquid.SetActive(false);
         check.SetActive(false);
         x.SetActive(false);
     }
@@ -87,6 +89,7 @@ public class MinigameManager : MonoBehaviour
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(touch.position), out hit, 1000, ingredientLayer) && !touchOver)
                 {
                     // change drink colors?
+                    liquid.SetActive(true);
                     drinkValue += hit.transform.gameObject.GetComponent<IngredientController>().value;
                     Debug.Log("drink value: " + drinkValue);
                     touchOver = true;
@@ -101,6 +104,7 @@ public class MinigameManager : MonoBehaviour
             {
                 hit.transform.gameObject.GetComponent<IngredientController>().selected = true;
                 StartCoroutine(ChangeIngredientColor(hit.transform.gameObject));
+                liquid.SetActive(true);
                 drinkValue += hit.transform.gameObject.GetComponent<IngredientController>().value;
                 Debug.Log("drink value: " + drinkValue);
             }
@@ -173,6 +177,7 @@ public class MinigameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         countdownTimer.RestartTimer();
+        liquid.SetActive(false);
         CreateOrder();
         drinkValue = 0;
     }
