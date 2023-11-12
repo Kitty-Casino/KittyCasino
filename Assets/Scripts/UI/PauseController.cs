@@ -36,6 +36,7 @@ public class PauseController : MonoBehaviour
         pauseButton.SetActive(true);
         Time.timeScale = 1f;
         isPaused = false;
+        PlayerController.EnablePlayerController?.Invoke(true);
     }
 
     public void Pause()
@@ -44,6 +45,7 @@ public class PauseController : MonoBehaviour
         pauseButton.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
+        PlayerController.DisablePlayerController?.Invoke(false);
     }
 
     public void MainMenuButton()

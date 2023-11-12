@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,6 +14,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float mouseHoldTime;
 
     public Animator _animator;
+
+    public delegate void PlayerEvent(bool state);
+    public static PlayerEvent DisablePlayerController;
+    public static PlayerEvent EnablePlayerController;  
 
     public Animator animator 
     { get
@@ -98,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && timer <= mouseHoldTime)
         {
-            Debug.Log("Click!");
+            //Debug.Log("Click!");
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 1000, blockRaycast))
             {
@@ -134,5 +135,24 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Quit The Game");
         Application.Quit();
+    }
+
+    private void DisableSelf(bool state)
+    {
+        gameObject.SetActive(state);
+    }
+
+    private void OnEnable()
+    {
+        PlayerController.DisablePlayerController += DisableSelf;
+        PlayerController.EnablePlayerController -= DisableSelf;
+        agent.destination = transform.position;
+        agent.isStopped = false;
+    }
+    private void OnDisable()
+    {
+        PlayerController.DisablePlayerController -= DisableSelf;
+        PlayerController.EnablePlayerController += DisableSelf;
+        agent.isStopped = true;
     }
 }

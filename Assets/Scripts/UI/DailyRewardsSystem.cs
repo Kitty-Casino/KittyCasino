@@ -84,12 +84,14 @@ public class DailyRewardsSystem : MonoBehaviour
     {
         isRewardReady = true;
         rewardsUI.SetActive(true);
+        PlayerController.DisablePlayerController?.Invoke(false);
     }
 
     private void DeactivateReward()
     {
         isRewardReady = false;
         rewardsUI.SetActive(false);
+        PlayerController.EnablePlayerController?.Invoke(true);
     }
 
     public void ClaimReward()

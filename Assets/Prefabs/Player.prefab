@@ -115,7 +115,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   mouseHoldTime: 1
-  animator: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!195 &25929661036127449
 NavMeshAgent:
   m_ObjectHideFlags: 0
