@@ -32,7 +32,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Shirt
+  m_Name: Player_Shirt_NPC
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -111,10 +111,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1291391702107796784}
-    m_Position: {x: 270, y: 50, z: 0}
+    m_Position: {x: 200, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1120333259783294326}
-    m_Position: {x: 310, y: 250, z: 0}
+    m_Position: {x: 235, y: 65, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1625406794704866988}
     m_Position: {x: 270, y: 130, z: 0}
@@ -127,4 +127,4 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 1291391702107796784}
+  m_DefaultState: {fileID: -1120333259783294326}

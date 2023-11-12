@@ -18,6 +18,8 @@ public class SlotsController : MonoBehaviour
 
     private bool resultsChecked = false;
 
+    private bool pulled = false;
+
     // Defines payout values for 3 and 2 matches using dictionaries, if you want to modify payouts do that here
     private Dictionary<string, int> threeMatchesPayouts = new Dictionary<string, int>
     {
@@ -58,6 +60,7 @@ public class SlotsController : MonoBehaviour
 
         if (rows[0].rowStopped && rows[1].rowStopped && rows[2].rowStopped && !resultsChecked)
         {
+            pulled = false;
             int prizeValue = CheckResults();
             prizeText.enabled = true;
             prizeText.text = "Prize: " + prizeValue;
@@ -67,10 +70,9 @@ public class SlotsController : MonoBehaviour
     // Method that checks if the slot rows are stopped and if so, allows the PullHandle coroutine to begin and the slots to start spinning
     public void OnSlotPull()
     {
-        if (coinsController.totalCoins >= spinCost)
+        if (coinsController.totalCoins >= spinCost && !pulled)
         {
-            
-
+            pulled = true;
             if (rows[0].rowStopped && rows[1].rowStopped && rows[2].rowStopped)
             {
                 coinsController.DecrementCoins(spinCost);
