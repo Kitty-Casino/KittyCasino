@@ -39,14 +39,14 @@ public class CameraScript : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
 
-                Debug.Log(hit.collider.gameObject.name);
+               
                 if (hit.collider == null)
                 
                     return;
                 
                 if (hit.collider.gameObject.GetComponent<FaderScript>() != null)
                 {
-                    Debug.Log("Hitting object");
+                    
                     fader = hit.collider.gameObject.GetComponent<FaderScript>();
                     if (fader != null)
                     {
@@ -55,7 +55,7 @@ public class CameraScript : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Hitting player");
+                    
 
                     if (fader != null)
                     {

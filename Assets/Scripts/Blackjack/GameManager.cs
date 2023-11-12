@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Button betButton;
     public Button doubleButton;
     public Button splitButton;
+    public Button casinoButton;
     
     private int standClicks = 0;
 
@@ -42,8 +43,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // Declares all buttons and UI elements and adds listeners for them
-        winPanel.SetActive(false);
-        losePanel.SetActive(false);
+        
 
         mainText.gameObject.SetActive(false);
 
@@ -53,10 +53,7 @@ public class GameManager : MonoBehaviour
         betButton.onClick.AddListener(() => BetClicked());
         doubleButton.onClick.AddListener(() => DoubleClicked());
 
-        hitButton.gameObject.SetActive(false);
-        standButton.gameObject.SetActive(false);
-        doubleButton.gameObject.SetActive(false);
-        splitButton.gameObject.SetActive(false);
+        
     }
     
     // Handles dealing of the cards, resets both players and dealers hands and shuffles the deck and activates/deactivates approrpriate buttons
@@ -79,6 +76,7 @@ public class GameManager : MonoBehaviour
 
             dealButton.gameObject.SetActive(false);
             betButton.gameObject.SetActive(false);
+            casinoButton.gameObject.SetActive(false);   
             hitButton.gameObject.SetActive(true);
             standButton.gameObject.SetActive(true);
             standText.text = "Stand";
@@ -213,6 +211,7 @@ public class GameManager : MonoBehaviour
             dealButton.gameObject.SetActive(true);
             betButton.gameObject.SetActive(true);
             dealerScoreText.gameObject.SetActive(true);
+            casinoButton.gameObject.SetActive(true);
             hideCard.GetComponent<Renderer>().enabled = false;
             standClicks = 0;
             pot = 0;

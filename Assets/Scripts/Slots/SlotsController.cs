@@ -69,10 +69,11 @@ public class SlotsController : MonoBehaviour
     {
         if (coinsController.totalCoins >= spinCost)
         {
-            coinsController.DecrementCoins(spinCost);
+            
 
             if (rows[0].rowStopped && rows[1].rowStopped && rows[2].rowStopped)
             {
+                coinsController.DecrementCoins(spinCost);
                 StartCoroutine(PullHandle());
             }
         }

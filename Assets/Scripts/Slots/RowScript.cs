@@ -29,8 +29,12 @@ public class RowScript : MonoBehaviour
 
         for (int i = 0; i < 30; i++)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y - 0.25f, 3f);
+            if (transform.position.y == -3.5)
+            {
+                transform.position = new Vector3(transform.position.x, 1.75f, 3f);
+            }
 
+            transform.position = new Vector3(transform.position.x, transform.position.y - 0.25f, 3f);
             yield return new WaitForSeconds(timeInterval);
         }
 

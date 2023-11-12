@@ -10,6 +10,7 @@ public class PlayerCustomizationManager : MonoBehaviour
 
     public GameObject playerPrefab; // Reference to the player prefab
     public GameObject playerInstance; // The actual player instance
+    public GameObject defaultPlayerMesh;
 
     // These variables hold the position and prefab that is currently equipped to the player
 
@@ -25,7 +26,7 @@ public class PlayerCustomizationManager : MonoBehaviour
     public GameObject currentNeck;
     public GameObject neckInstance;
 
-    public Transform shirtSlot;
+    public Transform player;
     public GameObject currentShirt;
     public GameObject shirtInstance;
 
@@ -53,37 +54,38 @@ public class PlayerCustomizationManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
 
-        
     }
 
+    private void Start()
+    {
+        
+    }
     private void Update()
     {
+        if (hatSlot == null || eyeSlot == null || neckSlot == null || player == null || handSlot == null || righthandSlot == null)
+        {
+            isNull = true;
+            
+        }
 
         if (playerInstance == null)
         {
-            InitializePlayer();
+            InitializePlayer(); 
+            
         }
 
-        if (hatSlot == null || eyeSlot == null || neckSlot == null || shirtSlot == null || handSlot == null || righthandSlot == null) 
-        {
-            isNull = true;
-        }
+        
         
         if(isNull)
         {
-            empty = new GameObject();
-            hatSlot = GameObject.Find("HatAttachPoint").transform;
-            eyeSlot = GameObject.Find("EyeAttachPoint").transform;
-            neckSlot = GameObject.Find("NeckAttachPoint").transform;
-            shirtSlot = GameObject.Find("ShirtAttachPoint").transform;
-            handSlot = GameObject.Find("HandAttachPoint").transform;
-            righthandSlot = GameObject.Find("RightHandAttachPoint").transform;
+            Debug.Log("isNull = true");
+            
             
             spawnPoint = FindSpawnPoint();
             if (spawnPoint != null)
             {
+                Debug.Log("Spawnpoint found!");
                 playerInstance.transform.position = spawnPoint.transform.position;
                 playerInstance.transform.rotation = spawnPoint.transform.rotation;
             }
@@ -96,9 +98,18 @@ public class PlayerCustomizationManager : MonoBehaviour
 
             isNull = false;
             ApplyCustomization();
+
         }
-       
-        
+    }
+
+    private void FindAttachPoints()
+    {
+        player = GameObject.Find("Player(Clone)").transform;
+        hatSlot = GameObject.Find("HatAttachPoint").transform;
+        eyeSlot = GameObject.Find("EyeAttachPoint").transform;
+        neckSlot = GameObject.Find("NeckAttachPoint").transform;
+        handSlot = GameObject.Find("HandAttachPoint").transform;
+        righthandSlot = GameObject.Find("RightHandAttachPoint").transform;
     }
 
     private GameObject FindSpawnPoint()
@@ -119,9 +130,17 @@ public class PlayerCustomizationManager : MonoBehaviour
         if (playerPrefab != null)
         {
             playerInstance = Instantiate(playerPrefab);
-            // DontDestroyOnLoad(playerInstance);
+            if (currentShirt == null)
+            {
+                defaultPlayerMesh = GameObject.Find("Player_Base");
+                currentShirt = defaultPlayerMesh;
+            }
         }
-        
+
+
+        FindAttachPoints();
+        ApplyCustomization();
+
     }
 
     public void DestroyPlayer()
@@ -134,11 +153,13 @@ public class PlayerCustomizationManager : MonoBehaviour
 
     public void ApplyCustomization()
     {
-        if(shirtInstance != null)
+        if (shirtInstance != null)
         {
             ApplyShirt(shirtInstance);
+            FindAttachPoints();
         }
-        if(handInstance != null)
+
+        if (handInstance != null)
         {
             ApplyHands(handInstance);
         }
@@ -162,26 +183,24 @@ public class PlayerCustomizationManager : MonoBehaviour
     }
     public void ApplyShirt(GameObject shirtPrefab)
     {
+        
         shirtInstance = shirtPrefab;
         if (playerInstance != null)
         {
-           // if(shirtPrefab.GetComponent<ShirtScript>() != null)
-    
-            if (currentShirt != null)
+            if (currentShirt == null || currentShirt != shirtPrefab)
             {
-                Destroy(currentShirt);
-            }
+                if (currentShirt != null)
+                {
+                    Destroy(currentShirt);
+                }
 
-            currentShirt = Instantiate(shirtPrefab);
-            currentShirt.transform.SetParent(shirtSlot);
-            currentShirt.transform.localPosition = Vector3.zero;
-            currentShirt.transform.localRotation = Quaternion.identity;
-            // else
-            // {
-            //     shirtInstance = empty;
-            // }
+                currentShirt = Instantiate(shirtPrefab);
+                currentShirt.transform.SetParent(player);
+                currentShirt.transform.localPosition = new Vector3(0, -1, 0);
+                currentShirt.transform.localRotation = Quaternion.identity;
+            }
         }
- 
+        
     }
 
     public void ApplyEyes(GameObject eyesPrefab)

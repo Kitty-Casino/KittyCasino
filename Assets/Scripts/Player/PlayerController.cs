@@ -16,18 +16,32 @@ public class PlayerController : MonoBehaviour
     float timer = 0f;
     [SerializeField] float mouseHoldTime;
 
-    private Animator animator;
+    public Animator _animator;
+
+    public Animator animator 
+    { get
+        {
+            if (_animator == null)
+            {
+                _animator = GetComponentInChildren<Animator>();
+            }
+            return _animator;
+        } 
+        set { _animator = value; }
+    }
     private bool isMoving;
-    
 
     void Awake()
     {
-        animator = GetComponentInChildren<Animator>();
+        
         agent = GetComponent<NavMeshAgent>();
+        
     }
+
 
     void Update()
     {
+        
         if (Input.touchCount > 0)
         {
             TapToMove();

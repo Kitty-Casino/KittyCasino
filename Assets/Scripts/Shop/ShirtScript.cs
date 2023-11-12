@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 using TMPro;
 
 public class ShirtScript : MonoBehaviour
@@ -18,7 +19,7 @@ public class ShirtScript : MonoBehaviour
     public void AttachShirtToPlayer()
     {
         bool isOwned = PlayerPrefs.GetInt(customizationName, 0) == 1;
-
+    
         if (isOwned)
         {
             if (PlayerCustomizationManager.instance != null)
