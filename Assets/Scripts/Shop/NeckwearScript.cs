@@ -5,7 +5,7 @@ using TMPro;
 
 public class NeckwearScript : MonoBehaviour
 {
-    public GameObject neckPrefab;
+    public Material color;
     public int price;
     public TextMeshProUGUI priceText;
     public string customizationName;
@@ -25,9 +25,9 @@ public class NeckwearScript : MonoBehaviour
             {
                 PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
 
-                if (neckPrefab != null)
+                if (color != null)
                 {
-                    customizationManager.ApplyNeck(neckPrefab);
+                    customizationManager.ApplyColor(color);
                 }
             }
 
@@ -48,9 +48,9 @@ public class NeckwearScript : MonoBehaviour
                 {
                     PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
 
-                    if (neckPrefab != null)
+                    if (color != null)
                     {
-                        customizationManager.ApplyNeck(neckPrefab);
+                        customizationManager.ApplyColor(color);
                     }
 
                 }

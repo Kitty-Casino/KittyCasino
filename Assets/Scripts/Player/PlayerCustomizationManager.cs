@@ -22,9 +22,8 @@ public class PlayerCustomizationManager : MonoBehaviour
     public GameObject currentEyes;
     public GameObject eyeInstance;
 
-    public Transform neckSlot;
-    public GameObject currentNeck;
-    public GameObject neckInstance;
+    public Material currentColor;
+    public Material colorInstance;
 
     public Transform player;
     public GameObject currentShirt;
@@ -64,7 +63,7 @@ public class PlayerCustomizationManager : MonoBehaviour
 
         FindAttachPoints();
         //ApplyCustomization();
-        if (hatSlot == null || eyeSlot == null || neckSlot == null || player == null || handSlot == null || righthandSlot == null)
+        if (hatSlot == null || eyeSlot == null || player == null || handSlot == null || righthandSlot == null)
         {
             isNull = true;
         }
@@ -94,8 +93,6 @@ public class PlayerCustomizationManager : MonoBehaviour
             hatSlot = GameObject.Find("HatAttachPoint").transform;
         if (eyeSlot == null)
             eyeSlot = GameObject.Find("EyeAttachPoint").transform;
-        if (neckSlot == null)
-            neckSlot = GameObject.Find("NeckAttachPoint").transform;
         if (handSlot == null)
             handSlot = GameObject.Find("HandAttachPoint").transform;
         if (righthandSlot == null)
@@ -171,6 +168,11 @@ public class PlayerCustomizationManager : MonoBehaviour
         {
             ApplyRightHands(righthandInstance);
         }
+
+        if (currentColor == null && colorInstance != null)
+        {
+            ApplyColor(colorInstance);
+        }
     }
 
     public void ApplyCustomization()
@@ -185,9 +187,9 @@ public class PlayerCustomizationManager : MonoBehaviour
         {
             ApplyHands(handInstance);
         }
-        if(neckInstance != null)
+        if(colorInstance != null)
         {
-            ApplyNeck(neckInstance);
+            ApplyColor(colorInstance);
         }
         if(eyeInstance != null)
         {
@@ -220,6 +222,7 @@ public class PlayerCustomizationManager : MonoBehaviour
                 currentShirt.transform.SetParent(player);
                 currentShirt.transform.localPosition = new Vector3(0, -1, 0);
                 currentShirt.transform.localRotation = Quaternion.identity;
+                ApplyColor(colorInstance);
             }
         }
         else
@@ -230,6 +233,7 @@ public class PlayerCustomizationManager : MonoBehaviour
                 defaultPlayerMesh = GameObject.Find("Player_Base");
                 currentShirt = defaultPlayerMesh;
             }
+            ApplyColor(colorInstance);
         }
     }
 
@@ -254,22 +258,18 @@ public class PlayerCustomizationManager : MonoBehaviour
             currentEyes.transform.localRotation = Quaternion.identity;
         }
     }
-    public void ApplyNeck(GameObject neckPrefab)
+    public void ApplyColor(Material color)
     {
-        neckInstance = neckPrefab;
+        colorInstance = color;
         if (playerInstance != null)
         {
-            // if(neckPrefab.GetComponent<NeckwearScript>() != null)
-
-            if (currentNeck != null)
+            SkinnedMeshRenderer skinnedMesh = playerInstance.GetComponentInChildren<SkinnedMeshRenderer>();
+            if (skinnedMesh != null)
             {
-                Destroy(currentNeck);
+                Material material = skinnedMesh.material;
+                material = color;
+                skinnedMesh.material = material;    
             }
-
-            currentNeck = Instantiate(neckPrefab);
-            currentNeck.transform.SetParent(neckSlot);
-            currentNeck.transform.localPosition = Vector3.zero;
-            currentNeck.transform.localRotation = Quaternion.identity;
         }
     }
 
@@ -304,7 +304,7 @@ public class PlayerCustomizationManager : MonoBehaviour
             currentRighthand = Instantiate(righthandsPrefab);
             currentRighthand.transform.SetParent(righthandSlot);
             currentRighthand.transform.localPosition = Vector3.zero;
-            currentHands.transform.localRotation = Quaternion.identity;
+            currentRighthand.transform.localRotation = Quaternion.identity;
         }
     }
 
@@ -326,7 +326,7 @@ public class PlayerCustomizationManager : MonoBehaviour
         }
   
     }
-
+    // -----------------------------------------------
     public bool IsHeadEquipped(GameObject hatPrefab)
     {
         return hatInstance == hatPrefab;
@@ -338,5 +338,58 @@ public class PlayerCustomizationManager : MonoBehaviour
     public void ClearEquippedHead()
     {
         hatInstance = null;
+    }
+    // ----------------------------------------------
+    public bool IsHandEquipped(GameObject handPrefab)
+    {
+        return handInstance == handPrefab;
+    }
+    public void SetHandEquipped(GameObject handPrefab)
+    {
+        handInstance = handPrefab;
+    }
+    public void ClearHandEquipped()
+    {
+        handInstance = null;
+    }
+    // ----------------------------------------------
+    public bool IsRightHandEquipped(GameObject righthandPrefab)
+    {
+        return righthandInstance == righthandPrefab;
+    }
+
+    public void SetRightHandEquipped(GameObject righthandPrefab)
+    {
+        righthandInstance = righthandPrefab;
+    }
+    public void ClearRightHandEquipped()
+    {
+        righthandInstance = null;
+    }
+    // ----------------------------------------------
+    public bool IsShirtEquipped(GameObject shirtPrefab)
+    {
+        return shirtInstance == shirtPrefab;
+    }
+    public void SetShirtEquipped(GameObject shirtPrefab)
+    {
+        shirtInstance = shirtPrefab;
+    }
+    public void ClearShirtEquipped()
+    {
+        shirtInstance = null;
+    }
+    // ----------------------------------------------
+    public bool IsEyewearEquipped(GameObject eyewearPrefab)
+    {
+        return eyeInstance == eyewearPrefab;
+    }
+    public void SetEyewearEquipped(GameObject eyeWearPrefab)
+    {
+        eyeInstance = eyeWearPrefab;
+    }
+    public void ClearEyewearEquipped()
+    {
+        eyeInstance = null;
     }
 }
