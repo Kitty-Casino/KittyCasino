@@ -34,9 +34,16 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        
         agent = GetComponent<NavMeshAgent>();
-        
+    }
+
+    private void Start()
+    {
+        if (agent.isOnNavMesh)
+        {
+            agent.destination = transform.position;
+            agent.isStopped = false;
+        }
     }
 
 
@@ -146,13 +153,25 @@ public class PlayerController : MonoBehaviour
     {
         PlayerController.DisablePlayerController += DisableSelf;
         PlayerController.EnablePlayerController -= DisableSelf;
-        agent.destination = transform.position;
-        agent.isStopped = false;
+        if (agent.isOnNavMesh)
+        {
+            agent.destination = transform.position;
+            agent.isStopped = false;
+        }
     }
     private void OnDisable()
     {
         PlayerController.DisablePlayerController -= DisableSelf;
         PlayerController.EnablePlayerController += DisableSelf;
-        agent.isStopped = true;
+        if (agent.isOnNavMesh)
+        {
+            agent.isStopped = true;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        PlayerController.DisablePlayerController -= DisableSelf;
+        PlayerController.EnablePlayerController -= DisableSelf;
     }
 }
