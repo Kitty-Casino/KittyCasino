@@ -21,6 +21,7 @@ public class MinigameManager : MonoBehaviour
     public LayerMask ingredientLayer;
     private bool touchOver = true;
     public int orderTimer;
+    public ParticleSystem ps;
 
     [Header("UI")]
     public TextMeshProUGUI ingredientAmount1;
@@ -152,9 +153,11 @@ public class MinigameManager : MonoBehaviour
 
     IEnumerator WinLose(bool win)
     {
+        ParticleSystem particles = ps;
         if (win)
         {
             check.SetActive(true);
+            particles = Instantiate(ps, liquid.transform);
         }
         else
         {
@@ -166,6 +169,7 @@ public class MinigameManager : MonoBehaviour
         if (win)
         {
             check.SetActive(false);
+            Destroy(particles);
         }
         else
         {
