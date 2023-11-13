@@ -110,8 +110,13 @@ public class PlayerCustomizationManager : MonoBehaviour
     private void FindSpawnPoint()
     {
         string sceneName = SceneManager.GetActiveScene().name;
-        spawnPoint = GameObject.Find(sceneName + "SpawnPoint");
+        string lastScene = PlayerPrefs.GetString("LastVisitedScene", "Casino");
+        spawnPoint = GameObject.Find(lastScene + "SpawnPoint");
 
+        if (spawnPoint == null)
+        {
+            spawnPoint = GameObject.Find(sceneName + "SpawnPoint");
+        }
         if (spawnPoint != null)
         {
             Debug.Log("Spawnpoint found!");
@@ -311,6 +316,10 @@ public class PlayerCustomizationManager : MonoBehaviour
         }
     }
 
+    public void UpdateLastVisitedScene()
+    {
+        PlayerPrefs.SetString("LastVisitedScene", SceneManager.GetActiveScene().name);
+    }
     private void OnApplicationQuit()
     {
         SaveCustomization();

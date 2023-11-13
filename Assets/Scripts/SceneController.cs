@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +8,11 @@ public class SceneController : MonoBehaviour
 {
     public void Start()
     {
-       // PlayerPrefs.DeleteAll();
+        if (SceneManager.GetActiveScene().name != "Casino" && SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
+            customizationManager.UpdateLastVisitedScene();
+        }   
     }
     public void ToMainMenu()
     {
