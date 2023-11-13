@@ -322,6 +322,7 @@ public class PlayerCustomizationManager : MonoBehaviour
     }
     private void OnApplicationQuit()
     {
+        PlayerPrefs.DeleteKey("LastVisitedScene");
         SaveCustomization();
     }
     public void ApplyShirt(GameObject shirtPrefab)
