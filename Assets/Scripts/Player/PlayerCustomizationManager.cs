@@ -37,6 +37,13 @@ public class PlayerCustomizationManager : MonoBehaviour
     public GameObject currentRighthand;
     public GameObject righthandInstance;
 
+    private string shirtName;
+    private string hatName;
+    private string eyesName;
+    private string handsName;
+    private string righthandName;
+    private string colorName;
+
     private GameObject spawnPoint;
 
     [SerializeField] private bool isNull = false;
@@ -52,6 +59,7 @@ public class PlayerCustomizationManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
 
     private void Update()
@@ -137,6 +145,8 @@ public class PlayerCustomizationManager : MonoBehaviour
 
         FindAttachPoints();
         ApplyCustomization();
+        
+
     }
 
     public void DestroyPlayer()
@@ -173,10 +183,12 @@ public class PlayerCustomizationManager : MonoBehaviour
         {
             ApplyColor(colorInstance);
         }
+        SaveCustomization();
     }
 
     public void ApplyCustomization()
     {
+        
         if (shirtInstance != null)
         {
             ApplyShirt(shirtInstance);
@@ -203,7 +215,105 @@ public class PlayerCustomizationManager : MonoBehaviour
         {
             ApplyRightHands(righthandInstance);
         }
-        
+        SaveCustomization();
+    }
+
+    public void SaveCustomization()
+    {
+        if (currentShirt != null)
+        {
+            PlayerPrefs.SetString("CurrentShirt", currentShirt.name);
+        }
+        else
+        {
+            PlayerPrefs.DeleteKey("CurrentShirt");
+        }
+        if (currentHat != null)
+        {
+            PlayerPrefs.SetString("CurrentHat", currentHat.name);
+        }
+        else
+        {
+            PlayerPrefs.DeleteKey("CurrentHat");
+        }
+        if (currentEyes != null)
+        {
+            PlayerPrefs.SetString("CurrentEyes", currentEyes.name);
+        }
+        else
+        {
+            PlayerPrefs.DeleteKey("CurrentEyes");
+        }
+        if (currentHands != null)
+        {
+            PlayerPrefs.SetString("CurrentHands", currentHands.name);
+        }
+        else
+        {
+            PlayerPrefs.DeleteKey("CurrentHands");
+        }
+        if (currentRighthand != null)
+        {
+            PlayerPrefs.SetString("CurrentRightHand", currentRighthand.name);
+        }
+        else
+        {
+            PlayerPrefs.DeleteKey("CurrentRightHand");
+        }
+        if (colorInstance != null)
+        {
+            PlayerPrefs.SetString("CurrentColor", colorInstance.name);
+        }
+        else
+        {
+            PlayerPrefs.DeleteKey("CurrentColor");
+        }
+
+        PlayerPrefs.Save();
+    }
+
+    public void LoadCustomization()
+    {
+        if (PlayerPrefs.HasKey("CurrentShirt"))
+        {
+            shirtName = PlayerPrefs.GetString("CurrentShirt");
+            ApplyShirt(Resources.Load<GameObject>(shirtName));
+        }
+
+        if (PlayerPrefs.HasKey("CurrentHat"))
+        {
+            hatName = PlayerPrefs.GetString("CurrentHat");
+            ApplyHead(Resources.Load<GameObject>(hatName));
+        }
+
+        if (PlayerPrefs.HasKey("CurrentEyes"))
+        {
+            eyesName = PlayerPrefs.GetString("CurrentEyes");
+            ApplyEyes(Resources.Load<GameObject>(eyesName));
+        }
+
+        if (PlayerPrefs.HasKey("CurrentHands"))
+        {
+            handsName = PlayerPrefs.GetString("CurrentHands");
+            ApplyHands(Resources.Load<GameObject>(handsName));
+        }
+
+        if (PlayerPrefs.HasKey("CurrentRightHand"))
+        {
+            righthandName = PlayerPrefs.GetString("CurrentRightHand");
+            ApplyRightHands(Resources.Load<GameObject>(righthandName));
+        }
+
+        if (PlayerPrefs.HasKey("CurrentColor"))
+        {
+            colorName = PlayerPrefs.GetString("CurrentColor");
+            ApplyColor(Resources.Load<Material>(colorName));
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveCustomization();
     }
     public void ApplyShirt(GameObject shirtPrefab)
     {
@@ -234,7 +344,9 @@ public class PlayerCustomizationManager : MonoBehaviour
                 currentShirt = defaultPlayerMesh;
             }
             ApplyColor(colorInstance);
+            
         }
+        
     }
 
     public void ApplyEyes(GameObject eyesPrefab)
@@ -391,5 +503,18 @@ public class PlayerCustomizationManager : MonoBehaviour
     public void ClearEyewearEquipped()
     {
         eyeInstance = null;
+    }
+    // ----------------------------------------------
+    public bool IsColorEquipped(Material color)
+    {
+        return colorInstance == color;
+    }
+    public void SetColorEquipped(Material color)
+    {
+        colorInstance = color;
+    }
+    public void ClearColorEquipped()
+    {
+        colorInstance = null;                                                                       
     }
 }
