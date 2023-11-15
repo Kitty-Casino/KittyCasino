@@ -45,7 +45,7 @@ public class PlayerCustomizationManager : MonoBehaviour
     private string colorName;
 
     private GameObject spawnPoint;
-
+    public Transform lastPlayerPos;
     [SerializeField] private bool isNull = false;
 
     private void Awake()
@@ -76,10 +76,12 @@ public class PlayerCustomizationManager : MonoBehaviour
             isNull = true;
         }
 
+        /*
         if (spawnPoint == null)
         {
             FindSpawnPoint();
         }
+        */
 
         if(isNull)
         {
@@ -109,6 +111,7 @@ public class PlayerCustomizationManager : MonoBehaviour
 
     private void FindSpawnPoint()
     {
+        /*
         string sceneName = SceneManager.GetActiveScene().name;
         string lastScene = PlayerPrefs.GetString("LastVisitedScene", "Casino");
         spawnPoint = GameObject.Find(lastScene + "SpawnPoint");
@@ -129,8 +132,10 @@ public class PlayerCustomizationManager : MonoBehaviour
             playerInstance.transform.position = Vector3.zero;
             playerInstance.transform.rotation = Quaternion.identity;
         }
+        */
+
     }
-        
+
     public void InitializePlayer()
     {
         if (GameObject.FindObjectOfType<PlayerController>() != null)
@@ -190,7 +195,18 @@ public class PlayerCustomizationManager : MonoBehaviour
         }
         SaveCustomization();
     }
-
+    public void UpdateLastVisitedScene()
+    {
+        // PlayerPrefs.SetString("LastVisitedScene", SceneManager.GetActiveScene().name);
+    }
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteKey("LastVisitedScene");
+        PlayerPrefs.DeleteKey("SpawnPointX");
+        PlayerPrefs.DeleteKey("SpawnPointY");
+        PlayerPrefs.DeleteKey("SpawnPointZ");
+        SaveCustomization();
+    }
     public void ApplyCustomization()
     {
         
@@ -316,15 +332,7 @@ public class PlayerCustomizationManager : MonoBehaviour
         }
     }
 
-    public void UpdateLastVisitedScene()
-    {
-        PlayerPrefs.SetString("LastVisitedScene", SceneManager.GetActiveScene().name);
-    }
-    private void OnApplicationQuit()
-    {
-        PlayerPrefs.DeleteKey("LastVisitedScene");
-        SaveCustomization();
-    }
+    
     public void ApplyShirt(GameObject shirtPrefab)
     {
         shirtInstance = shirtPrefab;

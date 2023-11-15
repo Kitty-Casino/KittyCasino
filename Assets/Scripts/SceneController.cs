@@ -8,11 +8,11 @@ public class SceneController : MonoBehaviour
 {
     public void Start()
     {
-        if (SceneManager.GetActiveScene().name != "Casino" && SceneManager.GetActiveScene().name != "MainMenu")
-        {
-            PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
-            customizationManager.UpdateLastVisitedScene();
-        }   
+        //if (SceneManager.GetActiveScene().name != "Casino" && SceneManager.GetActiveScene().name != "MainMenu")
+        //{
+        //    PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
+        //    customizationManager.UpdateLastVisitedScene();
+        //}   
     }
     public void ToMainMenu()
     {

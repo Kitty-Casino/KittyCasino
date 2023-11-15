@@ -37,11 +37,11 @@ public class PlayerController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
-    private void Start()
+    void Start()
     {
         if (agent.isOnNavMesh)
         {
-            agent.destination = transform.position;
+            //agent.destination = transform.position;
             agent.isStopped = false;
         }
     }
@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
         PlayerController.EnablePlayerController -= DisableSelf;
         if (agent.isOnNavMesh)
         {
-            agent.destination = transform.position;
+            //agent.destination = transform.position;
             agent.isStopped = false;
         }
     }

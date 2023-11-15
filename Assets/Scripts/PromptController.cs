@@ -13,6 +13,7 @@ public class PromptController : MonoBehaviour
     bool touchMoved = false;
 
     private PlayerController playerController;
+    [SerializeField] private RespawnController playerRespawn;
 
     private void Awake()
     {
@@ -25,6 +26,11 @@ public class PromptController : MonoBehaviour
         if (playerController == null)
         {
             playerController = GameObject.Find("Player(Clone)").GetComponent<PlayerController>();
+        }
+
+        if (playerRespawn == null) 
+        {
+            playerRespawn = GameObject.Find("Player(Clone)").GetComponent<RespawnController>();
         }
 
         // These controls are compatible with mouse clicks, comment this part out when building the game for mobile 
@@ -91,6 +97,13 @@ public class PromptController : MonoBehaviour
     // If you need to add a new scene transition, add a new case and assign respective sceneID to the Game Object
     public void LoadAnotherScene()
     {
+        playerRespawn.spawnPointX = playerController.transform.position.x;
+        playerRespawn.spawnPointY = playerController.transform.position.y;
+        playerRespawn.spawnPointZ = playerController.transform.position.z;
+        PlayerPrefs.SetFloat("SpawnPointX", playerRespawn.spawnPointX);
+        PlayerPrefs.SetFloat("SpawnPointY", playerRespawn.spawnPointY);
+        PlayerPrefs.SetFloat("SpawnPointZ", playerRespawn.spawnPointZ);
+
         switch (sceneID)
         {
             default:
