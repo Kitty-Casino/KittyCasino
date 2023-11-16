@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class CardScript : MonoBehaviour
 {
     // This script handles the values and proper sprites for all of the cards on the board, generally just a data retainer for all cards
     // Value of cards assigned here
     public int value = 0;
-
+    public Image cardImage;
     public int GetValueOfCard()
     {
         return value;
@@ -18,20 +18,20 @@ public class CardScript : MonoBehaviour
         value = newValue;
     }
 
-    public void SetSprite(Sprite newSprite)
+    public void SetSprite(Image newSprite)
     {
-        gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;
+        cardImage.sprite = newSprite.sprite;
     }
 
     public string GetSpriteName()
     {
-        return GetComponent<SpriteRenderer>().sprite.name;
+        return cardImage.sprite.name;
     }
 
     public void ResetCard()
     {
         Sprite back = GameObject.Find("Deck").GetComponent<DeckScript>().GetCardBack();
-        gameObject.GetComponent<SpriteRenderer>().sprite = back;
+        cardImage.sprite = back;
         value = 0;
     }
 }

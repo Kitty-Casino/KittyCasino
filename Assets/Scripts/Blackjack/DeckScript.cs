@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DeckScript : MonoBehaviour
 {
-    public Sprite[] cardSprites;
+    public Image[] cardSprites;
     int[] cardValues = new int[53];
     int currentIndex = 0;
     
@@ -39,7 +41,7 @@ public class DeckScript : MonoBehaviour
         for(int i = cardSprites.Length - 1; i > 0; --i)
         {
             int j = Mathf.FloorToInt(Random.Range(0.0f, 1.0f) * (cardSprites.Length - 1)) + 1;
-            Sprite face = cardSprites[i];
+            Image face = cardSprites[i].GetComponent<Image>();
             cardSprites[i] = cardSprites[j];
             cardSprites[j] = face;
 
@@ -61,6 +63,6 @@ public class DeckScript : MonoBehaviour
 
     public Sprite GetCardBack()
     {
-        return cardSprites[0];
+        return cardSprites[0].GetComponent<Image>().sprite;
     }
 }

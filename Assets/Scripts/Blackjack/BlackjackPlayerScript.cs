@@ -35,7 +35,7 @@ public class BlackjackPlayerScript : MonoBehaviour
         // Gets a card and uses DealCard to assign correct sprite and value to the card on the board
         int cardValue = deckScript.DealCard(hand[cardIndex].GetComponent<CardScript>());
         // Show card on screen
-        hand[cardIndex].GetComponent<Renderer>().enabled = true;
+        // hand[cardIndex].GetComponent<Renderer>().enabled = true;
         // Add card value to running total of the hand
         handValue += cardValue;
         // If value is 1, it's an ace go figure
@@ -74,7 +74,7 @@ public class BlackjackPlayerScript : MonoBehaviour
         for (int i = 0; i < hand.Length; i++)
         {
             hand[i].GetComponent<CardScript>().ResetCard();
-            hand[i].GetComponent<Renderer>().enabled = false;
+            //hand[i].GetComponent<Renderer>().enabled = false;
         }
         cardIndex = 0;
         handValue = 0;
