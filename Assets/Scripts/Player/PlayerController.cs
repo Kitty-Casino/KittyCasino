@@ -39,10 +39,11 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("IS on nav: " + agent.isOnNavMesh);
         if (agent.isOnNavMesh)
         {
-            //agent.destination = transform.position;
             agent.isStopped = false;
+            agent.Warp(transform.position);
         }
     }
 
@@ -88,7 +89,6 @@ public class PlayerController : MonoBehaviour
                 agent.destination = hit.point;
                 if(clickEffect != null)
                 {
-                    int randRotation = Random.Range(0, 100);
                     Instantiate(clickEffect, hit.point += new Vector3(0, 0.1f, 0), clickEffect.transform.rotation);
                 }
             }
@@ -117,6 +117,7 @@ public class PlayerController : MonoBehaviour
                 agent.destination = hit.point;
                 if (clickEffect != null)
                 {
+                    //int randRotation = Random.Range(0, 100);
                     Instantiate(clickEffect, hit.point += new Vector3(0, 0.1f, 0), clickEffect.transform.rotation);
                 }
             }
