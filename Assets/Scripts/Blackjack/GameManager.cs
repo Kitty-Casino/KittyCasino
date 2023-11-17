@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
 
             scoreText.text = "Your Hand: \n" + playerScript.handValue.ToString();
             dealerScoreText.text = "Dealers Hand: " + dealerScript.handValue.ToString();
-            hideCard.GetComponent<Renderer>().enabled = true;
+            hideCard.GetComponent<Image>().enabled = true;
 
             dealButton.gameObject.SetActive(false);
             betButton.gameObject.SetActive(false);
@@ -212,7 +212,7 @@ public class GameManager : MonoBehaviour
             betButton.gameObject.SetActive(true);
             dealerScoreText.gameObject.SetActive(true);
             casinoButton.gameObject.SetActive(true);
-            hideCard.GetComponent<Renderer>().enabled = false;
+            hideCard.GetComponent<Image>().enabled = false;
             standClicks = 0;
             pot = 0;
             betText.text = "Current Bet: \n" + "$" + pot.ToString();
