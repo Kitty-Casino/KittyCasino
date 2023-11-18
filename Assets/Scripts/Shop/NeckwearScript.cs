@@ -7,6 +7,11 @@ using TMPro;
 public class NeckwearScript : MonoBehaviour
 {
     public Material color;
+    /*
+    public Material baseDressColor;
+    public Material baseRedShirtColor;
+    public Material baseOverallColor;
+    */
     public int price;
     public TextMeshProUGUI priceText;
     public string customizationName;

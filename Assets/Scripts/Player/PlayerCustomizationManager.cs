@@ -183,7 +183,7 @@ public class PlayerCustomizationManager : MonoBehaviour
         {
             ApplyColor(colorInstance);
         }
-        SaveCustomization();
+        //SaveCustomization();
     }
     
     private void OnApplicationQuit()
@@ -191,8 +191,7 @@ public class PlayerCustomizationManager : MonoBehaviour
         PlayerPrefs.DeleteKey("SpawnPointX");
         PlayerPrefs.DeleteKey("SpawnPointY");
         PlayerPrefs.DeleteKey("SpawnPointZ");
-        SaveCustomization();
-        PlayerPrefs.DeleteAll();
+        //SaveCustomization();
     }
     public void ApplyCustomization()
     {
@@ -223,7 +222,7 @@ public class PlayerCustomizationManager : MonoBehaviour
         {
             ApplyRightHands(righthandInstance);
         }
-        SaveCustomization();
+        //SaveCustomization();
     }
 
     public void SaveCustomization()
