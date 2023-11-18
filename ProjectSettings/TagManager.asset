@@ -8,6 +8,7 @@ TagManager:
   - Card Details
   - Sound
   - Prompt
+  - DialogueManager
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - 
   - BlockRaycast
   - NavmeshClickable
-  - 
+  - ManagerCat
   - 
   - 
   - 

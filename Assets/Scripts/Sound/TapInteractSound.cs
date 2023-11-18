@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class TapInteractSound : MonoBehaviour
 {
     public AudioClip tapSound;
+    private DialogueTrigger dialogueTrigger;
     private AudioSource audioSource;
+    private PlayerController player;
     bool touchMoved = false;
 
     void Start()
@@ -14,6 +16,8 @@ public class TapInteractSound : MonoBehaviour
 
         // Get the AudioSource component attached to this object
         audioSource = GetComponent<AudioSource>();
+
+        dialogueTrigger = GetComponent<DialogueTrigger>();
 
         // Ensures that the AudioSource has an AudioClip assigned
         if (audioSource == null || tapSound == null)
@@ -24,12 +28,16 @@ public class TapInteractSound : MonoBehaviour
 
     void Update()
     {
-        
+        if (player == null)
+        {
+            StartCoroutine(WaitOneFrame());
+        }
+
         // Check for touch input on mobile devices
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            
+
             if (touch.phase == TouchPhase.Moved)
             {
                 touchMoved = true;
@@ -38,8 +46,8 @@ public class TapInteractSound : MonoBehaviour
             if (touch.phase == TouchPhase.Ended)
             {
                 // Perform a raycast to check if the tap hits this object
-               Ray ray = Camera.main.ScreenPointToRay(touch.position);
-               RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                RaycastHit hit;
 
                 // If it hits an object, checks game objects for tags that correspond to their function
                 if (Physics.Raycast(ray, out hit) && !touchMoved)
@@ -47,12 +55,17 @@ public class TapInteractSound : MonoBehaviour
                     if (hit.collider.gameObject == gameObject && hit.transform.tag == "Sound")
                     {
                         audioSource.PlayOneShot(tapSound);
+
+                        if (this.gameObject.layer == LayerMask.NameToLayer("ManagerCat") && Vector3.Distance(gameObject.transform.position, player.transform.position) <= 5f)
+                        {
+                            dialogueTrigger.TriggerDialogue();
+                        }
                     }
                 }
                 touchMoved = false;
             }
         }
-        
+
 
 
         // Check for mouse click on PC
@@ -63,17 +76,24 @@ public class TapInteractSound : MonoBehaviour
             RaycastHit hit;
 
             // If it hits an object, checks game objects for tags that correspond to their function
-            if (Physics.Raycast(ray, out hit) )
+            if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider.gameObject == gameObject && hit.transform.tag == "Sound")
                 {
                     audioSource.PlayOneShot(tapSound);
+
+                    if (this.gameObject.layer == LayerMask.NameToLayer("ManagerCat") && Vector3.Distance(gameObject.transform.position, player.transform.position) <= 5f)
+                    {
+                        dialogueTrigger.TriggerDialogue();
+                    }
                 }
             }
         }
-       
-
-    
     }
 
+    IEnumerator WaitOneFrame()
+    {
+        yield return new WaitForSeconds(0.1f); // waits because of first frame on game load
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+    }
 }
