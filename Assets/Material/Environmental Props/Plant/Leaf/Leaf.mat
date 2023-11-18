@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cat
+  m_Name: Leaf
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -27,7 +27,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 765c005fdb39e3d4baeceedebdefed0c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1e65485734ea08a44801f962fc2f6fe1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -47,19 +47,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 931dc0c937ef8b94b8c69c6df4ce6b88, type: 3}
+        m_Texture: {fileID: 2800000, guid: 29a44bb360a88f447bf853559ddca5e0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 3681f70d9007f23419caaf2d9e25f52b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 989778c0df484b2448bc5e6dd307c2ed, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 7fa705bb733a99e479c633be1fd4fed4, type: 3}
+        m_Texture: {fileID: 2800000, guid: b3883b0ea68f4d44eafa2cc111006b6b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: af86a4294d4ed284b8a64eb2a19a0baa, type: 3}
+        m_Texture: {fileID: 2800000, guid: e3d64bd0313ed174a9b9a77076d9a69e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -73,14 +73,14 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _OcclusionStrength: 0
-    - _Parallax: 0.005
+    - _OcclusionStrength: 0.767
+    - _Parallax: 0.0546
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
