@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3003653, g: 0.2863045, b: 0.23478526, a: 1}
+  m_IndirectSpecularColor: {r: 0.3003651, g: 0.28630435, b: 0.23478523, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5229,9 +5229,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7925353247054929291, guid: e42e4e4c31ba5ea47b82739491682658, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1259128344}
-    - targetCorrespondingSourceObject: {fileID: 7925353247054929291, guid: e42e4e4c31ba5ea47b82739491682658, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1259128343}
   m_SourcePrefab: {fileID: 100100000, guid: e42e4e4c31ba5ea47b82739491682658, type: 3}
 --- !u!1 &760070029
 GameObject:
@@ -8340,22 +8337,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7925353247054929291, guid: e42e4e4c31ba5ea47b82739491682658, type: 3}
   m_PrefabInstance: {fileID: 744061649}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1259128343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1259128341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a3622512bd93e84eaa94d9ed5270009, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  promptPanel: {fileID: 0}
-  promptRange: 4
-  sceneID: Slots
-  playerRespawn: {fileID: 0}
 --- !u!64 &1259128344
 MeshCollider:
   m_ObjectHideFlags: 0

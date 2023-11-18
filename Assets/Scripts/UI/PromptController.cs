@@ -18,7 +18,7 @@ public class PromptController : MonoBehaviour
     private void Awake()
     {
         // Initially, hide the prompt canvas
-        promptPanel.SetActive(false);
+        
     }
 
     private void Update()
