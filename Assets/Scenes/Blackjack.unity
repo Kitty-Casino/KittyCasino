@@ -5250,7 +5250,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 70, y: -487}
-  m_SizeDelta: {x: 387.076, y: 50}
+  m_SizeDelta: {x: 716, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &678859501
 MonoBehaviour:
@@ -11937,6 +11937,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1979338245}
     m_Modifications:
+    - target: {fileID: 2634086706168336229, guid: 1dd7828a74c0eda4b84b053541f6fc10, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1979338247}
+    - target: {fileID: 2634086706168336229, guid: 1dd7828a74c0eda4b84b053541f6fc10, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackButton
+      objectReference: {fileID: 0}
     - target: {fileID: 3379641652886910361, guid: 1dd7828a74c0eda4b84b053541f6fc10, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -14433,6 +14441,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1979338245}
     m_Modifications:
+    - target: {fileID: 1079629789198587583, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1979338246}
+    - target: {fileID: 1079629789198587583, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MainMenuButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 2175855374915778346, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1979338246}
+    - target: {fileID: 2175855374915778346, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SettingsButton
+      objectReference: {fileID: 0}
     - target: {fileID: 3415455233304296758, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -14544,6 +14568,14 @@ PrefabInstance:
     - target: {fileID: 6746846331727898274, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SceneController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838154145351336309, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1979338246}
+    - target: {fileID: 6838154145351336309, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Resume
       objectReference: {fileID: 0}
     - target: {fileID: 7417260690840663448, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -17436,7 +17468,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 70, y: 362}
-  m_SizeDelta: {x: 460.803, y: 64.522}
+  m_SizeDelta: {x: 766.16, y: 64.522}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2040679333
 CanvasRenderer:
