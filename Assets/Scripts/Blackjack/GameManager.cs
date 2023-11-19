@@ -10,13 +10,13 @@ public class GameManager : MonoBehaviour
     CoinsController coinsController = CoinsController.Instance;
 
     // Buttons for game
-    public Button dealButton;
-    public Button hitButton;
-    public Button standButton;
-    public Button betButton;
-    public Button doubleButton;
-    public Button splitButton;
-    public Button casinoButton;
+    public GameObject dealButtonObject;
+    public GameObject hitButtonObject;
+    public GameObject standButtonObject;
+    public GameObject betButtonObject;
+    public GameObject doubleButtonObject;
+    public GameObject splitButtonObject;
+    public GameObject casinoButtonObject;
     
     private int standClicks = 0;
 
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI dealerScoreText;
     public TextMeshProUGUI betText;
-    public TextMeshProUGUI standText;
+    //public TextMeshProUGUI standText;
     public TextMeshProUGUI mainText;
     // public Text mainText;
 
@@ -47,17 +47,17 @@ public class GameManager : MonoBehaviour
 
         mainText.gameObject.SetActive(false);
 
-        dealButton.onClick.AddListener(() => DealClicked());
-        hitButton.onClick.AddListener(() => HitClicked());
-        standButton.onClick.AddListener(() => StandClicked());
-        betButton.onClick.AddListener(() => BetClicked());
-        doubleButton.onClick.AddListener(() => DoubleClicked());
+        //dealButton.onClick.AddListener(() => DealClicked());
+        //hitButton.onClick.AddListener(() => HitClicked());
+        ////standButton.onClick.AddListener(() => StandClicked());
+        //betButton.onClick.AddListener(() => BetClicked());
+        //doubleButton.onClick.AddListener(() => DoubleClicked());
 
-        
+        coinsController = CoinsController.Instance;
     }
     
     // Handles dealing of the cards, resets both players and dealers hands and shuffles the deck and activates/deactivates approrpriate buttons
-    private void DealClicked()
+    public void DealClicked()
     {
         if (pot > 0)
         {
@@ -74,12 +74,12 @@ public class GameManager : MonoBehaviour
             dealerScoreText.text = "Dealers Hand: " + dealerScript.handValue.ToString();
             hideCard.GetComponent<Image>().enabled = true;
 
-            dealButton.gameObject.SetActive(false);
-            betButton.gameObject.SetActive(false);
-            casinoButton.gameObject.SetActive(false);   
-            hitButton.gameObject.SetActive(true);
-            standButton.gameObject.SetActive(true);
-            standText.text = "Stand";
+            dealButtonObject.gameObject.SetActive(false);
+            betButtonObject.gameObject.SetActive(false);
+            casinoButtonObject.gameObject.SetActive(false);   
+            hitButtonObject.gameObject.SetActive(true);
+            standButtonObject.gameObject.SetActive(true);
+            //standText.text = "Stand";
 
 
             betText.text = "Current Bet: \n" + "$" + pot.ToString();
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Gives player a new card and checks to see if they end up going over 20 and either hitting Blackjack or going bust
-    private void HitClicked()
+    public void HitClicked()
     {
         // Checks if there is still room on the board
         if(playerScript.cardIndex <= 10)
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Immediately goes to game round resolution
-    private void StandClicked()
+    public void StandClicked()
     {
         standClicks++;
         HitDealer();
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
     }
 
     // If the player doubles down, takes another bet equal to initial bet, gives the player one card, and resolves the round (Sometimes it doesn't resolve though but you can still end via standing)
-    private void DoubleClicked()
+    public void DoubleClicked()
     {
         if (coinsController.totalCoins >= pot)
         {
@@ -129,12 +129,12 @@ public class GameManager : MonoBehaviour
             standClicks++;
             HitDealer();
             RoundOver();
-            doubleButton.gameObject.SetActive(false);
+            doubleButtonObject.SetActive(false);
         }
     }
 
     // Whenever this is called, the dealer draws until the hand is greater than 17 and checks to see if they hit blackjack or bust
-    private void HitDealer()
+    public void HitDealer()
     {
         while (dealerScript.handValue < 17 && dealerScript.cardIndex < 10)
         {
@@ -204,14 +204,14 @@ public class GameManager : MonoBehaviour
 
         if (roundOver)
         {
-            hitButton.gameObject.SetActive(false);
-            standButton.gameObject.SetActive(false);
-            doubleButton.gameObject.SetActive(false);
-            splitButton.gameObject.SetActive(false);
-            dealButton.gameObject.SetActive(true);
-            betButton.gameObject.SetActive(true);
+            hitButtonObject.gameObject.SetActive(false);
+            standButtonObject.gameObject.SetActive(false);
+            doubleButtonObject.gameObject.SetActive(false);
+            splitButtonObject.gameObject.SetActive(false);
+            dealButtonObject.gameObject.SetActive(true);
+            betButtonObject.gameObject.SetActive(true);
             dealerScoreText.gameObject.SetActive(true);
-            casinoButton.gameObject.SetActive(true);
+            casinoButtonObject.gameObject.SetActive(true);
             hideCard.GetComponent<Image>().enabled = false;
             standClicks = 0;
             pot = 0;
@@ -227,16 +227,16 @@ public class GameManager : MonoBehaviour
             switch (playerScript.handValue)
             {
                 default:
-                    doubleButton.gameObject.SetActive(false);
+                    doubleButtonObject.SetActive(false);
                     break;
                 case 9:
-                    doubleButton.gameObject.SetActive(true);
+                    doubleButtonObject.SetActive(true);
                     break;
                 case 10:
-                    doubleButton.gameObject.SetActive(true);
+                    doubleButtonObject.SetActive(true);
                     break;
                 case 11:
-                    doubleButton.gameObject.SetActive(true);
+                    doubleButtonObject.SetActive(true);
                     break;
             }
         }
@@ -250,7 +250,7 @@ public class GameManager : MonoBehaviour
         int card2Value = GameObject.Find("PlayerCard2").GetComponent<CardScript>().value;
         if (card1Value == card2Value)
         {
-            splitButton.gameObject.SetActive(true);
+            splitButtonObject.SetActive(true);
         }
     }
 
