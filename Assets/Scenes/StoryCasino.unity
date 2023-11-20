@@ -6012,7 +6012,7 @@ MonoBehaviour:
     sentences:
     - 'Congratulations, you''ve earned back the ability to freely come and go in
       this casino. '
-    - We'll be watching you.
+    - Remember, the house is always watching.
   dialogueManager: {fileID: 2107013973}
   storyProgression: 0
   isMainManager: 1
@@ -6514,7 +6514,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2108303854}
         m_TargetAssemblyTypeName: StoryPromptController, Assembly-CSharp
-        m_MethodName: ClosePrompt
+        m_MethodName: LoadAnotherScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10024,8 +10024,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 25012263}
-        m_TargetAssemblyTypeName: PromptController, Assembly-CSharp
+      - m_Target: {fileID: 25012266}
+        m_TargetAssemblyTypeName: StoryPromptController, Assembly-CSharp
         m_MethodName: ClosePrompt
         m_Mode: 1
         m_Arguments:
@@ -16480,8 +16480,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583723297}
-        m_TargetAssemblyTypeName: PromptController, Assembly-CSharp
+      - m_Target: {fileID: 1583723303}
+        m_TargetAssemblyTypeName: StoryPromptController, Assembly-CSharp
         m_MethodName: LoadAnotherScene
         m_Mode: 1
         m_Arguments:
@@ -29131,8 +29131,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583723297}
-        m_TargetAssemblyTypeName: PromptController, Assembly-CSharp
+      - m_Target: {fileID: 1583723303}
+        m_TargetAssemblyTypeName: StoryPromptController, Assembly-CSharp
         m_MethodName: ClosePrompt
         m_Mode: 1
         m_Arguments:
@@ -33131,8 +33131,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 493675237}
-        m_TargetAssemblyTypeName: PromptController, Assembly-CSharp
+      - m_Target: {fileID: 493675241}
+        m_TargetAssemblyTypeName: StoryPromptController, Assembly-CSharp
         m_MethodName: ClosePrompt
         m_Mode: 1
         m_Arguments:
@@ -42105,8 +42105,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 25012263}
-        m_TargetAssemblyTypeName: PromptController, Assembly-CSharp
+      - m_Target: {fileID: 25012266}
+        m_TargetAssemblyTypeName: StoryPromptController, Assembly-CSharp
         m_MethodName: LoadAnotherScene
         m_Mode: 1
         m_Arguments:
@@ -43176,8 +43176,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2108303851}
-        m_TargetAssemblyTypeName: PromptController, Assembly-CSharp
+      - m_Target: {fileID: 2108303854}
+        m_TargetAssemblyTypeName: StoryPromptController, Assembly-CSharp
         m_MethodName: ClosePrompt
         m_Mode: 1
         m_Arguments:
@@ -43681,8 +43681,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 493675237}
-        m_TargetAssemblyTypeName: PromptController, Assembly-CSharp
+      - m_Target: {fileID: 493675241}
+        m_TargetAssemblyTypeName: StoryPromptController, Assembly-CSharp
         m_MethodName: LoadAnotherScene
         m_Mode: 1
         m_Arguments:
