@@ -64,6 +64,9 @@ public class MusicController : MonoBehaviour
             case "Casino":
                 PlayMusic(casinoMusic);
                 break;
+            case "StoryCasino":
+                PlayMusic(casinoMusic);
+                break;
             case "Shop":
                 PlayMusic(shopMusic);
                 break;
