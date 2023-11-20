@@ -53,29 +53,38 @@ public class DialogueTrigger : MonoBehaviour
             {
                 case 0:
                     dialogueManager.StartDialogue(dialogueBartending); 
-                        dialogueIcon.SetActive(false);
+                    dialogueIcon.SetActive(false);
+                    storyProgression++;
                     break;
                 case 1:
                     dialogueManager.StartDialogue(dialogueMatching); 
-                        dialogueIcon.SetActive(false);
+                    dialogueIcon.SetActive(false);
+                    storyProgression++;
                     break;
                 case 2:
                     dialogueManager.StartDialogue(dialogueBlackjack);
-                        dialogueIcon.SetActive(false);
+                    dialogueIcon.SetActive(false);
+                    storyProgression++;
                     break;
                 case 3:
                     dialogueManager.StartDialogue(dialoguePoker); 
-                        dialogueIcon.SetActive(false);
+                    dialogueIcon.SetActive(false);
+                    storyProgression++;
                     break;
                 case 4:
                     dialogueManager.StartDialogue(dialogueSlots);
-                        dialogueIcon.SetActive(false);
+                    dialogueIcon.SetActive(false);
+                    storyProgression++;
                     break;
                 default:
                     dialogueManager.StartDialogue(dialogue); 
-                        dialogueIcon.SetActive(false);
+                    dialogueIcon.SetActive(false);
+                    storyProgression++;
                     break;
             }
+
+            storyProgression++;
+            PlayerPrefs.Save();
         }
         else
         {
