@@ -180,6 +180,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Base
       objectReference: {fileID: 0}
+    - target: {fileID: 3450196594091632365, guid: 07294d9a2f759ad4c8236d84016202bc, type: 3}
+      propertyPath: m_Name
+      value: Cat_Base
+      objectReference: {fileID: 0}
     - target: {fileID: 6030748019102157983, guid: 07294d9a2f759ad4c8236d84016202bc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

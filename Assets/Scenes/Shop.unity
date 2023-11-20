@@ -644,6 +644,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {fileID: 2100000, guid: fb5a1a89206223e43b35cfaa42528570, type: 2}
+  baseDressColor: {fileID: 2100000, guid: 0e1136b7c3351d94cb28b65ea99dcda9, type: 2}
+  baseRedShirtColor: {fileID: 2100000, guid: ad17b1b2eac489f4cb9100b30bc622bf, type: 2}
+  baseOverallColor: {fileID: 2100000, guid: ad17b1b2eac489f4cb9100b30bc622bf, type: 2}
   price: 0
   priceText: {fileID: 558061469}
   customizationName: Red
@@ -2098,6 +2101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {fileID: 2100000, guid: 31ce7c2b6580a93499c078aefb4c2377, type: 2}
+  baseDressColor: {fileID: 2100000, guid: 7852ef461cbf82d41a6a89b39918d798, type: 2}
+  baseRedShirtColor: {fileID: 2100000, guid: 3340d573d7afafd45ac7e867b9aed9ed, type: 2}
+  baseOverallColor: {fileID: 2100000, guid: 3340d573d7afafd45ac7e867b9aed9ed, type: 2}
   price: 0
   priceText: {fileID: 1090125526}
   customizationName: Pink
@@ -3765,6 +3771,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {fileID: 2100000, guid: 0d91b7736bcc0ca49a3e712e4550d062, type: 2}
+  baseDressColor: {fileID: 2100000, guid: 313d86067808f244d8c4420800adedd6, type: 2}
+  baseRedShirtColor: {fileID: 2100000, guid: c9caff2748486b94e946c18a8a65e3b6, type: 2}
+  baseOverallColor: {fileID: 2100000, guid: c9caff2748486b94e946c18a8a65e3b6, type: 2}
   price: 0
   priceText: {fileID: 848293157}
   customizationName: Grey
@@ -6770,6 +6779,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {fileID: 2100000, guid: 4bd8298bf2dcbf7408dd0b1e19448634, type: 2}
+  baseDressColor: {fileID: 2100000, guid: 2daf6025ef543c24fbd24aa136280238, type: 2}
+  baseRedShirtColor: {fileID: 2100000, guid: bb7360d81fa5a0143a014a9dfdc35612, type: 2}
+  baseOverallColor: {fileID: 2100000, guid: bb7360d81fa5a0143a014a9dfdc35612, type: 2}
   price: 0
   priceText: {fileID: 155949928}
   customizationName: Black
@@ -13078,6 +13090,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {fileID: 2100000, guid: a639e6d0b048b8f449eb5cac6d8f8b45, type: 2}
+  baseDressColor: {fileID: 2100000, guid: 9314d40858c737b408186cb1af8026b6, type: 2}
+  baseRedShirtColor: {fileID: 2100000, guid: e5233359b18e63540b4807975d648107, type: 2}
+  baseOverallColor: {fileID: 2100000, guid: e5233359b18e63540b4807975d648107, type: 2}
   price: 0
   priceText: {fileID: 1189815217}
   customizationName: Brown
@@ -14160,6 +14175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {fileID: 2100000, guid: ba6fc02dfa4d6d346ab98a9a76758b41, type: 2}
+  baseDressColor: {fileID: 2100000, guid: 71efc317c9cfb014490a90f0f5ec3232, type: 2}
+  baseRedShirtColor: {fileID: 2100000, guid: dbcbee0948b6dde44a1af11b2365e9e5, type: 2}
+  baseOverallColor: {fileID: 2100000, guid: dbcbee0948b6dde44a1af11b2365e9e5, type: 2}
   price: 0
   priceText: {fileID: 1043000748}
   customizationName: Orange
@@ -15772,6 +15790,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {fileID: 2100000, guid: bc5081686e35eea489f874b526af10e2, type: 2}
+  baseDressColor: {fileID: 2100000, guid: 0b5094a29e8cb28489afa6b28cb40a9e, type: 2}
+  baseRedShirtColor: {fileID: 2100000, guid: 6940bb88a21ce85449e026a6d140ed8f, type: 2}
+  baseOverallColor: {fileID: 2100000, guid: 6940bb88a21ce85449e026a6d140ed8f, type: 2}
   price: 0
   priceText: {fileID: 1846458804}
   customizationName: Blue
@@ -16524,6 +16545,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {fileID: 2100000, guid: a2c51d320a580d849a480e2876d2917d, type: 2}
+  baseDressColor: {fileID: 2100000, guid: 9bd4a0241ae09b448a9291f136e102ac, type: 2}
+  baseRedShirtColor: {fileID: 2100000, guid: 5d154bd6bdf632e43bd95dbb3a5e1fa4, type: 2}
+  baseOverallColor: {fileID: 2100000, guid: 5d154bd6bdf632e43bd95dbb3a5e1fa4, type: 2}
   price: 0
   priceText: {fileID: 1528892498}
   customizationName: White
@@ -19626,6 +19650,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {fileID: 2100000, guid: 8cf76941f7697634cb8bd082deefc498, type: 2}
+  baseDressColor: {fileID: 2100000, guid: 1be2504a995385a43b9bfd31967e4d34, type: 2}
+  baseRedShirtColor: {fileID: 2100000, guid: c9195076268660641ba785ed7eaa2e25, type: 2}
+  baseOverallColor: {fileID: 2100000, guid: c9195076268660641ba785ed7eaa2e25, type: 2}
   price: 0
   priceText: {fileID: 447708819}
   customizationName: Purple
