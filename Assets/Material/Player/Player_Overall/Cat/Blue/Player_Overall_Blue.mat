@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: White
+  m_Name: Player_Overall_Blue
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -27,7 +27,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 6970a8833019c984eb9477813f84ee04, type: 3}
+        m_Texture: {fileID: 2800000, guid: 145174df9525c01468a8201320fd770b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -47,19 +47,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c02454e80430cca4f8c09bd3792cc8ff, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4066b0b8dff50d94894be65da7a384fd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 4e3b3d44123f95d43bc76586621387ac, type: 3}
+        m_Texture: {fileID: 2800000, guid: b36bb29b0e6cc76449465f150bc3f4ff, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 24caaad7e78b42b49a78b2d23cb0b6cc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 92b2a6a78f3b3d345aa061d0d149f7c9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: a284d434b569dcb41906f1f7e890dd2f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 41f08d67eeda9aa48b910dc8f126628a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -73,7 +73,7 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _OcclusionStrength: 0.123
+    - _OcclusionStrength: 0.157
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

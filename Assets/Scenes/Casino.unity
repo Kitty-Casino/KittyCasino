@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.605
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.34378928, g: 0.38239378, b: 0.4474857, a: 0.605}
+  m_IndirectSpecularColor: {r: 0.34378916, g: 0.38239363, b: 0.44748485, a: 0.605}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8188,6 +8188,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicController
       objectReference: {fileID: 0}
+    - target: {fileID: 6415322455434288286, guid: ac06b4e5f037ab840b5d816c6c50e80b, type: 3}
+      propertyPath: sfxSlider
+      value: 
+      objectReference: {fileID: 683032135}
+    - target: {fileID: 6415322455434288286, guid: ac06b4e5f037ab840b5d816c6c50e80b, type: 3}
+      propertyPath: musicSlider
+      value: 
+      objectReference: {fileID: 683032136}
     - target: {fileID: 7184813476758710755, guid: ac06b4e5f037ab840b5d816c6c50e80b, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -8237,6 +8245,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac06b4e5f037ab840b5d816c6c50e80b, type: 3}
+--- !u!1 &335355292 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2136084415632035584, guid: ac06b4e5f037ab840b5d816c6c50e80b, type: 3}
+  m_PrefabInstance: {fileID: 335355291}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &341177339 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 07294d9a2f759ad4c8236d84016202bc, type: 3}
@@ -16670,11 +16683,53 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4949742260703783942, guid: 1dd7828a74c0eda4b84b053541f6fc10, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949742260703783942, guid: 1dd7828a74c0eda4b84b053541f6fc10, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949742260703783942, guid: 1dd7828a74c0eda4b84b053541f6fc10, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 335355292}
+    - target: {fileID: 4949742260703783942, guid: 1dd7828a74c0eda4b84b053541f6fc10, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949742260703783942, guid: 1dd7828a74c0eda4b84b053541f6fc10, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dd7828a74c0eda4b84b053541f6fc10, type: 3}
+--- !u!114 &683032135 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1963494749775728328, guid: 1dd7828a74c0eda4b84b053541f6fc10, type: 3}
+  m_PrefabInstance: {fileID: 683032134}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &683032136 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4949742260703783942, guid: 1dd7828a74c0eda4b84b053541f6fc10, type: 3}
+  m_PrefabInstance: {fileID: 683032134}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &687081239 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2d8948af442871d489c6fb206711ef68, type: 3}
@@ -32716,7 +32771,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuUI: {fileID: 1501529888}
   settingsMenuUI: {fileID: 1036785740}
-  audioMixer: {fileID: 24100000, guid: 513c7b6fe47cd244793836497fe273c8, type: 2}
   canVibrate: 0
 --- !u!1 &1437182818 stripped
 GameObject:

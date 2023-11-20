@@ -13,6 +13,7 @@ public class SceneController : MonoBehaviour
         //    PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
         //    customizationManager.UpdateLastVisitedScene();
         //}   
+        // PlayerPrefs.DeleteAll();
     }
     public void ToMainMenu()
     {
