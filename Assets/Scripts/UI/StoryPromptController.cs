@@ -1,17 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StoryPromptController: MonoBehaviour
+public class StoryPromptController : MonoBehaviour
 {
     public GameObject promptPanel;
     public GameObject promptGoAwayPanel;
     public GameObject promptPurchasePanel;
-    
+
     private bool isPromptActive = false;
     private bool isInRange = false;
 
     public bool isGameUnlocked;
     public bool isGamePurchased;
+    public bool isBartendingPanel = false;
 
     public float promptRange = 2;
 
@@ -22,6 +23,7 @@ public class StoryPromptController: MonoBehaviour
 
     private PlayerController playerController;
     [SerializeField] private RespawnController playerRespawn;
+    public StorymodeController storymodeController;
 
     private void Awake()
     {
@@ -35,7 +37,7 @@ public class StoryPromptController: MonoBehaviour
             playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         }
 
-        if (playerRespawn == null) 
+        if (playerRespawn == null)
         {
             playerRespawn = GameObject.FindGameObjectWithTag("Player").GetComponent<RespawnController>();
         }
@@ -56,7 +58,7 @@ public class StoryPromptController: MonoBehaviour
                     {
                         isPromptActive = true;
                     }
-                    
+
                 }
             }
         }
@@ -65,7 +67,7 @@ public class StoryPromptController: MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            
+
             if (touch.phase == TouchPhase.Moved)
             {
                 touchMoved = true;
@@ -110,7 +112,7 @@ public class StoryPromptController: MonoBehaviour
         }
     }
 
-    
+
     // When this function is called, the sceneID integer will determine which scene is loaded, make sure to set the correct scene ID for the scene you are trying to transition to
     // If you need to add a new scene transition, add a new case and assign respective sceneID to the Game Object
     public void LoadAnotherScene()
@@ -181,7 +183,7 @@ public class StoryPromptController: MonoBehaviour
     {
         isInRange = false;
     }
-    
+
     private void SaveBoolValues()
     {
         PlayerPrefs.SetInt("IsGameUnlocked" + sceneID, isGameUnlocked ? 1 : 0);
@@ -191,8 +193,11 @@ public class StoryPromptController: MonoBehaviour
 
     private void LoadBoolValues()
     {
-        isGameUnlocked = PlayerPrefs.GetInt("IsGameUnlocked" + sceneID, 0) == 1;
-        isGamePurchased = PlayerPrefs.GetInt("IsGamePurchased" + sceneID, 0) == 1;
+        if (!isBartendingPanel)
+        {
+            isGameUnlocked = PlayerPrefs.GetInt("IsGameUnlocked" + sceneID, 0) == 1;
+            isGamePurchased = PlayerPrefs.GetInt("IsGamePurchased" + sceneID, 0) == 1;
+        }
     }
 
     public void SetGameUnlocked(bool value)
@@ -211,6 +216,6 @@ public class StoryPromptController: MonoBehaviour
             SaveBoolValues();
             promptPurchasePanel.SetActive(false);
         }
-        
+        storymodeController.IncrementStoryProgression();
     }
 }

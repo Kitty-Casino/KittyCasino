@@ -13,6 +13,12 @@ public class MainMenuController : MonoBehaviour
     {
         settingsMenuUI.SetActive(false);
         creditsUI.SetActive(false);
+        GameObject storymodeController = GameObject.Find("StorymodeController");
+
+        if (storymodeController != null)
+        {
+            Destroy(storymodeController);
+        }
     }
 
     public void PlayButton()

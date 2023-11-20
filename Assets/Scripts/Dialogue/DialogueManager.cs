@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
     public Queue<string> sentences;
     public GameObject dialogueObject;
     public TextMeshProUGUI dialogueText;
+    public PlayerController playerController;
 
     void Start()
     {
@@ -15,10 +16,19 @@ public class DialogueManager : MonoBehaviour
         dialogueObject.SetActive(false);
     }
 
+    void Update()
+    {
+        if (playerController == null)
+        {
+            playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        }
+    }
+
     public void StartDialogue(Dialogue dialogue)
     {
         dialogueObject.SetActive(true);
         sentences.Clear();
+        playerController.enabled = false;
 
         foreach (string sentence in dialogue.sentences)
         {
@@ -54,5 +64,6 @@ public class DialogueManager : MonoBehaviour
     private void EndDialogue()
     {
         dialogueObject.SetActive(false);
+        playerController.enabled = true;
     }
 }
