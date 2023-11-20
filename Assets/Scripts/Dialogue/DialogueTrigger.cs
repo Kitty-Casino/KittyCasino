@@ -23,7 +23,7 @@ public class DialogueTrigger : MonoBehaviour
             switch (storyProgression)
             {
                 case 0:
-                    dialogueManager.StartDialogue(dialogueBartending); // will need to change every story point
+                    dialogueManager.StartDialogue(dialogueBartending); 
                     break;
                 case 1:
                     dialogueManager.StartDialogue(dialogueMatching); 

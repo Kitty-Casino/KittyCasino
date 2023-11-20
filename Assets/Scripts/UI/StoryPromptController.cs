@@ -216,6 +216,7 @@ public class StoryPromptController : MonoBehaviour
             SaveBoolValues();
             promptPurchasePanel.SetActive(false);
         }
+        
         storymodeController.IncrementStoryProgression();
     }
 }
