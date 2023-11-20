@@ -46,7 +46,7 @@ public class SlotsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        coinsController = CoinsController.Instance;
     }
 
     // Update is called once per frame
@@ -88,17 +88,19 @@ public class SlotsController : MonoBehaviour
     // Tells the slots to start spinning and the handle to rotate 
     private IEnumerator PullHandle()
     {
-        for (int i = 0; i < 15; i += 5)
+        for (int i = 0; i < 5; i += 1)
         {
-            handle.Rotate(0f, 0f, i);
-            yield return new WaitForSeconds(0.1f);
+            handle.Rotate(0f, 0f, i * 0.5f);
+            yield return new WaitForSeconds(0.05f);
         }
 
         HandlePulled();
+        yield return new WaitForSeconds(0.1f);
 
-        for (int i = 0; i < 15; i += 5)
+        for (int i = 0; i < 5; i += 1)
         {
-            handle.Rotate(0f, 0f, -i);
+            handle.Rotate(0f, 0f, -i * 0.5f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
