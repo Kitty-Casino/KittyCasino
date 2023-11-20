@@ -20,7 +20,7 @@ public class StoryPromptController : MonoBehaviour
     bool touchMoved = false;
 
     public int unlockPrice;
-
+    public int localProgression;
     private PlayerController playerController;
     [SerializeField] private RespawnController playerRespawn;
     public StorymodeController storymodeController;
@@ -110,6 +110,9 @@ public class StoryPromptController : MonoBehaviour
             }
             playerController.enabled = false;
         }
+
+        SetGameUnlocked();
+
     }
 
 
@@ -200,16 +203,20 @@ public class StoryPromptController : MonoBehaviour
         }
     }
 
-    public void SetGameUnlocked(bool value)
+    public void SetGameUnlocked()
     {
-        isGameUnlocked = value;
-        SaveBoolValues();
+        if (CoinsController.Instance.totalCoins >= unlockPrice)
+        {
+            isGameUnlocked = true;
+            SaveBoolValues();
+        }
     }
 
     public void SetGamePurchased(bool value)
     {
+        storymodeController.IncrementStoryProgression();
         CoinsController coinsController = CoinsController.Instance;
-        if (coinsController.totalCoins >= unlockPrice)
+        if (coinsController.totalCoins >= unlockPrice && localProgression == PlayerPrefs.GetInt("Progression"))
         {
             coinsController.DecrementCoins(unlockPrice);
             isGamePurchased = value;
@@ -217,6 +224,7 @@ public class StoryPromptController : MonoBehaviour
             promptPurchasePanel.SetActive(false);
         }
         
-        storymodeController.IncrementStoryProgression();
+       
     }
+
 }

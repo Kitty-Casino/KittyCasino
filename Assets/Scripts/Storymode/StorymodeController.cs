@@ -20,17 +20,11 @@ public class StorymodeController : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        progression = 0;
-        PlayerPrefs.SetInt("StoryProgression", 0);
-        PlayerPrefs.Save();
-    }
-
     public void IncrementStoryProgression()
     {
         progression++;
-        PlayerPrefs.SetInt("StoryProgression", progression);
+        PlayerPrefs.SetInt("Progression", progression);
         PlayerPrefs.Save();
+        Debug.Log("Story progress +1");
     }
 }

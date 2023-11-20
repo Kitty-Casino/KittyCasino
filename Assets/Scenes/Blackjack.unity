@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.39438528, g: 0.41183499, b: 0.4085404, a: 1}
+  m_IndirectSpecularColor: {r: 0.39675596, g: 0.4144483, b: 0.410243, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -431,7 +431,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-78266
+  m_Name: pb_Mesh121388
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -8208,7 +8208,7 @@ GameObject:
   - component: {fileID: 946579249}
   - component: {fileID: 946579248}
   - component: {fileID: 946579247}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Plane (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

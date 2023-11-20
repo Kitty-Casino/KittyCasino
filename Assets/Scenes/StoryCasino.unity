@@ -888,6 +888,7 @@ MonoBehaviour:
   promptRange: 4
   sceneID: Blackjack
   unlockPrice: 250
+  localProgression: 2
   playerRespawn: {fileID: 0}
   storymodeController: {fileID: 272021797}
 --- !u!1001 &27550477
@@ -1343,7 +1344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7406026484309787838, guid: 7d78366cd70cec2438cd65d474374b47, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8818035794959751004, guid: 7d78366cd70cec2438cd65d474374b47, type: 3}
       propertyPath: m_Pivot.x
@@ -3972,7 +3973,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh196438
+  m_Name: pb_Mesh170974
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -5025,6 +5026,16 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &181187968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7101820952339281504, guid: 599f01d0b024114409f23fc6e4a486ca, type: 3}
+  m_PrefabInstance: {fileID: 1302909940}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &181187969 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3907812401974605165, guid: 599f01d0b024114409f23fc6e4a486ca, type: 3}
+  m_PrefabInstance: {fileID: 1302909940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &181507286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9346,7 +9357,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh199308
+  m_Name: pb_Mesh173856
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -11437,7 +11448,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh196358
+  m_Name: pb_Mesh170890
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -12662,6 +12673,7 @@ MonoBehaviour:
   promptRange: 4
   sceneID: Slots
   unlockPrice: 1000
+  localProgression: 4
   playerRespawn: {fileID: 0}
   storymodeController: {fileID: 272021797}
 --- !u!1001 &494829121
@@ -15566,6 +15578,7 @@ MonoBehaviour:
   promptRange: 4
   sceneID: Bartending
   unlockPrice: 0
+  localProgression: 0
   playerRespawn: {fileID: 0}
   storymodeController: {fileID: 272021797}
 --- !u!1001 &597025692
@@ -16129,7 +16142,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: aedc112c9969e4342879168c1c231d6c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 181187969}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: aedc112c9969e4342879168c1c231d6c, type: 3}
       insertIndex: -1
@@ -17440,7 +17456,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Scram!
 
-    This game ain''t ready yet'
+    Come back when you have 250 coins'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4b350eae101c8c4f98095e9d9921120, type: 2}
   m_sharedMaterial: {fileID: -4737215842476058549, guid: a4b350eae101c8c4f98095e9d9921120, type: 2}
@@ -18000,7 +18016,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh197760
+  m_Name: pb_Mesh172306
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -20237,7 +20253,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh199180
+  m_Name: pb_Mesh173728
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -22288,7 +22304,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh197902
+  m_Name: pb_Mesh172448
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -22534,7 +22550,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh55778
+  m_Name: pb_Mesh172002
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -29123,7 +29139,7 @@ MonoBehaviour:
   dialogueSlots:
     sentences: []
   dialogueManager: {fileID: 2107013973}
-  dialogueIcon: {fileID: 7101820952339281504, guid: 599f01d0b024114409f23fc6e4a486ca, type: 3}
+  dialogueIcon: {fileID: 181187968}
   storyProgression: 0
   isMainManager: 0
 --- !u!114 &1104192024
@@ -31938,6 +31954,12 @@ PrefabInstance:
       value: StoryPromptController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5389731509020930109, guid: 7d78366cd70cec2438cd65d474374b47, type: 3}
+      propertyPath: m_text
+      value: 'Scram!
+
+        Come back when you have 50 coins'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389731509020930109, guid: 7d78366cd70cec2438cd65d474374b47, type: 3}
       propertyPath: m_fontSize
       value: 49.31
       objectReference: {fileID: 0}
@@ -33773,6 +33795,67 @@ PrefabInstance:
       addedObject: {fileID: 1202728210}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d8948af442871d489c6fb206711ef68, type: 3}
+--- !u!1001 &1302909940
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1104192021}
+    m_Modifications:
+    - target: {fileID: 3907812401974605165, guid: 599f01d0b024114409f23fc6e4a486ca, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907812401974605165, guid: 599f01d0b024114409f23fc6e4a486ca, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907812401974605165, guid: 599f01d0b024114409f23fc6e4a486ca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907812401974605165, guid: 599f01d0b024114409f23fc6e4a486ca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907812401974605165, guid: 599f01d0b024114409f23fc6e4a486ca, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907812401974605165, guid: 599f01d0b024114409f23fc6e4a486ca, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907812401974605165, guid: 599f01d0b024114409f23fc6e4a486ca, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907812401974605165, guid: 599f01d0b024114409f23fc6e4a486ca, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907812401974605165, guid: 599f01d0b024114409f23fc6e4a486ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907812401974605165, guid: 599f01d0b024114409f23fc6e4a486ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907812401974605165, guid: 599f01d0b024114409f23fc6e4a486ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101820952339281504, guid: 599f01d0b024114409f23fc6e4a486ca, type: 3}
+      propertyPath: m_Name
+      value: DialogueIndicator
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 599f01d0b024114409f23fc6e4a486ca, type: 3}
 --- !u!1 &1304059165
 GameObject:
   m_ObjectHideFlags: 0
@@ -35830,7 +35913,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Scram!
 
-    This game ain''t ready yet'
+    Come back when you have 500 coins'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4b350eae101c8c4f98095e9d9921120, type: 2}
   m_sharedMaterial: {fileID: -4737215842476058549, guid: a4b350eae101c8c4f98095e9d9921120, type: 2}
@@ -39798,6 +39881,7 @@ MonoBehaviour:
   promptRange: 4
   sceneID: Matching
   unlockPrice: 75
+  localProgression: 1
   playerRespawn: {fileID: 0}
   storymodeController: {fileID: 272021797}
 --- !u!1 &1585430379 stripped
@@ -46606,7 +46690,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Scram!
 
-    This game ain''t ready yet'
+    Come back when you have 1000 coins'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4b350eae101c8c4f98095e9d9921120, type: 2}
   m_sharedMaterial: {fileID: -4737215842476058549, guid: a4b350eae101c8c4f98095e9d9921120, type: 2}
@@ -47189,7 +47273,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh198786
+  m_Name: pb_Mesh173334
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -52140,6 +52224,7 @@ MonoBehaviour:
   promptRange: 4
   sceneID: Poker
   unlockPrice: 500
+  localProgression: 3
   playerRespawn: {fileID: 0}
   storymodeController: {fileID: 272021797}
 --- !u!1 &2108889550
