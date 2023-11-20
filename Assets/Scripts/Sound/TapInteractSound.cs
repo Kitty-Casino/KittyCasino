@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TapInteractSound : MonoBehaviour
 {
@@ -28,7 +27,7 @@ public class TapInteractSound : MonoBehaviour
 
     void Update()
     {
-        if (player == null)
+        if (player == null && SceneManager.GetActiveScene().name == "casino")
         {
             StartCoroutine(WaitOneFrame());
         }
@@ -65,8 +64,6 @@ public class TapInteractSound : MonoBehaviour
                 touchMoved = false;
             }
         }
-
-
 
         // Check for mouse click on PC
         if (Input.GetMouseButtonDown(0))
