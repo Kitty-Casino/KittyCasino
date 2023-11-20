@@ -8959,7 +8959,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "1. Select a difficulty and place a bet to begin playing. \n2. Match all
     the cards to win! \n3. Make three mistakes in a round and you lose! \n4. Higher
-    difficulties pay more mistakes pay less reduce your prize."
+    difficulties pay more and mistakes reduce your prize."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: abdbc2f4301b927418100c80e987c4ee, type: 2}
   m_sharedMaterial: {fileID: 795645077327276471, guid: abdbc2f4301b927418100c80e987c4ee, type: 2}
@@ -13256,7 +13256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4040938699147285271, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4594516493317270856, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
       propertyPath: m_Pivot.x

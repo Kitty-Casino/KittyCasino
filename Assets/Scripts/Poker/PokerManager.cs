@@ -67,6 +67,7 @@ public class PokerManager : MonoBehaviour
             bettingUI.SetActive(true);
             placeBetUI.SetActive(true);
             raiseBetUI.SetActive(false);
+            checkButton.SetActive(false);
             betButton.onClick.AddListener(BetMade);
             StopAllCoroutines();
             betSlider.value = 0;

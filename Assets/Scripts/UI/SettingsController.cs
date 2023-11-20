@@ -7,7 +7,7 @@ public class SettingsController : MonoBehaviour
 {
     public GameObject menuUI;
     public GameObject settingsMenuUI;
-    public AudioMixer audioMixer;
+    //public AudioMixer audioMixer;
     public bool canVibrate; // attach to things that can vibrate the phone
 
     void Start()
@@ -34,6 +34,6 @@ public class SettingsController : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("volume", volume);
+        //audioMixer.SetFloat("volume", volume);
     }
 }
