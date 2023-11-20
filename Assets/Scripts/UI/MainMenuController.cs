@@ -20,6 +20,11 @@ public class MainMenuController : MonoBehaviour
         sceneManager.ToCasino();
     }
 
+    public void StoryMode()
+    {
+        sceneManager.ToStoryMode();
+    }
+
     public void SettingsButton()
     {
         mainManuUI.SetActive(false);

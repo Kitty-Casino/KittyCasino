@@ -24,5 +24,8 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(1);
     }
     
-
+    public void ToStoryMode()
+    {
+        SceneManager.LoadScene(8);
+    }
 }
