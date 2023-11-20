@@ -176,10 +176,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3372522033569347474, guid: 25a060a959a0aed4abd7e2b2789b1bcc, type: 3}
+      propertyPath: m_Name
+      value: Cat_RedShirt
+      objectReference: {fileID: 0}
     - target: {fileID: 636606197543093963, guid: 25a060a959a0aed4abd7e2b2789b1bcc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: bc5081686e35eea489f874b526af10e2, type: 2}
+      objectReference: {fileID: 2100000, guid: 6940bb88a21ce85449e026a6d140ed8f, type: 2}
     - target: {fileID: 919132149155446097, guid: 25a060a959a0aed4abd7e2b2789b1bcc, type: 3}
       propertyPath: m_Name
       value: Player_RedShirt

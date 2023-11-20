@@ -11,6 +11,11 @@ public class ShirtScript : MonoBehaviour
     public TextMeshProUGUI priceText;
     public string customizationName;
 
+    public Material color;
+    public Material baseDressColor;
+    public Material baseRedShirtColor;
+    public Material baseOverallColor;
+
     public Image ownedIcon;
     public Image equippedIcon;
 
@@ -34,7 +39,9 @@ public class ShirtScript : MonoBehaviour
     public void AttachShirtToPlayer()
     {
         bool isOwned = PlayerPrefs.GetInt(customizationName, 0) == 1;
-    
+
+        string shirtName = shirtPrefab.GetComponentInChildren<SkinnedMeshRenderer>().name;
+        Debug.Log(shirtName);
         if (isOwned)
         {
             if (PlayerCustomizationManager.instance != null)
@@ -48,6 +55,30 @@ public class ShirtScript : MonoBehaviour
                     customizationManager.SetShirtEquipped(shirtPrefab);
                     customizationManager.ApplyShirt(shirtPrefab);
                     UpdateVisualState();
+
+                    switch (shirtName)
+                    {
+                        case "Cat_Base":
+                            customizationManager.SetColorEquipped(color);
+                            customizationManager.ApplyColor(color);
+                            UpdateVisualState();
+                            break;
+                        case "Cat_Dress":
+                            customizationManager.SetColorEquipped(baseDressColor);
+                            customizationManager.ApplyColor(baseDressColor);
+                            UpdateVisualState();
+                            break;
+                        case "Cat_Overall":
+                            customizationManager.SetColorEquipped(baseOverallColor);
+                            customizationManager.ApplyColor(baseOverallColor);
+                            UpdateVisualState();
+                            break;
+                        case "Cat_RedShirt":
+                            customizationManager.SetColorEquipped(baseRedShirtColor);
+                            customizationManager.ApplyColor(baseRedShirtColor);
+                            UpdateVisualState();
+                            break;
+                    }
                 }
             }
 
@@ -74,6 +105,30 @@ public class ShirtScript : MonoBehaviour
                     {
                         customizationManager.SetShirtEquipped(shirtPrefab);
                         customizationManager.ApplyShirt(shirtPrefab);
+
+                        switch (shirtName)
+                        {
+                            case "Cat_Base":
+                                customizationManager.SetColorEquipped(color);
+                                customizationManager.ApplyColor(color);
+                                UpdateVisualState();
+                                break;
+                            case "Cat_Dress":
+                                customizationManager.SetColorEquipped(baseDressColor);
+                                customizationManager.ApplyColor(baseDressColor);
+                                UpdateVisualState();
+                                break;
+                            case "Cat_Overall":
+                                customizationManager.SetColorEquipped(baseOverallColor);
+                                customizationManager.ApplyColor(baseOverallColor);
+                                UpdateVisualState();
+                                break;
+                            case "Cat_RedShirt":
+                                customizationManager.SetColorEquipped(baseRedShirtColor);
+                                customizationManager.ApplyColor(baseRedShirtColor);
+                                UpdateVisualState();
+                                break;
+                        }
                     }
 
                 }

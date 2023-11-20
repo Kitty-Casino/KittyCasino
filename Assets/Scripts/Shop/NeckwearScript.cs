@@ -7,11 +7,10 @@ using TMPro;
 public class NeckwearScript : MonoBehaviour
 {
     public Material color;
-    /*
     public Material baseDressColor;
     public Material baseRedShirtColor;
     public Material baseOverallColor;
-    */
+
     public int price;
     public TextMeshProUGUI priceText;
     public string customizationName;
@@ -36,21 +35,50 @@ public class NeckwearScript : MonoBehaviour
     public void AttachNeckToPlayer()
     {
         bool isOwned = PlayerPrefs.GetInt(customizationName, 0) == 1;
+        PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
+
+        string shirtName = customizationManager.currentShirt.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name;
+        
+        Debug.Log(shirtName);
 
         if (isOwned)
         {
             if (PlayerCustomizationManager.instance != null)
             {
-                PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
 
                 customizationManager.ClearColorEquipped();
 
+                switch (shirtName)
+                {
+                    case "Cat_Base":
+                        customizationManager.SetColorEquipped(color);
+                        customizationManager.ApplyColor(color);
+                        UpdateVisualState();
+                        break;
+                    case "Cat_Dress":
+                        customizationManager.SetColorEquipped(baseDressColor);
+                        customizationManager.ApplyColor(baseDressColor);
+                        UpdateVisualState();
+                        break;
+                    case "Cat_Overall":
+                        customizationManager.SetColorEquipped(baseOverallColor);
+                        customizationManager.ApplyColor(baseOverallColor);
+                        UpdateVisualState();
+                        break;
+                    case "Cat_RedShirt":
+                        customizationManager.SetColorEquipped(baseRedShirtColor);
+                        customizationManager.ApplyColor(baseRedShirtColor);
+                        UpdateVisualState();
+                        break;
+                }
+                /*
                 if (color != null)
                 {
                     customizationManager.SetColorEquipped(color);
                     customizationManager.ApplyColor(color);
                     UpdateVisualState();
                 }
+                */
             }
 
         }
@@ -61,7 +89,6 @@ public class NeckwearScript : MonoBehaviour
             if (coinsController.totalCoins >= price)
             {
                 coinsController.DecrementCoins(price);
-                
 
                 PlayerPrefs.SetInt(customizationName, 1);
                 PlayerPrefs.Save();
@@ -69,15 +96,39 @@ public class NeckwearScript : MonoBehaviour
 
                 if (PlayerCustomizationManager.instance != null)
                 {
-                    PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
+ 
                     customizationManager.ClearColorEquipped();
 
+                    switch (shirtName)
+                    {
+                        case "Cat_Base":
+                            customizationManager.SetColorEquipped(color);
+                            customizationManager.ApplyColor(color);
+                            UpdateVisualState();
+                            break;
+                        case "Cat_Dress":
+                            customizationManager.SetColorEquipped(baseDressColor);
+                            customizationManager.ApplyColor(baseDressColor);
+                            UpdateVisualState();
+                            break;
+                        case "Cat_Overall":
+                            customizationManager.SetColorEquipped(baseOverallColor);
+                            customizationManager.ApplyColor(baseOverallColor);
+                            UpdateVisualState();
+                            break;
+                        case "Cat_RedShirt":
+                            customizationManager.SetColorEquipped(baseRedShirtColor);
+                            customizationManager.ApplyColor(baseRedShirtColor);
+                            UpdateVisualState();
+                            break;
+                    }
+                    /*
                     if (color != null)
                     {
                         customizationManager.SetColorEquipped(color);
                         customizationManager.ApplyColor(color);
                     }
-
+                    */
                 }
                 
             }

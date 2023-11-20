@@ -337,6 +337,31 @@ public class PlayerCustomizationManager : MonoBehaviour
                 currentShirt.transform.localPosition = new Vector3(0, -1, 0);
                 currentShirt.transform.localRotation = Quaternion.identity;
                 ApplyColor(colorInstance);
+                /*
+                if (SceneManager.GetActiveScene().name == "Shop")
+                {
+                    string shirtType = currentShirt.GetComponentInChildren<SkinnedMeshRenderer>().name;
+                    string colorType = currentColor.name;
+                    Debug.Log(colorType);
+                    switch (shirtType)
+                    {
+                        case "Cat_Base":
+                            break;
+                        case "Cat_Dress":
+                            break;
+                        case "Cat_Overall":
+                            break;
+                        case "Cat_RedShirt":
+                            break;
+
+                    }
+                }
+                else
+                {
+
+                }
+                */
+                
             }
         }
         else
