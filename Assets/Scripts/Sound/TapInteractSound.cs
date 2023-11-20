@@ -27,7 +27,7 @@ public class TapInteractSound : MonoBehaviour
 
     void Update()
     {
-        if (player == null && SceneManager.GetActiveScene().name == "casino")
+        if (player == null && SceneManager.GetActiveScene().name == "Casino" || player == null && SceneManager.GetActiveScene().name == "StoryCasino")
         {
             StartCoroutine(WaitOneFrame());
         }
