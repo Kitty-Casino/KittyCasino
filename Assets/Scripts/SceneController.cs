@@ -12,6 +12,10 @@ public class SceneController : MonoBehaviour
         //    customizationManager.UpdateLastVisitedScene();
         //}   
         // PlayerPrefs.DeleteAll();
+        if (SceneManager.GetActiveScene().name == "StoryCasino")
+        {
+            isInStoryMode = true;
+        }
     }
     public void ToMainMenu()
     {
