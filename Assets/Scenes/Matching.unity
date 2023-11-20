@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667656, g: 0.48427182, b: 0.56452525, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6123,6 +6123,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3631821484691341564, guid: 1dd7828a74c0eda4b84b053541f6fc10, type: 3}
   m_PrefabInstance: {fileID: 793619809}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &793619812 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1963494749775728328, guid: 1dd7828a74c0eda4b84b053541f6fc10, type: 3}
+  m_PrefabInstance: {fileID: 793619809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &793619813 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4949742260703783942, guid: 1dd7828a74c0eda4b84b053541f6fc10, type: 3}
+  m_PrefabInstance: {fileID: 793619809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &801996624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10244,6 +10266,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicController
       objectReference: {fileID: 0}
+    - target: {fileID: 6415322455434288286, guid: ac06b4e5f037ab840b5d816c6c50e80b, type: 3}
+      propertyPath: sfxSlider
+      value: 
+      objectReference: {fileID: 793619812}
+    - target: {fileID: 6415322455434288286, guid: ac06b4e5f037ab840b5d816c6c50e80b, type: 3}
+      propertyPath: musicSlider
+      value: 
+      objectReference: {fileID: 793619813}
     - target: {fileID: 7184813476758710755, guid: ac06b4e5f037ab840b5d816c6c50e80b, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -11270,6 +11300,7 @@ MonoBehaviour:
   settingsMenuUI: {fileID: 793619811}
   sceneManager: {fileID: 696374005}
   pauseButton: {fileID: 131037001}
+  mainMenuButtonText: {fileID: 1876429534}
 --- !u!114 &1375103715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13928,6 +13959,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4040938699147285271, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
   m_PrefabInstance: {fileID: 1876429531}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1876429534 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8621833484082217639, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
+  m_PrefabInstance: {fileID: 1876429531}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1880747429
 GameObject:
   m_ObjectHideFlags: 0

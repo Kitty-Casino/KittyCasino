@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour
 {
@@ -10,9 +10,19 @@ public class PauseController : MonoBehaviour
     public SceneController sceneManager;
     public GameObject pauseButton;
 
+    public TMP_Text mainMenuButtonText;
+
     void Start()
     {
-        Resume();
+        Resume(); 
+        if (SceneManager.GetActiveScene().name != "Casino" && SceneManager.GetActiveScene().name != "StoryCasino")
+        {
+            mainMenuButtonText.text = "To Casino";
+        }
+        else
+        {
+            mainMenuButtonText.text = "Main Menu";
+        }
     }
 
     void Update()
@@ -51,7 +61,16 @@ public class PauseController : MonoBehaviour
     public void MainMenuButton()
     {
         Time.timeScale = 1f;
-        sceneManager.ToMainMenu();
+
+        if (SceneManager.GetActiveScene().name != "Casino" && SceneManager.GetActiveScene().name != "StoryCasino")
+        {
+            sceneManager.ToCasino();
+        }
+        else
+        {
+            sceneManager.ToMainMenu();
+        }
+        
     }
 
     public void SettingsButton()

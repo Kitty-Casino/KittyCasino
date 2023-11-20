@@ -3457,6 +3457,7 @@ MonoBehaviour:
   settingsMenuUI: {fileID: 729983257}
   sceneManager: {fileID: 565820716}
   pauseButton: {fileID: 315587250}
+  mainMenuButtonText: {fileID: 905987019}
 --- !u!114 &490493502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6023,6 +6024,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4040938699147285271, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
   m_PrefabInstance: {fileID: 905987016}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &905987019 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8621833484082217639, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
+  m_PrefabInstance: {fileID: 905987016}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &912870311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2d8948af442871d489c6fb206711ef68, type: 3}

@@ -8790,6 +8790,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &785374347 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8621833484082217639, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
+  m_PrefabInstance: {fileID: 54949039}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &786799222
 Mesh:
   m_ObjectHideFlags: 0
@@ -23599,6 +23610,7 @@ MonoBehaviour:
   settingsMenuUI: {fileID: 1285979371}
   sceneManager: {fileID: 855416436}
   pauseButton: {fileID: 1128339648}
+  mainMenuButtonText: {fileID: 785374347}
 --- !u!114 &1791069666
 MonoBehaviour:
   m_ObjectHideFlags: 0

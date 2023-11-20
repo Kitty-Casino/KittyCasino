@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.605
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.34378916, g: 0.38239363, b: 0.44748485, a: 0.605}
+  m_IndirectSpecularColor: {r: 0.34378928, g: 0.38239378, b: 0.4474857, a: 0.605}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -32757,6 +32757,7 @@ MonoBehaviour:
   settingsMenuUI: {fileID: 1036785740}
   sceneManager: {fileID: 173362025}
   pauseButton: {fileID: 1216419836}
+  mainMenuButtonText: {fileID: 1501529890}
 --- !u!114 &1436636236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34530,6 +34531,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4594516493317270856, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
   m_PrefabInstance: {fileID: 1501529887}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1501529890 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8621833484082217639, guid: 7c292202a6a4c6643928d1411c58f229, type: 3}
+  m_PrefabInstance: {fileID: 1501529887}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1506125425 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1817d649e7aa9b04aa34ebbb1f7a59ff, type: 3}
