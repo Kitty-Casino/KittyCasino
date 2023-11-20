@@ -19,7 +19,7 @@ public class ShirtScript : MonoBehaviour
     public Image ownedIcon;
     public Image equippedIcon;
 
-    public delegate void Shirt(GameObject currentObject);
+    public delegate void Shirt();
     public static Shirt OnShirtEquip;
     private void Start()
     {
@@ -28,12 +28,12 @@ public class ShirtScript : MonoBehaviour
     }
     private void OnEnable()
     {
-        ShirtScript.OnShirtEquip += UpdateVisualState2;
+        OnShirtEquip += UpdateVisualState;
     }
 
     private void OnDisable()
     {
-        ShirtScript.OnShirtEquip -= UpdateVisualState2;
+        OnShirtEquip -= UpdateVisualState;
     }
 
     public void AttachShirtToPlayer()
@@ -48,35 +48,38 @@ public class ShirtScript : MonoBehaviour
             {
                 PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
 
+                
                 customizationManager.ClearShirtEquipped();
+                customizationManager.ClearColorEquipped();
 
                 if (shirtPrefab != null)
                 {
                     customizationManager.SetShirtEquipped(shirtPrefab);
                     customizationManager.ApplyShirt(shirtPrefab);
-                    UpdateVisualState();
+                    OnShirtEquip?.Invoke();
 
+                    // This is a stupid no good solution that breaks the equipped icon for colors 
                     switch (shirtName)
                     {
                         case "Cat_Base":
                             customizationManager.SetColorEquipped(color);
                             customizationManager.ApplyColor(color);
-                            UpdateVisualState();
+                            
                             break;
                         case "Cat_Dress":
                             customizationManager.SetColorEquipped(baseDressColor);
                             customizationManager.ApplyColor(baseDressColor);
-                            UpdateVisualState();
+                            
                             break;
                         case "Cat_Overall":
                             customizationManager.SetColorEquipped(baseOverallColor);
                             customizationManager.ApplyColor(baseOverallColor);
-                            UpdateVisualState();
+                            
                             break;
                         case "Cat_RedShirt":
                             customizationManager.SetColorEquipped(baseRedShirtColor);
                             customizationManager.ApplyColor(baseRedShirtColor);
-                            UpdateVisualState();
+                            
                             break;
                     }
                 }
@@ -94,39 +97,40 @@ public class ShirtScript : MonoBehaviour
 
                 PlayerPrefs.SetInt(customizationName, 1);
                 PlayerPrefs.Save();
-                UpdateVisualState();
 
                 if (PlayerCustomizationManager.instance != null)
                 {
                     PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
                     customizationManager.ClearShirtEquipped();
+                    // customizationManager.ClearColorEquipped();
 
                     if (shirtPrefab != null)
                     {
                         customizationManager.SetShirtEquipped(shirtPrefab);
                         customizationManager.ApplyShirt(shirtPrefab);
-
+                        OnShirtEquip?.Invoke();
+                        
                         switch (shirtName)
                         {
                             case "Cat_Base":
                                 customizationManager.SetColorEquipped(color);
                                 customizationManager.ApplyColor(color);
-                                UpdateVisualState();
+                        
                                 break;
                             case "Cat_Dress":
                                 customizationManager.SetColorEquipped(baseDressColor);
                                 customizationManager.ApplyColor(baseDressColor);
-                                UpdateVisualState();
+                                
                                 break;
                             case "Cat_Overall":
                                 customizationManager.SetColorEquipped(baseOverallColor);
                                 customizationManager.ApplyColor(baseOverallColor);
-                                UpdateVisualState();
+                     
                                 break;
                             case "Cat_RedShirt":
                                 customizationManager.SetColorEquipped(baseRedShirtColor);
                                 customizationManager.ApplyColor(baseRedShirtColor);
-                                UpdateVisualState();
+                               
                                 break;
                         }
                     }
@@ -148,22 +152,17 @@ public class ShirtScript : MonoBehaviour
 
         if (ownedIcon != null && equippedIcon != null)
         {
-            if (isOwned)
+            if (isEquipped)
             {
-                if (isEquipped)
-                {
-                    Debug.Log("Item Equipped");
-                    ownedIcon.gameObject.SetActive(false);
-                    equippedIcon.gameObject.SetActive(true);
-
-                    ShirtScript.OnShirtEquip?.Invoke(this.gameObject);
-                }
-                else
-                {
-                    Debug.Log("Item owned but not equipped");
-                    ownedIcon.gameObject.SetActive(true);
-                    equippedIcon.gameObject.SetActive(false);
-                }
+                Debug.Log("Item Equipped");
+                ownedIcon.gameObject.SetActive(false);
+                equippedIcon.gameObject.SetActive(true);
+            }
+            else if (isOwned)
+            {
+                Debug.Log("Item owned but not equipped");
+                ownedIcon.gameObject.SetActive(true);
+                equippedIcon.gameObject.SetActive(false);
             }
             else
             {
@@ -172,18 +171,5 @@ public class ShirtScript : MonoBehaviour
                 equippedIcon.gameObject.SetActive(false);
             }
         }
-
     }
-
-    private void UpdateVisualState2(GameObject currentObject)
-    {
-        if (this.gameObject == currentObject)
-            return;
-        else
-        {
-            ownedIcon.gameObject.SetActive(true);
-            equippedIcon.gameObject.SetActive(false);
-        }
-    }
-
 }

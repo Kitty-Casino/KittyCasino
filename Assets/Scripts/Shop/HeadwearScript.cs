@@ -13,10 +13,10 @@ public class HeadwearScript : MonoBehaviour
     public Image ownedIcon;
     public Image equippedIcon;
 
-    public delegate void Hat(GameObject currentObject);
-    public static Hat OnHatEquip;
+    public delegate void Hat();
+    public static event Hat OnHatEquip;
 
-    private void Start()
+    void Start()
     {
         priceText.text = "" + price;
         UpdateVisualState();
@@ -24,12 +24,12 @@ public class HeadwearScript : MonoBehaviour
 
     private void OnEnable()
     {
-        HeadwearScript.OnHatEquip += UpdateVisualState2;
+        OnHatEquip += UpdateVisualState;
     }
 
     private void OnDisable()
     {
-        HeadwearScript.OnHatEquip -= UpdateVisualState2;
+        OnHatEquip -= UpdateVisualState;
     }
 
     public void AttachHatToPlayer()
@@ -48,7 +48,7 @@ public class HeadwearScript : MonoBehaviour
                 {
                     customizationManager.SetHeadEquipped(hatPrefab);
                     customizationManager.ApplyHead(hatPrefab);
-                    UpdateVisualState();
+                    OnHatEquip?.Invoke();
                 }
             }
         }
@@ -60,25 +60,21 @@ public class HeadwearScript : MonoBehaviour
             {
                 coinsController.DecrementCoins(price);
 
-
                 PlayerPrefs.SetInt(customizationName, 1);
                 PlayerPrefs.Save();
-                UpdateVisualState();
 
                 if (PlayerCustomizationManager.instance != null)
                 {
                     PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
                     customizationManager.ClearEquippedHead();
-                    
 
                     if (hatPrefab != null)
                     {
                         customizationManager.SetHeadEquipped(hatPrefab);
                         customizationManager.ApplyHead(hatPrefab);
+                        OnHatEquip?.Invoke();
                     }
-
                 }
-
             }
             else
             {
@@ -95,22 +91,17 @@ public class HeadwearScript : MonoBehaviour
 
         if (ownedIcon != null && equippedIcon != null)
         {
-            if (isOwned)
+            if (isEquipped)
             {
-                if (isEquipped)
-                {
-                    Debug.Log("Item Equipped");
-                    ownedIcon.gameObject.SetActive(false);
-                    equippedIcon.gameObject.SetActive(true);
-
-                    HeadwearScript.OnHatEquip?.Invoke(this.gameObject);
-                }
-                else
-                {
-                    Debug.Log("Item owned but not equipped");
-                    ownedIcon.gameObject.SetActive(true);
-                    equippedIcon.gameObject.SetActive(false);
-                }
+                Debug.Log("Item Equipped");
+                ownedIcon.gameObject.SetActive(false);
+                equippedIcon.gameObject.SetActive(true);
+            }
+            else if (isOwned)
+            {
+                Debug.Log("Item owned but not equipped");
+                ownedIcon.gameObject.SetActive(true);
+                equippedIcon.gameObject.SetActive(false);
             }
             else
             {
@@ -119,18 +110,5 @@ public class HeadwearScript : MonoBehaviour
                 equippedIcon.gameObject.SetActive(false);
             }
         }
-        
     }
-
-    private void UpdateVisualState2(GameObject currentObject)
-    {
-        if (this.gameObject == currentObject)
-            return;
-        else
-        {
-            ownedIcon.gameObject.SetActive(true);
-            equippedIcon.gameObject.SetActive(false);
-        }
-    }
-
 }
