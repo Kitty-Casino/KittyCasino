@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667656, g: 0.48427182, b: 0.56452525, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667555, g: 0.48427176, b: 0.5645241, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4129,10 +4129,10 @@ MonoBehaviour:
   price: 25
   priceText: {fileID: 2070891949}
   customizationName: PinkDress
-  color: {fileID: 0}
-  baseDressColor: {fileID: 0}
-  baseRedShirtColor: {fileID: 0}
-  baseOverallColor: {fileID: 0}
+  color: {fileID: 2100000, guid: bc5081686e35eea489f874b526af10e2, type: 2}
+  baseDressColor: {fileID: 2100000, guid: 0b5094a29e8cb28489afa6b28cb40a9e, type: 2}
+  baseRedShirtColor: {fileID: 2100000, guid: 6940bb88a21ce85449e026a6d140ed8f, type: 2}
+  baseOverallColor: {fileID: 2100000, guid: a2b8d3741c02a4a44bc8f86da8d83875, type: 2}
   ownedIcon: {fileID: 1293973503}
   equippedIcon: {fileID: 1080039764}
 --- !u!114 &487125906

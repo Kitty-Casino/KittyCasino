@@ -23,24 +23,24 @@ public class SlotsController : MonoBehaviour
     // Defines payout values for 3 and 2 matches using dictionaries, if you want to modify payouts do that here
     private Dictionary<string, int> threeMatchesPayouts = new Dictionary<string, int>
     {
-        { "Diamond", 200 },
-        { "Crown", 400 },
-        { "Melon", 600 },
-        { "Bar", 800 },
-        { "Seven", 1500 },
-        { "Cherry", 3000 },
-        { "Lemon", 5000 },
+        { "Diamond", 20 },
+        { "Crown", 40 },
+        { "Melon", 60 },
+        { "Bar", 80 },
+        { "Seven", 150 },
+        { "Cherry", 300 },
+        { "Lemon", 500 },
     };
 
     private Dictionary<string, int> twoMatchesPayouts = new Dictionary<string, int>
     {
-        { "Diamond", 100 },
-        { "Crown", 300 },
-        { "Melon", 500 },
-        { "Bar", 700 },
-        { "Seven", 1000 },
-        { "Cherry", 2000 },
-        { "Lemon", 4000 },
+        { "Diamond", 10 },
+        { "Crown", 30 },
+        { "Melon", 50 },
+        { "Bar", 70 },
+        { "Seven", 100 },
+        { "Cherry", 200 },
+        { "Lemon", 400 },
     };
 
     // Start is called before the first frame update

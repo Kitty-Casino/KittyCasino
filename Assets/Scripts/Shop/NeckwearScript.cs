@@ -16,7 +16,7 @@ public class NeckwearScript : MonoBehaviour
     public string customizationName;
     public Image equippedIcon;
 
-    public delegate void Color(NeckwearScript neckwearScript);
+    public delegate void Color();
     public static Color OnColorEquip;
     private void Start()
     {
@@ -25,12 +25,12 @@ public class NeckwearScript : MonoBehaviour
     }
     private void OnEnable()
     {
-        NeckwearScript.OnColorEquip += UpdateVisualState2;
+        OnColorEquip += UpdateVisualState;
     }
 
     private void OnDisable()
     {
-        NeckwearScript.OnColorEquip -= UpdateVisualState2;
+        OnColorEquip -= UpdateVisualState;
     }
     public void AttachNeckToPlayer()
     {
@@ -53,22 +53,22 @@ public class NeckwearScript : MonoBehaviour
                     case "Cat_Base":
                         customizationManager.SetColorEquipped(color);
                         customizationManager.ApplyColor(color);
-                        UpdateVisualState();
+                        OnColorEquip.Invoke();
                         break;
                     case "Cat_Dress":
                         customizationManager.SetColorEquipped(baseDressColor);
                         customizationManager.ApplyColor(baseDressColor);
-                        UpdateVisualState();
+                        OnColorEquip.Invoke();
                         break;
                     case "Cat_Overall":
                         customizationManager.SetColorEquipped(baseOverallColor);
                         customizationManager.ApplyColor(baseOverallColor);
-                        UpdateVisualState();
+                        OnColorEquip.Invoke();
                         break;
                     case "Cat_RedShirt":
                         customizationManager.SetColorEquipped(baseRedShirtColor);
                         customizationManager.ApplyColor(baseRedShirtColor);
-                        UpdateVisualState();
+                        OnColorEquip.Invoke();
                         break;
                 }
                 /*
@@ -92,7 +92,6 @@ public class NeckwearScript : MonoBehaviour
 
                 PlayerPrefs.SetInt(customizationName, 1);
                 PlayerPrefs.Save();
-                UpdateVisualState();
 
                 if (PlayerCustomizationManager.instance != null)
                 {
@@ -104,22 +103,22 @@ public class NeckwearScript : MonoBehaviour
                         case "Cat_Base":
                             customizationManager.SetColorEquipped(color);
                             customizationManager.ApplyColor(color);
-                            UpdateVisualState();
+                            OnColorEquip.Invoke();
                             break;
                         case "Cat_Dress":
                             customizationManager.SetColorEquipped(baseDressColor);
                             customizationManager.ApplyColor(baseDressColor);
-                            UpdateVisualState();
+                            OnColorEquip.Invoke();
                             break;
                         case "Cat_Overall":
                             customizationManager.SetColorEquipped(baseOverallColor);
                             customizationManager.ApplyColor(baseOverallColor);
-                            UpdateVisualState();
+                            OnColorEquip.Invoke();
                             break;
                         case "Cat_RedShirt":
                             customizationManager.SetColorEquipped(baseRedShirtColor);
                             customizationManager.ApplyColor(baseRedShirtColor);
-                            UpdateVisualState();
+                            OnColorEquip.Invoke();
                             break;
                     }
                     /*
@@ -147,38 +146,16 @@ public class NeckwearScript : MonoBehaviour
 
         if (equippedIcon != null)
         {
-            if (isOwned)
+            if (isEquipped)
             {
-                if (isEquipped)
-                {
-                    Debug.Log("Item Equipped");
-                    equippedIcon.gameObject.SetActive(true);
-
-                    NeckwearScript.OnColorEquip?.Invoke(this);
-                }
-                else
-                {
-                    Debug.Log("Item owned but not equipped");
-                    equippedIcon.gameObject.SetActive(false);
-                }
+                Debug.Log("Item equipped");
+                equippedIcon.gameObject.SetActive(true);
             }
             else
             {
-                Debug.Log("Item neither owned nor equipped");
+                Debug.Log("Item not equipped");
                 equippedIcon.gameObject.SetActive(false);
             }
-        }
-    }
-
-    private void UpdateVisualState2(NeckwearScript neckwearScript)
-    {
-        if (this == neckwearScript)
-        {
-            equippedIcon.gameObject.SetActive(true);
-        }
-        else
-        {
-            equippedIcon.gameObject.SetActive(false);
         }
     }
 }

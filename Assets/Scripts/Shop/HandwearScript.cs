@@ -13,7 +13,7 @@ public class HandwearScript : MonoBehaviour
     public Image ownedIcon;
     public Image equippedIcon;
 
-    public delegate void Hand(GameObject currentObject);
+    public delegate void Hand();
     public static Hand OnHandEquip;
 
     private void Start()
@@ -24,12 +24,12 @@ public class HandwearScript : MonoBehaviour
 
     private void OnEnable()
     {
-        HandwearScript.OnHandEquip += UpdateVisualState2;
+        OnHandEquip += UpdateVisualState;
     }
 
     private void OnDisable()
     {
-        HandwearScript.OnHandEquip -= UpdateVisualState2;
+        OnHandEquip -= UpdateVisualState;
     }
 
     public void AttachHandsToPlayer()
@@ -48,7 +48,7 @@ public class HandwearScript : MonoBehaviour
                 {
                     customizationManager.SetHandEquipped(handsPrefab);
                     customizationManager.ApplyHands(handsPrefab);
-                    UpdateVisualState();
+                    OnHandEquip?.Invoke();
                 }
             }
 
@@ -64,7 +64,6 @@ public class HandwearScript : MonoBehaviour
 
                 PlayerPrefs.SetInt(customizationName, 1);
                 PlayerPrefs.Save();
-                UpdateVisualState();
 
                 if (PlayerCustomizationManager.instance != null)
                 {
@@ -75,6 +74,7 @@ public class HandwearScript : MonoBehaviour
                     {
                         customizationManager.SetHandEquipped(handsPrefab);
                         customizationManager.ApplyHands(handsPrefab);
+                        OnHandEquip?.Invoke();
                     }
 
                 }
@@ -95,22 +95,17 @@ public class HandwearScript : MonoBehaviour
 
         if (ownedIcon != null && equippedIcon != null)
         {
-            if (isOwned)
+            if (isEquipped)
             {
-                if (isEquipped)
-                {
-                    Debug.Log("Item Equipped");
-                    ownedIcon.gameObject.SetActive(false);
-                    equippedIcon.gameObject.SetActive(true);
-
-                    HandwearScript.OnHandEquip?.Invoke(this.gameObject);
-                }
-                else
-                {
-                    Debug.Log("Item owned but not equipped");
-                    ownedIcon.gameObject.SetActive(true);
-                    equippedIcon.gameObject.SetActive(false);
-                }
+                Debug.Log("Item Equipped");
+                ownedIcon.gameObject.SetActive(false);
+                equippedIcon.gameObject.SetActive(true);
+            }
+            else if (isOwned)
+            {
+                Debug.Log("Item owned but not equipped");
+                ownedIcon.gameObject.SetActive(true);
+                equippedIcon.gameObject.SetActive(false);
             }
             else
             {
@@ -118,18 +113,7 @@ public class HandwearScript : MonoBehaviour
                 ownedIcon.gameObject.SetActive(false);
                 equippedIcon.gameObject.SetActive(false);
             }
-        }
 
-    }
-
-    private void UpdateVisualState2(GameObject currentObject)
-    {
-        if (this.gameObject == currentObject)
-            return;
-        else
-        {
-            ownedIcon.gameObject.SetActive(true);
-            equippedIcon.gameObject.SetActive(false);
         }
     }
 }

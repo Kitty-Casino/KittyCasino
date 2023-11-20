@@ -15,7 +15,7 @@ public class EyewearScript : MonoBehaviour
     public Image ownedIcon;
     public Image equippedIcon;
 
-    public delegate void Eyewear(GameObject currentObject);
+    public delegate void Eyewear();
     public static Eyewear OnEyeEquip;
     private void Awake()
     {
@@ -24,12 +24,12 @@ public class EyewearScript : MonoBehaviour
     }
     private void OnEnable()
     {
-        EyewearScript.OnEyeEquip += UpdateVisualState2;
+        OnEyeEquip += UpdateVisualState;
     }
 
     private void OnDisable()
     {
-        EyewearScript.OnEyeEquip -= UpdateVisualState2;
+        OnEyeEquip -= UpdateVisualState;
     }
     public void AttachEyesToPlayer()
     {
@@ -47,7 +47,7 @@ public class EyewearScript : MonoBehaviour
                 {
                     customizationManager.SetEyewearEquipped(eyesPrefab);
                     customizationManager.ApplyEyes(eyesPrefab);
-                    UpdateVisualState();
+                    OnEyeEquip.Invoke();
                 }
 
             }
@@ -63,7 +63,6 @@ public class EyewearScript : MonoBehaviour
 
                 PlayerPrefs.SetInt(customizationName, 1);
                 PlayerPrefs.Save();
-                UpdateVisualState();
 
                 if (PlayerCustomizationManager.instance != null)
                 {
@@ -74,6 +73,7 @@ public class EyewearScript : MonoBehaviour
                     {
                         customizationManager.SetEyewearEquipped(eyesPrefab);
                         customizationManager.ApplyEyes(eyesPrefab);
+                        OnEyeEquip?.Invoke();
                     }
 
                 }
@@ -94,22 +94,17 @@ public class EyewearScript : MonoBehaviour
 
         if (ownedIcon != null && equippedIcon != null)
         {
-            if (isOwned)
+            if (isEquipped)
             {
-                if (isEquipped)
-                {
-                    Debug.Log("Item Equipped");
-                    ownedIcon.gameObject.SetActive(false);
-                    equippedIcon.gameObject.SetActive(true);
-
-                    EyewearScript.OnEyeEquip?.Invoke(this.gameObject);
-                }
-                else
-                {
-                    Debug.Log("Item owned but not equipped");
-                    ownedIcon.gameObject.SetActive(true);
-                    equippedIcon.gameObject.SetActive(false);
-                }
+                Debug.Log("Item Equipped");
+                ownedIcon.gameObject.SetActive(false);
+                equippedIcon.gameObject.SetActive(true);
+            }
+            else if (isOwned)
+            {
+                Debug.Log("Item owned but not equipped");
+                ownedIcon.gameObject.SetActive(true);
+                equippedIcon.gameObject.SetActive(false);
             }
             else
             {
@@ -117,18 +112,6 @@ public class EyewearScript : MonoBehaviour
                 ownedIcon.gameObject.SetActive(false);
                 equippedIcon.gameObject.SetActive(false);
             }
-        }
-
-    }
-
-    private void UpdateVisualState2(GameObject currentObject)
-    {
-        if (this.gameObject == currentObject)
-            return;
-        else
-        {
-            ownedIcon.gameObject.SetActive(true);
-            equippedIcon.gameObject.SetActive(false);
         }
     }
 }
