@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    public static bool isInStoryMode = false;
     public void Start()
     {
         //if (SceneManager.GetActiveScene().name != "Casino" && SceneManager.GetActiveScene().name != "MainMenu")
@@ -14,16 +15,26 @@ public class SceneController : MonoBehaviour
     }
     public void ToMainMenu()
     {
+        isInStoryMode = false;
         SceneManager.LoadScene(0);
     }
 
     public void ToCasino()
     {
-        SceneManager.LoadScene(1);
+        if (!isInStoryMode)
+        {
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            SceneManager.LoadScene(8);
+        }
+        
     }
     
     public void ToStoryMode()
     {
+        isInStoryMode = true;
         SceneManager.LoadScene(8);
     }
 }
