@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     // Card hiding dealer's 2nd card
     public GameObject hideCard;
+
     public GameObject winPanel;
     public GameObject losePanel;
 
@@ -154,6 +155,7 @@ public class GameManager : MonoBehaviour
             coinsController.DecrementCoins(intBet);
             pot += (intBet);
             betText.text = "Current Bet: \n" + "$" + pot.ToString();
+            casinoButtonObject.SetActive(false);
        }
     }
 
