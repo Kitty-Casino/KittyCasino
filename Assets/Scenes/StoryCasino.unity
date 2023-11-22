@@ -22550,7 +22550,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh172002
+  m_Name: pb_Mesh31184
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -31957,7 +31957,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Scram!
 
-        Come back when you have 50 coins'
+        Come back when you have 75 coins'
       objectReference: {fileID: 0}
     - target: {fileID: 5389731509020930109, guid: 7d78366cd70cec2438cd65d474374b47, type: 3}
       propertyPath: m_fontSize
