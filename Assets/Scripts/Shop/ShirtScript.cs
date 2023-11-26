@@ -11,11 +11,6 @@ public class ShirtScript : MonoBehaviour
     public TextMeshProUGUI priceText;
     public string customizationName;
 
-    public Material color;
-    public Material baseDressColor;
-    public Material baseRedShirtColor;
-    public Material baseOverallColor;
-
     public Image ownedIcon;
     public Image equippedIcon;
 
@@ -40,8 +35,6 @@ public class ShirtScript : MonoBehaviour
     {
         bool isOwned = PlayerPrefs.GetInt(customizationName, 0) == 1;
 
-        string shirtName = shirtPrefab.GetComponentInChildren<SkinnedMeshRenderer>().name;
-        Debug.Log(shirtName);
         if (isOwned)
         {
             if (PlayerCustomizationManager.instance != null)
@@ -57,31 +50,6 @@ public class ShirtScript : MonoBehaviour
                     customizationManager.SetShirtEquipped(shirtPrefab);
                     customizationManager.ApplyShirt(shirtPrefab);
                     OnShirtEquip?.Invoke();
-
-                    // This is a stupid no good solution that breaks the equipped icon for colors 
-                    switch (shirtName)
-                    {
-                        case "Cat_Base":
-                            customizationManager.SetColorEquipped(color);
-                            customizationManager.ApplyColor(color);
-                            
-                            break;
-                        case "Cat_Dress":
-                            customizationManager.SetColorEquipped(baseDressColor);
-                            customizationManager.ApplyColor(baseDressColor);
-                            
-                            break;
-                        case "Cat_Overall":
-                            customizationManager.SetColorEquipped(baseOverallColor);
-                            customizationManager.ApplyColor(baseOverallColor);
-                            
-                            break;
-                        case "Cat_RedShirt":
-                            customizationManager.SetColorEquipped(baseRedShirtColor);
-                            customizationManager.ApplyColor(baseRedShirtColor);
-                            
-                            break;
-                    }
                 }
             }
 
@@ -102,37 +70,12 @@ public class ShirtScript : MonoBehaviour
                 {
                     PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
                     customizationManager.ClearShirtEquipped();
-                    // customizationManager.ClearColorEquipped();
 
                     if (shirtPrefab != null)
                     {
                         customizationManager.SetShirtEquipped(shirtPrefab);
                         customizationManager.ApplyShirt(shirtPrefab);
                         OnShirtEquip?.Invoke();
-                        
-                        switch (shirtName)
-                        {
-                            case "Cat_Base":
-                                customizationManager.SetColorEquipped(color);
-                                customizationManager.ApplyColor(color);
-                        
-                                break;
-                            case "Cat_Dress":
-                                customizationManager.SetColorEquipped(baseDressColor);
-                                customizationManager.ApplyColor(baseDressColor);
-                                
-                                break;
-                            case "Cat_Overall":
-                                customizationManager.SetColorEquipped(baseOverallColor);
-                                customizationManager.ApplyColor(baseOverallColor);
-                     
-                                break;
-                            case "Cat_RedShirt":
-                                customizationManager.SetColorEquipped(baseRedShirtColor);
-                                customizationManager.ApplyColor(baseRedShirtColor);
-                               
-                                break;
-                        }
                     }
 
                 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.605
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.34378928, g: 0.38239378, b: 0.4474857, a: 0.605}
+  m_IndirectSpecularColor: {r: 0.34378916, g: 0.38239363, b: 0.44748485, a: 0.605}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -20914,8 +20914,9 @@ MonoBehaviour:
   eyeSlot: {fileID: 0}
   currentEyes: {fileID: 0}
   eyeInstance: {fileID: 0}
-  currentColor: {fileID: 0}
-  colorInstance: {fileID: 0}
+  baseColor: {r: 0.48235294, g: 0.5686275, b: 0.80784315, a: 0}
+  currentColor: {r: 0.48235294, g: 0.5686275, b: 0.80784315, a: 0}
+  colorInstance: {r: 0.48235294, g: 0.5686275, b: 0.80784315, a: 0}
   player: {fileID: 0}
   currentShirt: {fileID: 0}
   shirtInstance: {fileID: 0}

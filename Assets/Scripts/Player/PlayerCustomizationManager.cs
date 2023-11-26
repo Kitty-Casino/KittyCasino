@@ -22,8 +22,8 @@ public class PlayerCustomizationManager : MonoBehaviour
     public GameObject currentEyes;
     public GameObject eyeInstance;
 
-    public Material currentColor;
-    public Material colorInstance;
+    public Color currentColor;
+    public Color colorInstance;
 
     public Transform player;
     public GameObject currentShirt;
@@ -224,7 +224,7 @@ public class PlayerCustomizationManager : MonoBehaviour
         }
         //SaveCustomization();
     }
-
+    /*
     public void SaveCustomization()
     {
         if (currentShirt != null)
@@ -267,6 +267,7 @@ public class PlayerCustomizationManager : MonoBehaviour
         {
             PlayerPrefs.DeleteKey("CurrentRightHand");
         }
+        
         if (colorInstance != null)
         {
             PlayerPrefs.SetString("CurrentColor", colorInstance.name);
@@ -275,7 +276,7 @@ public class PlayerCustomizationManager : MonoBehaviour
         {
             PlayerPrefs.DeleteKey("CurrentColor");
         }
-
+        
         PlayerPrefs.Save();
     }
 
@@ -310,15 +311,16 @@ public class PlayerCustomizationManager : MonoBehaviour
             righthandName = PlayerPrefs.GetString("CurrentRightHand");
             ApplyRightHands(Resources.Load<GameObject>(righthandName));
         }
-
+        /*
         if (PlayerPrefs.HasKey("CurrentColor"))
         {
             colorName = PlayerPrefs.GetString("CurrentColor");
-            ApplyColor(Resources.Load<Material>(colorName));
+            ApplyColor(Resources.Load<Color>(colorName));
         }
+        
     }
+    */
 
-    
     public void ApplyShirt(GameObject shirtPrefab)
     {
         shirtInstance = shirtPrefab;
@@ -399,7 +401,7 @@ public class PlayerCustomizationManager : MonoBehaviour
             currentEyes.transform.localRotation = Quaternion.identity;
         }
     }
-    public void ApplyColor(Material color)
+    public void ApplyColor(Color color)
     {
         colorInstance = color;
         if (playerInstance != null)
@@ -408,8 +410,8 @@ public class PlayerCustomizationManager : MonoBehaviour
             if (skinnedMesh != null)
             {
                 Material material = skinnedMesh.material;
-                material = color;
-                skinnedMesh.material = material;    
+                material.color = color;
+                currentColor = color;
             }
         }
     }
@@ -534,16 +536,16 @@ public class PlayerCustomizationManager : MonoBehaviour
         eyeInstance = null;
     }
     // ----------------------------------------------
-    public bool IsColorEquipped(Material color)
+    public bool IsColorEquipped(Color color)
     {
         return colorInstance == color;
     }
-    public void SetColorEquipped(Material color)
+    public void SetColorEquipped(Color color)
     {
         colorInstance = color;
     }
     public void ClearColorEquipped()
     {
-        colorInstance = null;                                                                       
+        colorInstance = currentColor;                                                                       
     }
 }

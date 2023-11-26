@@ -6,18 +6,15 @@ using TMPro;
 
 public class NeckwearScript : MonoBehaviour
 {
-    public Material color;
-    public Material baseDressColor;
-    public Material baseRedShirtColor;
-    public Material baseOverallColor;
+    public Color color;
 
     public int price;
     public TextMeshProUGUI priceText;
     public string customizationName;
     public Image equippedIcon;
 
-    public delegate void Color();
-    public static Color OnColorEquip;
+    public delegate void TheColor();
+    public static TheColor OnColorEquip;
     private void Start()
     {
         priceText.text = "" + price;
@@ -37,10 +34,6 @@ public class NeckwearScript : MonoBehaviour
         bool isOwned = PlayerPrefs.GetInt(customizationName, 0) == 1;
         PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
 
-        string shirtName = customizationManager.currentShirt.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name;
-        
-        Debug.Log(shirtName);
-
         if (isOwned)
         {
             if (PlayerCustomizationManager.instance != null)
@@ -48,37 +41,13 @@ public class NeckwearScript : MonoBehaviour
 
                 customizationManager.ClearColorEquipped();
 
-                switch (shirtName)
-                {
-                    case "Cat_Base":
-                        customizationManager.SetColorEquipped(color);
-                        customizationManager.ApplyColor(color);
-                        OnColorEquip.Invoke();
-                        break;
-                    case "Cat_Dress":
-                        customizationManager.SetColorEquipped(baseDressColor);
-                        customizationManager.ApplyColor(baseDressColor);
-                        OnColorEquip.Invoke();
-                        break;
-                    case "Cat_Overall":
-                        customizationManager.SetColorEquipped(baseOverallColor);
-                        customizationManager.ApplyColor(baseOverallColor);
-                        OnColorEquip.Invoke();
-                        break;
-                    case "Cat_RedShirt":
-                        customizationManager.SetColorEquipped(baseRedShirtColor);
-                        customizationManager.ApplyColor(baseRedShirtColor);
-                        OnColorEquip.Invoke();
-                        break;
-                }
-                /*
                 if (color != null)
                 {
                     customizationManager.SetColorEquipped(color);
                     customizationManager.ApplyColor(color);
-                    UpdateVisualState();
+                    OnColorEquip.Invoke();
                 }
-                */
+                
             }
 
         }
@@ -98,36 +67,12 @@ public class NeckwearScript : MonoBehaviour
  
                     customizationManager.ClearColorEquipped();
 
-                    switch (shirtName)
-                    {
-                        case "Cat_Base":
-                            customizationManager.SetColorEquipped(color);
-                            customizationManager.ApplyColor(color);
-                            OnColorEquip.Invoke();
-                            break;
-                        case "Cat_Dress":
-                            customizationManager.SetColorEquipped(baseDressColor);
-                            customizationManager.ApplyColor(baseDressColor);
-                            OnColorEquip.Invoke();
-                            break;
-                        case "Cat_Overall":
-                            customizationManager.SetColorEquipped(baseOverallColor);
-                            customizationManager.ApplyColor(baseOverallColor);
-                            OnColorEquip.Invoke();
-                            break;
-                        case "Cat_RedShirt":
-                            customizationManager.SetColorEquipped(baseRedShirtColor);
-                            customizationManager.ApplyColor(baseRedShirtColor);
-                            OnColorEquip.Invoke();
-                            break;
-                    }
-                    /*
                     if (color != null)
                     {
                         customizationManager.SetColorEquipped(color);
                         customizationManager.ApplyColor(color);
+                        OnColorEquip.Invoke();
                     }
-                    */
                 }
                 
             }

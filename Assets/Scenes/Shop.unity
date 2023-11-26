@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667555, g: 0.48427176, b: 0.5645241, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -989,10 +989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a785b06b7380c49910d1ba84a86c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {fileID: 2100000, guid: fb5a1a89206223e43b35cfaa42528570, type: 2}
-  baseDressColor: {fileID: 2100000, guid: 0e1136b7c3351d94cb28b65ea99dcda9, type: 2}
-  baseRedShirtColor: {fileID: 2100000, guid: ad17b1b2eac489f4cb9100b30bc622bf, type: 2}
-  baseOverallColor: {fileID: 2100000, guid: 4a007c1a08c134c46933cd766b2d7b4b, type: 2}
+  color: {r: 0.75294125, g: 0.015686275, b: 0.019607844, a: 1}
   price: 0
   priceText: {fileID: 558061469}
   customizationName: Red
@@ -2723,10 +2720,6 @@ MonoBehaviour:
   price: 0
   priceText: {fileID: 1146343758}
   customizationName: NoShirt
-  color: {fileID: 0}
-  baseDressColor: {fileID: 0}
-  baseRedShirtColor: {fileID: 0}
-  baseOverallColor: {fileID: 0}
   ownedIcon: {fileID: 453657015}
   equippedIcon: {fileID: 1737160839}
 --- !u!1 &282034238
@@ -2956,10 +2949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a785b06b7380c49910d1ba84a86c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {fileID: 2100000, guid: 31ce7c2b6580a93499c078aefb4c2377, type: 2}
-  baseDressColor: {fileID: 2100000, guid: 7852ef461cbf82d41a6a89b39918d798, type: 2}
-  baseRedShirtColor: {fileID: 2100000, guid: 3340d573d7afafd45ac7e867b9aed9ed, type: 2}
-  baseOverallColor: {fileID: 2100000, guid: e9c49acc08b9a414385c5eb47a8ebc2f, type: 2}
+  color: {r: 0.9568628, g: 0.48627454, b: 0.882353, a: 1}
   price: 0
   priceText: {fileID: 1090125526}
   customizationName: Pink
@@ -3960,10 +3950,6 @@ MonoBehaviour:
   price: 250
   priceText: {fileID: 1130048117}
   customizationName: RedShirt
-  color: {fileID: 0}
-  baseDressColor: {fileID: 0}
-  baseRedShirtColor: {fileID: 0}
-  baseOverallColor: {fileID: 0}
   ownedIcon: {fileID: 1988862510}
   equippedIcon: {fileID: 945464647}
 --- !u!114 &429206815
@@ -5132,10 +5118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a785b06b7380c49910d1ba84a86c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {fileID: 2100000, guid: 0d91b7736bcc0ca49a3e712e4550d062, type: 2}
-  baseDressColor: {fileID: 2100000, guid: 313d86067808f244d8c4420800adedd6, type: 2}
-  baseRedShirtColor: {fileID: 2100000, guid: c9caff2748486b94e946c18a8a65e3b6, type: 2}
-  baseOverallColor: {fileID: 2100000, guid: 2701023bf9183c340853094b74447ece, type: 2}
+  color: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 1}
   price: 0
   priceText: {fileID: 848293157}
   customizationName: Grey
@@ -5409,10 +5392,6 @@ MonoBehaviour:
   price: 25
   priceText: {fileID: 2070891949}
   customizationName: PinkDress
-  color: {fileID: 2100000, guid: bc5081686e35eea489f874b526af10e2, type: 2}
-  baseDressColor: {fileID: 2100000, guid: 0b5094a29e8cb28489afa6b28cb40a9e, type: 2}
-  baseRedShirtColor: {fileID: 2100000, guid: 6940bb88a21ce85449e026a6d140ed8f, type: 2}
-  baseOverallColor: {fileID: 2100000, guid: a2b8d3741c02a4a44bc8f86da8d83875, type: 2}
   ownedIcon: {fileID: 1293973503}
   equippedIcon: {fileID: 1080039764}
 --- !u!114 &487125906
@@ -8726,10 +8705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a785b06b7380c49910d1ba84a86c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {fileID: 2100000, guid: 4bd8298bf2dcbf7408dd0b1e19448634, type: 2}
-  baseDressColor: {fileID: 2100000, guid: 2daf6025ef543c24fbd24aa136280238, type: 2}
-  baseRedShirtColor: {fileID: 2100000, guid: bb7360d81fa5a0143a014a9dfdc35612, type: 2}
-  baseOverallColor: {fileID: 2100000, guid: dc4d5697206fa204ea16ed3faabd84d9, type: 2}
+  color: {r: 0, g: 0, b: 0, a: 0}
   price: 0
   priceText: {fileID: 155949928}
   customizationName: Black
@@ -17415,10 +17391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a785b06b7380c49910d1ba84a86c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {fileID: 2100000, guid: a639e6d0b048b8f449eb5cac6d8f8b45, type: 2}
-  baseDressColor: {fileID: 2100000, guid: 9314d40858c737b408186cb1af8026b6, type: 2}
-  baseRedShirtColor: {fileID: 2100000, guid: e5233359b18e63540b4807975d648107, type: 2}
-  baseOverallColor: {fileID: 2100000, guid: dfcd8af2aa400fc46a70a19f6d747983, type: 2}
+  color: {r: 0.69803923, g: 0.454902, b: 0.19215688, a: 1}
   price: 0
   priceText: {fileID: 1189815217}
   customizationName: Brown
@@ -18787,10 +18760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a785b06b7380c49910d1ba84a86c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {fileID: 2100000, guid: ba6fc02dfa4d6d346ab98a9a76758b41, type: 2}
-  baseDressColor: {fileID: 2100000, guid: 71efc317c9cfb014490a90f0f5ec3232, type: 2}
-  baseRedShirtColor: {fileID: 2100000, guid: dbcbee0948b6dde44a1af11b2365e9e5, type: 2}
-  baseOverallColor: {fileID: 2100000, guid: cb1d939008f9058478a1017d06dfca7d, type: 2}
+  color: {r: 1, g: 0.52156866, b: 0, a: 1}
   price: 0
   priceText: {fileID: 1043000748}
   customizationName: Orange
@@ -19703,10 +19673,6 @@ MonoBehaviour:
   price: 250
   priceText: {fileID: 2075785782}
   customizationName: Overalls
-  color: {fileID: 0}
-  baseDressColor: {fileID: 0}
-  baseRedShirtColor: {fileID: 0}
-  baseOverallColor: {fileID: 0}
   ownedIcon: {fileID: 486250447}
   equippedIcon: {fileID: 1743929953}
 --- !u!114 &1433241621
@@ -21239,10 +21205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a785b06b7380c49910d1ba84a86c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {fileID: 2100000, guid: bc5081686e35eea489f874b526af10e2, type: 2}
-  baseDressColor: {fileID: 2100000, guid: 0b5094a29e8cb28489afa6b28cb40a9e, type: 2}
-  baseRedShirtColor: {fileID: 2100000, guid: 6940bb88a21ce85449e026a6d140ed8f, type: 2}
-  baseOverallColor: {fileID: 2100000, guid: a2b8d3741c02a4a44bc8f86da8d83875, type: 2}
+  color: {r: 0.48235297, g: 0.5686275, b: 0.8078432, a: 1}
   price: 0
   priceText: {fileID: 1846458804}
   customizationName: Blue
@@ -22207,10 +22170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a785b06b7380c49910d1ba84a86c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {fileID: 2100000, guid: a2c51d320a580d849a480e2876d2917d, type: 2}
-  baseDressColor: {fileID: 2100000, guid: 9bd4a0241ae09b448a9291f136e102ac, type: 2}
-  baseRedShirtColor: {fileID: 2100000, guid: 5d154bd6bdf632e43bd95dbb3a5e1fa4, type: 2}
-  baseOverallColor: {fileID: 2100000, guid: 385399e752c0b664290a4cad5b4b13bb, type: 2}
+  color: {r: 0.9843138, g: 0.9843138, b: 0.9843138, a: 1}
   price: 0
   priceText: {fileID: 1528892498}
   customizationName: White
@@ -24596,8 +24556,9 @@ MonoBehaviour:
   eyeSlot: {fileID: 0}
   currentEyes: {fileID: 0}
   eyeInstance: {fileID: 0}
-  currentColor: {fileID: 0}
-  colorInstance: {fileID: 0}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
+  colorInstance: {r: 0, g: 0, b: 0, a: 0}
   player: {fileID: 0}
   currentShirt: {fileID: 0}
   shirtInstance: {fileID: 0}
@@ -24841,10 +24802,6 @@ MonoBehaviour:
   price: 0
   priceText: {fileID: 949548206}
   customizationName: IGShirt
-  color: {fileID: 0}
-  baseDressColor: {fileID: 0}
-  baseRedShirtColor: {fileID: 0}
-  baseOverallColor: {fileID: 0}
   ownedIcon: {fileID: 796172569}
   equippedIcon: {fileID: 6926113}
 --- !u!114 &1924675513
@@ -26526,10 +26483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a785b06b7380c49910d1ba84a86c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {fileID: 2100000, guid: 8cf76941f7697634cb8bd082deefc498, type: 2}
-  baseDressColor: {fileID: 2100000, guid: 1be2504a995385a43b9bfd31967e4d34, type: 2}
-  baseRedShirtColor: {fileID: 2100000, guid: c9195076268660641ba785ed7eaa2e25, type: 2}
-  baseOverallColor: {fileID: 2100000, guid: 108df9e329f61a34cb137105b210464c, type: 2}
+  color: {r: 0.40784317, g: 0.29803923, b: 0.48235297, a: 1}
   price: 0
   priceText: {fileID: 447708819}
   customizationName: Purple

@@ -23065,8 +23065,9 @@ MonoBehaviour:
   eyeSlot: {fileID: 0}
   currentEyes: {fileID: 0}
   eyeInstance: {fileID: 0}
-  currentColor: {fileID: 0}
-  colorInstance: {fileID: 0}
+  baseColor: {r: 0.48235294, g: 0.5686275, b: 0.80784315, a: 0}
+  currentColor: {r: 0.48235294, g: 0.5686275, b: 0.80784315, a: 0}
+  colorInstance: {r: 0.48235294, g: 0.5686275, b: 0.80784315, a: 0}
   player: {fileID: 0}
   currentShirt: {fileID: 0}
   shirtInstance: {fileID: 0}
