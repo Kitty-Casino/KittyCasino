@@ -9,6 +9,7 @@ TagManager:
   - Sound
   - Prompt
   - DialogueManager
+  - Christmas
   layers:
   - Default
   - TransparentFX

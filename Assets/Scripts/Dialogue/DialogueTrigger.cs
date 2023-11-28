@@ -19,7 +19,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (isMainManager)
         {
-            // storyProgression = PlayerPrefs.GetInt("Progression");
+            storyProgression = PlayerPrefs.GetInt("Progression");
             switch (storyProgression)
             {
                 case 0:

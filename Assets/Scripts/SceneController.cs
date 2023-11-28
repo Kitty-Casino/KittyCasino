@@ -1,11 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneController : MonoBehaviour
 {
     public static bool isInStoryMode = false;
+    public static bool isChristmas = false;
+    private GameObject christmasDecorations;
+    private Toggle christmasToggle;
     public void Start()
     {
+        
         //if (SceneManager.GetActiveScene().name != "Casino" && SceneManager.GetActiveScene().name != "MainMenu")
         //{
         //    PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
@@ -16,6 +21,32 @@ public class SceneController : MonoBehaviour
         {
             isInStoryMode = true;
         }
+
+        if (SceneManager.GetActiveScene().name == "Casino")
+        {
+            christmasDecorations = GameObject.FindWithTag("Christmas");
+            christmasDecorations.SetActive(false);
+
+            if (isChristmas)
+            {
+                christmasDecorations.SetActive(true);
+            }
+        }
+        
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            christmasToggle = GameObject.Find("ChristmasToggle").GetComponent<Toggle>();
+
+            if (isChristmas)
+            {
+                christmasToggle.isOn = true;
+            }
+            else
+            {
+                christmasToggle.isOn = false;
+            }
+        }
+        
     }
     public void ToMainMenu()
     {
@@ -40,5 +71,20 @@ public class SceneController : MonoBehaviour
     {
         isInStoryMode = true;
         SceneManager.LoadScene(8);
+    }
+
+    public void ToggleChristmas(bool christmasToggle)
+    {
+        if (christmasToggle)
+        {
+            Debug.Log("Christmas on");
+            christmasToggle = true;
+        }
+        else
+        {
+            Debug.Log("Christmas off");
+            christmasToggle = false;
+        }
+        isChristmas = christmasToggle;
     }
 }
