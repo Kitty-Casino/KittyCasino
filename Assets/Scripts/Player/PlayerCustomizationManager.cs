@@ -179,7 +179,7 @@ public class PlayerCustomizationManager : MonoBehaviour
             ApplyRightHands(righthandInstance);
         }
 
-        if (currentColor == null && colorInstance != null)
+        if (currentColor == colorInstance)
         {
             ApplyColor(colorInstance);
         }
@@ -544,8 +544,10 @@ public class PlayerCustomizationManager : MonoBehaviour
     {
         colorInstance = color;
     }
+    /*
     public void ClearColorEquipped()
     {
         colorInstance = currentColor;                                                                       
     }
+    */
 }

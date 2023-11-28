@@ -39,7 +39,7 @@ public class NeckwearScript : MonoBehaviour
             if (PlayerCustomizationManager.instance != null)
             {
 
-                customizationManager.ClearColorEquipped();
+                // customizationManager.ClearColorEquipped();
 
                 if (color != null)
                 {
@@ -65,7 +65,7 @@ public class NeckwearScript : MonoBehaviour
                 if (PlayerCustomizationManager.instance != null)
                 {
  
-                    customizationManager.ClearColorEquipped();
+                    // customizationManager.ClearColorEquipped();
 
                     if (color != null)
                     {

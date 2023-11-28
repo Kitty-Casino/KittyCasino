@@ -43,7 +43,7 @@ public class ShirtScript : MonoBehaviour
 
                 
                 customizationManager.ClearShirtEquipped();
-                customizationManager.ClearColorEquipped();
+                // customizationManager.ClearColorEquipped();
 
                 if (shirtPrefab != null)
                 {
