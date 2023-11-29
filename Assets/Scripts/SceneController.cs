@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class SceneController : MonoBehaviour
 {
     public static bool isInStoryMode = false;
-    public static bool isChristmas = false;
+    public static bool isChristmas;
     private GameObject christmasDecorations;
     private Toggle christmasToggle;
     public void Start()
