@@ -22,7 +22,8 @@ public class SceneController : MonoBehaviour
             isInStoryMode = true;
         }
 
-        if (SceneManager.GetActiveScene().name == "Casino")
+        if (SceneManager.GetActiveScene().name == "Casino" || SceneManager.GetActiveScene().name == "StoryCasino"
+            || SceneManager.GetActiveScene().name == "Bartending")
         {
             christmasDecorations = GameObject.FindWithTag("Christmas");
             christmasDecorations.SetActive(false);

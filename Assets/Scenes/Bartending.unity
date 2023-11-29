@@ -15659,7 +15659,7 @@ GameObject:
   - component: {fileID: 1644259006}
   m_Layer: 0
   m_Name: =====ChristmasDecor=====
-  m_TagString: Untagged
+  m_TagString: Christmas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
