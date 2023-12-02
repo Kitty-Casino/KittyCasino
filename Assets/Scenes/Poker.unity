@@ -2817,6 +2817,7 @@ MonoBehaviour:
   playerCards:
   - {fileID: 1924591550}
   - {fileID: 1676701357}
+  christmasBack: {fileID: 21300000, guid: 161e3dd74c6933f46bdb6f200be225d3, type: 3}
   bettingUI: {fileID: 281437659}
   betButton: {fileID: 1558445580}
   betSlider: {fileID: 281437658}
@@ -2827,6 +2828,7 @@ MonoBehaviour:
   checkButton: {fileID: 1759049738}
   betUIText: {fileID: 1585928506}
   coinsController: {fileID: 0}
+  sceneController: {fileID: 65875606}
   placeBetUI: {fileID: 1221144818}
   raiseBetUI: {fileID: 1108144565}
   winScreen: {fileID: 329528059}

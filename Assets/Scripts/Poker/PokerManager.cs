@@ -13,6 +13,7 @@ public class PokerManager : MonoBehaviour
     public GameObject[] communityCards; // will always be length 5
     public GameObject[] dealerCards; // will always be length 2
     public GameObject[] playerCards; // will always be length 2
+    public Sprite christmasBack;
 
     [Header("Betting")]
     public GameObject bettingUI;
@@ -25,6 +26,7 @@ public class PokerManager : MonoBehaviour
     public GameObject checkButton;
     public TextMeshProUGUI betUIText;
     public CoinsController coinsController;
+    public SceneController sceneController;
     // public TextMeshProUGUI betButtonText;
 
     [Header("UI")]
@@ -53,6 +55,7 @@ public class PokerManager : MonoBehaviour
 
     public void Initialize()
     {
+        ChangeBacksToChristmas();
         Debug.Log("Addcards");
         foreach (Sprite card in cardPool)
         {
@@ -560,5 +563,28 @@ public class PokerManager : MonoBehaviour
         }
 
         return maxContiguous;
+    }
+
+    private void ChangeBacksToChristmas()
+    {
+        bool christmas = sceneController.ChristmasCheck();
+        if (christmas)
+        {
+            for (int i = 0; i < dealerCards.Length; i++)
+            {
+                dealerCards[i].GetComponent<PokerCardController>().cardSides[0] = christmasBack;
+                dealerCards[i].GetComponent<Image>().sprite = dealerCards[i].GetComponent<PokerCardController>().cardSides[0];
+            }
+            for (int i = 0; i < playerCards.Length; i++)
+            {
+                playerCards[i].GetComponent<PokerCardController>().cardSides[0] = christmasBack;
+                playerCards[i].GetComponent<Image>().sprite = playerCards[i].GetComponent<PokerCardController>().cardSides[0];
+            }    
+            for (int i = 0; i < communityCards.Length; i++)
+            {
+                communityCards[i].GetComponent<PokerCardController>().cardSides[0] = christmasBack;
+                communityCards[i].GetComponent<Image>().sprite = communityCards[i].GetComponent<PokerCardController>().cardSides[0];
+            }
+        }
     }
 }
