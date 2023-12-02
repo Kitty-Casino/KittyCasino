@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class CardManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class CardManager : MonoBehaviour
     public bool hasBeenClicked;
     public bool coroutineOver = false;
     private CardController[] totalCards;
+    public Sprite christmasBack;
 
     [SerializeField]
     private GameObject[] cardsWithDifficulty;
@@ -40,6 +42,7 @@ public class CardManager : MonoBehaviour
     public Slider betSlider;
     public Button betButton;
     private CoinsController coinController;
+    public SceneController sceneController;
     public GameObject bettingUI;
     public bool betMade;
     public int betValue;
@@ -51,7 +54,7 @@ public class CardManager : MonoBehaviour
     public GameObject easy;
     public GameObject medium;
     public GameObject hard;
-    
+
     void Start()
     {
         coinController = GameObject.Find("CoinsController").GetComponent<CoinsController>();
@@ -181,12 +184,13 @@ public class CardManager : MonoBehaviour
         int cardDecorNum = 0;
         int cardValue = 0;
         assignCards(cardDecorNum, cardValue);
-
         StartCoroutine(bettingScreen());
+        
     }
 
     private void assignCards(int cardDecorNum, int cardValue)
-    {    
+    {
+        ChangeBacksToChristmas();
         // assigning the card faces to each card value
         for (int j = 0; j < cardsWithDifficulty.Length / 2; j++)
         {
@@ -197,7 +201,6 @@ public class CardManager : MonoBehaviour
                     cardsWithDifficulty[i].GetComponent<CardController>().cardDecor[1] = cardDecor[cardDecorNum];
                 }
             }
-
             cardValue += 2;
             cardDecorNum++;
         }
@@ -452,6 +455,18 @@ public class CardManager : MonoBehaviour
         return -1; // should never get here
     }
 
+    private void ChangeBacksToChristmas()
+    {
+        bool christmas = sceneController.ChristmasCheck();
+        if (christmas)
+        {
+            for (int i = 0; i < cardsWithDifficulty.Length; i++)
+            {
+                cardsWithDifficulty[i].GetComponent<CardController>().cardDecor[0] = christmasBack;
+                cardsWithDifficulty[i].transform.GetChild(0).GetComponent<Image>().sprite = totalCards[i].GetComponent<CardController>().cardDecor[0];
+            }
+        }
+    }
     public void CloseApp()
     {
         Debug.Log("Quit The Game");

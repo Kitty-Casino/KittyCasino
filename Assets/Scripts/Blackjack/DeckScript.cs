@@ -66,6 +66,7 @@ public class DeckScript : MonoBehaviour
     public Sprite GetCardBack()
     {
         bool christmas = sceneController.ChristmasCheck();
+
         if (!christmas)
         {
             return cardSprites[0].GetComponent<Image>().sprite;
