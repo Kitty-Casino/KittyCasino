@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
     // Ref to CoinsController for money management
     CoinsController coinsController = CoinsController.Instance;
 
+    // For the christmas check
+    public SceneController sceneController;
+    public Image christmasBack;
+
     // Buttons for game
     public GameObject dealButtonObject;
     public GameObject hitButtonObject;
@@ -43,18 +47,21 @@ public class GameManager : MonoBehaviour
     int pot = 0;
     void Start()
     {
-        // Declares all buttons and UI elements and adds listeners for them
-        
-
-        mainText.gameObject.SetActive(false);
-
         //dealButton.onClick.AddListener(() => DealClicked());
         //hitButton.onClick.AddListener(() => HitClicked());
         ////standButton.onClick.AddListener(() => StandClicked());
         //betButton.onClick.AddListener(() => BetClicked());
         //doubleButton.onClick.AddListener(() => DoubleClicked());
 
+        mainText.gameObject.SetActive(false);
+
         coinsController = CoinsController.Instance;
+
+        bool christmas = sceneController.ChristmasCheck();
+        if (christmas)
+        {
+            hideCard.GetComponent<Image>().sprite = christmasBack.sprite;
+        }
     }
     
     // Handles dealing of the cards, resets both players and dealers hands and shuffles the deck and activates/deactivates approrpriate buttons
@@ -74,6 +81,8 @@ public class GameManager : MonoBehaviour
             scoreText.text = "Your Hand: \n" + playerScript.handValue.ToString();
             dealerScoreText.text = "Dealers Hand: " + dealerScript.handValue.ToString();
             hideCard.GetComponent<Image>().enabled = true;
+
+            
 
             dealButtonObject.gameObject.SetActive(false);
             betButtonObject.gameObject.SetActive(false);

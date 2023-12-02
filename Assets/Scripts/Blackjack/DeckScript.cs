@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class DeckScript : MonoBehaviour
 {
     public Image[] cardSprites;
+    public Image christmasBack;
+    public SceneController sceneController;
     int[] cardValues = new int[53];
     int currentIndex = 0;
     
@@ -63,6 +65,14 @@ public class DeckScript : MonoBehaviour
 
     public Sprite GetCardBack()
     {
-        return cardSprites[0].GetComponent<Image>().sprite;
+        bool christmas = sceneController.ChristmasCheck();
+        if (!christmas)
+        {
+            return cardSprites[0].GetComponent<Image>().sprite;
+        }
+        else
+        {
+            return christmasBack.GetComponent<Image>().sprite;
+        }
     }
 }

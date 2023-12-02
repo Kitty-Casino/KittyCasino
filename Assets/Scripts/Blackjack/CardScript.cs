@@ -8,6 +8,11 @@ public class CardScript : MonoBehaviour
     // Value of cards assigned here
     public int value = 0;
     public Image cardImage;
+
+    private void Start()
+    {
+        ResetCard();
+    }
     public int GetValueOfCard()
     {
         return value;

@@ -88,4 +88,16 @@ public class SceneController : MonoBehaviour
         }
         isChristmas = christmasToggle;
     }
+
+    public bool ChristmasCheck()
+    {
+        if (isChristmas)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class BlackjackPlayerScript : MonoBehaviour
@@ -23,7 +24,11 @@ public class BlackjackPlayerScript : MonoBehaviour
 
     // Used to track aces for setting their value to 1 or 11 approrpiately 
     List<CardScript> aceList = new List<CardScript>();
-  
+
+    private void Start()
+    {
+        // ResetHand();
+    }
     public void StartHand()
     {
         GetCard();
