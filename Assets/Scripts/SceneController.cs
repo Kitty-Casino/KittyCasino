@@ -8,9 +8,10 @@ public class SceneController : MonoBehaviour
     public static bool isChristmas;
     private GameObject christmasDecorations;
     private Toggle christmasToggle;
+    MusicController musicController = MusicController.instance;
     public void Start()
     {
-        
+        musicController = MusicController.instance;
         //if (SceneManager.GetActiveScene().name != "Casino" && SceneManager.GetActiveScene().name != "MainMenu")
         //{
         //    PlayerCustomizationManager customizationManager = PlayerCustomizationManager.instance;
@@ -80,14 +81,17 @@ public class SceneController : MonoBehaviour
         {
             Debug.Log("Christmas on");
             christmasToggle = true;
+            musicController.PlayMusic(musicController.christmasMusic);
         }
         else
         {
             Debug.Log("Christmas off");
             christmasToggle = false;
+            musicController.PlayMusic(musicController.casinoMusic);
         }
         isChristmas = christmasToggle;
         SetChristmasUI();
+        
     }
 
     public void SetChristmasUI()

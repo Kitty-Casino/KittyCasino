@@ -11,6 +11,9 @@ public class MusicController : MonoBehaviour
     public AudioClip casinoMusic;
     public AudioClip gameMusic;
     public AudioClip shopMusic;
+    public AudioClip christmasMusic;
+
+    private SceneController sceneController;
 
     public Slider musicSlider;
     public Slider sfxSlider;
@@ -32,6 +35,7 @@ public class MusicController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        sceneController = GameObject.FindWithTag("SceneController").GetComponent<SceneController>();
     }
 
     void Start()
@@ -59,36 +63,74 @@ public class MusicController : MonoBehaviour
 
     private void PlayMusic()
     {
-        switch (SceneManager.GetActiveScene().name)
+        bool christmas = sceneController.ChristmasCheck();
+        if (!christmas)
         {
-            case "Casino":
-                PlayMusic(casinoMusic);
-                break;
-            case "StoryCasino":
-                PlayMusic(casinoMusic);
-                break;
-            case "Shop":
-                PlayMusic(shopMusic);
-                break;
-            case "Bartending":
-                PlayMusic(gameMusic);
-                break;
-            case "Blackjack":
-                PlayMusic(gameMusic);
-                break;
-            case "Matching":
-                PlayMusic(gameMusic);
-                break;
-            case "Poker":
-                PlayMusic(gameMusic);
-                break;
-            case "Slots":
-                PlayMusic(gameMusic);
-                break;
-            case "MainMenu":
-                PlayMusic(casinoMusic);
-                break;
-        }    
+            switch (SceneManager.GetActiveScene().name)
+            {
+                case "Casino":
+                    PlayMusic(casinoMusic);
+                    break;
+                case "StoryCasino":
+                    PlayMusic(casinoMusic);
+                    break;
+                case "Shop":
+                    PlayMusic(shopMusic);
+                    break;
+                case "Bartending":
+                    PlayMusic(gameMusic);
+                    break;
+                case "Blackjack":
+                    PlayMusic(gameMusic);
+                    break;
+                case "Matching":
+                    PlayMusic(gameMusic);
+                    break;
+                case "Poker":
+                    PlayMusic(gameMusic);
+                    break;
+                case "Slots":
+                    PlayMusic(gameMusic);
+                    break;
+                case "MainMenu":
+                    PlayMusic(casinoMusic);
+                    break;
+            }
+        }
+        else
+        {
+            switch (SceneManager.GetActiveScene().name)
+            {
+                case "Casino":
+                    PlayMusic(christmasMusic);
+                    break;
+                case "StoryCasino":
+                    PlayMusic(christmasMusic);
+                    break;
+                case "Shop":
+                    PlayMusic(shopMusic);
+                    break;
+                case "Bartending":
+                    PlayMusic(christmasMusic);
+                    break;
+                case "Blackjack":
+                    PlayMusic(christmasMusic);
+                    break;
+                case "Matching":
+                    PlayMusic(christmasMusic);
+                    break;
+                case "Poker":
+                    PlayMusic(christmasMusic);
+                    break;
+                case "Slots":
+                    PlayMusic(christmasMusic);
+                    break;
+                case "MainMenu":
+                    PlayMusic(christmasMusic);
+                    break;
+            }
+        }
+        
     }
 
     public void PlaySound(AudioClip clip)
@@ -130,6 +172,11 @@ public class MusicController : MonoBehaviour
                 previousSFXValue = sfxSlider.value;
                 PlayerPrefs.SetFloat("SFXVolume", sfxSlider.value);
             }
+        }
+
+        if (sceneController == null)
+        {
+            sceneController = GameObject.FindWithTag("SceneController").GetComponent<SceneController>();
         }
     }
 }
