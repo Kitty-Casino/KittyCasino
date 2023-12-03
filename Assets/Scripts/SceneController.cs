@@ -23,7 +23,7 @@ public class SceneController : MonoBehaviour
         }
 
         if (SceneManager.GetActiveScene().name == "Casino" || SceneManager.GetActiveScene().name == "StoryCasino"
-            || SceneManager.GetActiveScene().name == "Bartending")
+            || SceneManager.GetActiveScene().name == "Bartending" || SceneManager.GetActiveScene().name == "MainMenu")
         {
             christmasDecorations = GameObject.FindWithTag("Christmas");
             christmasDecorations.SetActive(false);
@@ -87,8 +87,20 @@ public class SceneController : MonoBehaviour
             christmasToggle = false;
         }
         isChristmas = christmasToggle;
+        SetChristmasUI();
     }
 
+    public void SetChristmasUI()
+    {
+        if (isChristmas)
+        {
+            christmasDecorations.SetActive(true);
+        }
+        else
+        {
+            christmasDecorations.SetActive(false);
+        }
+    }
     public bool ChristmasCheck()
     {
         if (isChristmas)
