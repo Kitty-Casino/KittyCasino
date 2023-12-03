@@ -9,9 +9,11 @@ public class PauseController : MonoBehaviour
     public GameObject settingsMenuUI;
     public SceneController sceneManager;
     public GameObject pauseButton;
+    private GameObject christmasUI;
 
     public TMP_Text mainMenuButtonText;
 
+    public SceneController sceneController;
     void Start()
     {
         Resume(); 
@@ -23,6 +25,7 @@ public class PauseController : MonoBehaviour
         {
             mainMenuButtonText.text = "Main Menu";
         }
+        
     }
 
     void Update()
@@ -56,6 +59,17 @@ public class PauseController : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
         PlayerController.DisablePlayerController?.Invoke(false);
+
+        christmasUI = GameObject.FindWithTag("Christmas");
+        bool christmas = sceneController.ChristmasCheck();
+        if (christmas)
+        {
+            christmasUI.SetActive(true);
+        }
+        else
+        {
+            christmasUI.SetActive(false);
+        }
     }
 
     public void MainMenuButton()

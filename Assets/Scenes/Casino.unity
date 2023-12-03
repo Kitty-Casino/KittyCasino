@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.605
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.34378928, g: 0.38239378, b: 0.4474857, a: 0.605}
+  m_IndirectSpecularColor: {r: 0.34378916, g: 0.38239363, b: 0.44748485, a: 0.605}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -35819,6 +35819,7 @@ MonoBehaviour:
   sceneManager: {fileID: 173362025}
   pauseButton: {fileID: 1216419836}
   mainMenuButtonText: {fileID: 1501529890}
+  sceneController: {fileID: 173362025}
 --- !u!114 &1436636236
 MonoBehaviour:
   m_ObjectHideFlags: 0

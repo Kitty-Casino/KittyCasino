@@ -23571,6 +23571,7 @@ MonoBehaviour:
   sceneManager: {fileID: 855416436}
   pauseButton: {fileID: 1128339648}
   mainMenuButtonText: {fileID: 785374347}
+  sceneController: {fileID: 855416436}
 --- !u!114 &1791069666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24556,7 +24557,6 @@ MonoBehaviour:
   eyeSlot: {fileID: 0}
   currentEyes: {fileID: 0}
   eyeInstance: {fileID: 0}
-  baseColor: {r: 0, g: 0, b: 0, a: 0}
   currentColor: {r: 0, g: 0, b: 0, a: 0}
   colorInstance: {r: 0, g: 0, b: 0, a: 0}
   player: {fileID: 0}

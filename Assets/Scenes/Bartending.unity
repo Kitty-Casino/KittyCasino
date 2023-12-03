@@ -4363,6 +4363,7 @@ MonoBehaviour:
   sceneManager: {fileID: 565820716}
   pauseButton: {fileID: 315587250}
   mainMenuButtonText: {fileID: 905987019}
+  sceneController: {fileID: 565820716}
 --- !u!114 &490493502
 MonoBehaviour:
   m_ObjectHideFlags: 0
