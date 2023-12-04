@@ -24,7 +24,7 @@ public class CameraScript : MonoBehaviour
 
         if (target == null)
         {
-            target = GameObject.Find("Player(Clone)").transform;
+            target = GameObject.FindWithTag("Player").transform;
         }
 
         

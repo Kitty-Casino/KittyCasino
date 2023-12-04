@@ -8,7 +8,7 @@ public class SceneController : MonoBehaviour
     public static bool isChristmas;
     private GameObject christmasDecorations;
     private Toggle christmasToggle;
-    MusicController musicController = MusicController.instance;
+    MusicController musicController;
     public void Start()
     {
         musicController = MusicController.instance;

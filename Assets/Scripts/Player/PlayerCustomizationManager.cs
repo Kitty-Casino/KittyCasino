@@ -9,6 +9,7 @@ public class PlayerCustomizationManager : MonoBehaviour
     public static PlayerCustomizationManager instance; // Singleton instance
 
     public GameObject playerPrefab; // Reference to the player prefab
+    public GameObject christmasPlayer;
     public GameObject playerInstance; // The actual player instance
     public GameObject defaultPlayerMesh;
 
@@ -44,6 +45,7 @@ public class PlayerCustomizationManager : MonoBehaviour
     private string righthandName;
     private string colorName;
 
+    private SceneController sceneController;
     private GameObject spawnPoint;
     [SerializeField] private bool isNull = false;
 
@@ -59,10 +61,16 @@ public class PlayerCustomizationManager : MonoBehaviour
             Destroy(gameObject);
         }
         
+        sceneController = GameObject.FindWithTag("SceneController").GetComponent<SceneController>();
     }
 
     private void Update()
     {
+        if (sceneController == null)
+        {
+            sceneController = GameObject.FindWithTag("SceneController").GetComponent<SceneController>();
+        }
+
         if (playerInstance == null)
         {
             InitializePlayer();
@@ -97,7 +105,7 @@ public class PlayerCustomizationManager : MonoBehaviour
     private void FindAttachPoints()
     {
         if (player == null)
-            player = GameObject.Find("Player(Clone)").transform;
+            player = GameObject.FindWithTag("Player").transform;
         if (hatSlot == null)
             hatSlot = GameObject.Find("HatAttachPoint").transform;
         if (eyeSlot == null)
@@ -133,15 +141,32 @@ public class PlayerCustomizationManager : MonoBehaviour
             Destroy(GameObject.FindObjectOfType<PlayerController>());
         }
 
-        if (playerPrefab != null)
+        bool christmas = sceneController.ChristmasCheck();
+        if (!christmas)
         {
-            playerInstance = Instantiate(playerPrefab);
-            if (currentShirt == null)
+            if (playerPrefab != null)
             {
-                defaultPlayerMesh = GameObject.Find("Player_Base");
-                currentShirt = defaultPlayerMesh;
+                playerInstance = Instantiate(playerPrefab);
+                if (currentShirt == null)
+                {
+                    defaultPlayerMesh = GameObject.Find("Player_Base");
+                    currentShirt = defaultPlayerMesh;
+                }
             }
         }
+        else
+        {
+            if (playerPrefab != null)
+            {
+                playerInstance = Instantiate(christmasPlayer);
+                if (currentShirt == null)
+                {
+                    defaultPlayerMesh = GameObject.Find("Player_Base");
+                    currentShirt = defaultPlayerMesh;
+                }
+            }
+        }
+        
 
         FindAttachPoints();
         ApplyCustomization();
@@ -323,59 +348,42 @@ public class PlayerCustomizationManager : MonoBehaviour
 
     public void ApplyShirt(GameObject shirtPrefab)
     {
-        shirtInstance = shirtPrefab;
-        defaultPlayerMesh = shirtInstance;
-        if (playerInstance != null)
+        bool christmas = sceneController.ChristmasCheck();
+
+        if (!christmas)
         {
-            if (currentShirt == null || currentShirt != shirtPrefab)
+            shirtInstance = shirtPrefab;
+            defaultPlayerMesh = shirtInstance;
+            if (playerInstance != null)
             {
-                if (currentShirt != null)
+                if (currentShirt == null || currentShirt != shirtPrefab)
                 {
-                    Destroy(currentShirt);
-                }
-
-                currentShirt = Instantiate(shirtPrefab);
-                currentShirt.transform.SetParent(player);
-                currentShirt.transform.localPosition = new Vector3(0, -1, 0);
-                currentShirt.transform.localRotation = Quaternion.identity;
-                ApplyColor(colorInstance);
-                /*
-                if (SceneManager.GetActiveScene().name == "Shop")
-                {
-                    string shirtType = currentShirt.GetComponentInChildren<SkinnedMeshRenderer>().name;
-                    string colorType = currentColor.name;
-                    Debug.Log(colorType);
-                    switch (shirtType)
+                    if (currentShirt != null)
                     {
-                        case "Cat_Base":
-                            break;
-                        case "Cat_Dress":
-                            break;
-                        case "Cat_Overall":
-                            break;
-                        case "Cat_RedShirt":
-                            break;
-
+                        Destroy(currentShirt);
                     }
-                }
-                else
-                {
 
+                    currentShirt = Instantiate(shirtPrefab);
+                    currentShirt.transform.SetParent(player);
+                    currentShirt.transform.localPosition = new Vector3(0, -1, 0);
+                    currentShirt.transform.localRotation = Quaternion.identity;
+                    ApplyColor(colorInstance);
                 }
-                */
-                
             }
         }
         else
         {
-            playerInstance = Instantiate(playerPrefab);
-            if (currentShirt == null)
+            if (!christmas)
             {
-                defaultPlayerMesh = GameObject.Find("Player_Base");
-                currentShirt = defaultPlayerMesh;
+                playerInstance = Instantiate(playerPrefab);
+                if (currentShirt == null)
+                {
+                    defaultPlayerMesh = GameObject.Find("Player_Base");
+                    currentShirt = defaultPlayerMesh;
+                }
+                ApplyColor(colorInstance);
+
             }
-            ApplyColor(colorInstance);
-            
         }
         
     }

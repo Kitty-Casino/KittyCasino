@@ -5526,6 +5526,10 @@ PrefabInstance:
       propertyPath: musicSlider
       value: 
       objectReference: {fileID: 1620743717}
+    - target: {fileID: 6415322455434288286, guid: ac06b4e5f037ab840b5d816c6c50e80b, type: 3}
+      propertyPath: christmasMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: bf4b089dd22e3da40b4ea37d9ea28178, type: 3}
     - target: {fileID: 7184813476758710755, guid: ac06b4e5f037ab840b5d816c6c50e80b, type: 3}
       propertyPath: m_RootOrder
       value: 4

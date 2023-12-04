@@ -25,12 +25,12 @@ public class PromptController : MonoBehaviour
     {
         if (playerController == null)
         {
-            playerController = GameObject.Find("Player(Clone)").GetComponent<PlayerController>();
+            playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         }
 
         if (playerRespawn == null) 
         {
-            playerRespawn = GameObject.Find("Player(Clone)").GetComponent<RespawnController>();
+            playerRespawn = GameObject.FindWithTag("Player").GetComponent<RespawnController>();
         }
 
         // These controls are compatible with mouse clicks, comment this part out when building the game for mobile 
