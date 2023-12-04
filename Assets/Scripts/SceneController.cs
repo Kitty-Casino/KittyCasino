@@ -24,7 +24,9 @@ public class SceneController : MonoBehaviour
         }
 
         if (SceneManager.GetActiveScene().name == "Casino" || SceneManager.GetActiveScene().name == "StoryCasino"
-            || SceneManager.GetActiveScene().name == "Bartending" || SceneManager.GetActiveScene().name == "MainMenu")
+            || SceneManager.GetActiveScene().name == "Bartending" || SceneManager.GetActiveScene().name == "Slots"
+            || SceneManager.GetActiveScene().name == "Matching" || SceneManager.GetActiveScene().name == "Blackjack"
+            || SceneManager.GetActiveScene().name == "Poker" || SceneManager.GetActiveScene().name == "MainMenu")
         {
             christmasDecorations = GameObject.FindWithTag("Christmas");
             christmasDecorations.SetActive(false);
