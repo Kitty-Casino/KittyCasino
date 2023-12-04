@@ -26,7 +26,7 @@ public class CoinsController : MonoBehaviour
 
     void Start()
     {
-        totalCoins = baseCoins;
+        totalCoins = PlayerPrefs.GetInt("TotalCoins", baseCoins);
         
         coinsObj = GameObject.Find("CoinsUI");
         coinsText = GameObject.Find("CoinsText").GetComponent<TextMeshProUGUI>();
@@ -52,6 +52,7 @@ public class CoinsController : MonoBehaviour
         Debug.Log("increment by " + numCoins);
         totalCoins += numCoins;
         coinsText.text = "" + totalCoins;
+        SaveCoins();
     }
 
     public void DecrementCoins(int numCoins)
@@ -59,5 +60,12 @@ public class CoinsController : MonoBehaviour
         Debug.Log("decrement by " + numCoins);
         totalCoins -= numCoins;
         coinsText.text = "" + totalCoins;
+        SaveCoins();
+    }
+
+    public void SaveCoins()
+    {
+        PlayerPrefs.SetInt("TotalCoins", totalCoins);
+        PlayerPrefs.Save();
     }
 }
